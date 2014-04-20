@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{{BD725B43-3FD5-4E10-B2DE-A851DD08E305}}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition="'$(Configuration)' == '' " />
+    <Platform Condition="'$(Platform)' == '' " />
+    <OutputType>Library</OutputType>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="WaveEngine.Common">
+      <HintPath>$(waveengine)v1.0\Lib\iOS\WaveEngineiOS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngine.Framework">
+      <HintPath>$(waveengine)v1.0\Lib\iOS\WaveEngineiOS.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngine.Components">
+      <HintPath>$(waveengine)v1.0\Lib\iOS\WaveEngineiOS.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngine.Materials">
+      <HintPath>$(waveengine)v1.0\Lib\iOS\WaveEngineiOS.Materials.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="BadouiClarksonApproximator.cs" />
+    <Compile Include="BaseObject.cs" />
+    <Compile Include="BaseObjectWithVertices.cs" />
+    <Compile Include="Bone.cs" />
+    <Compile Include="BoundsEvaluator.cs" />
+    <Compile Include="CF2\CF2Reader.cs" />
+    <Compile Include="Colour.cs" />
+    <Compile Include="CullMode.cs" />
+    <Compile Include="DummySceneNode.cs" />
+    <Compile Include="FaceType.cs" />
+    <Compile Include="Hinge.cs" />
+    <Compile Include="IMesh.cs" />
+    <Compile Include="JointedSceneNode.cs" />
+    <Compile Include="Material.cs" />
+    <Compile Include="Mesh.cs" />
+    <Compile Include="MeshSceneNode.cs" />
+    <Compile Include="MeshType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneNode.cs" />
+    <Compile Include="SceneNodeSelectionType.cs" />
+    <Compile Include="SceneNodeType.cs" />
+    <Compile Include="SkinnedMesh.cs" />
+    <Compile Include="SkinnedMeshAnimation.cs" />
+    <Compile Include="SkinnedSurface.cs" />
+    <Compile Include="Surface.cs" />
+    <Compile Include="SurfaceType.cs" />
+    <Compile Include="UnitDimension.cs" />
+    <Compile Include="VertexWeight.cs" />
+    <Compile Include="World.cs" />
+    <Compile Include="X3D\Helper.cs" />
+    <Compile Include="X3D\IGLE.cs" />
+    <Compile Include="X3D\X3DAnimation.cs" />
+    <Compile Include="X3D\X3DBaseReader.cs" />
+    <Compile Include="X3D\X3DCameraAnimation.cs" />
+    <Compile Include="X3D\X3DCurveWallDeformationAnimation.cs" />
+    <Compile Include="X3D\X3DDeformation.cs" />
+    <Compile Include="X3D\X3DFancyStuff.cs" />
+    <Compile Include="X3D\X3DFormatReader.cs" />
+    <Compile Include="X3D\X3DJointedSystemAnimation.cs" />
+    <Compile Include="X3D\X3DKeyFrameAnimation.cs" />
+    <Compile Include="X3D\X3DLightAnimation.cs" />
+    <Compile Include="X3D\X3DMeasurement.cs" />
+    <Compile Include="X3D\X3DMobileImage.cs" />
+    <Compile Include="X3D\X3DOrigami.cs" />
+    <Compile Include="X3D\X3DPrimitive.cs" />
+    <Compile Include="X3D\X3DPrimitiveAnimation.cs" />
+    <Compile Include="X3D\X3DReader.cs" />
+    <Compile Include="X3D\X3DShape.cs" />
+    <Compile Include="X3D\X3DShapeAnimation.cs" />
+    <Compile Include="X3D\X3DSoundAnimation.cs" />
+    <Compile Include="X3D\X3DThumbnailReader.cs" />
+    <Compile Include="X3D\X3DTok.cs" />
+    <Compile Include="X3D\X3DTypes.cs" />
+    <Compile Include="VectorDrawing.cs" />
+    <Compile Include="Platform\PlatformSpecific.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2Constants.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2Exception.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2InputStream.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2OutputStream.cs" />
+    <Compile Include="ZipLib\Checksums\Adler32.cs" />
+    <Compile Include="ZipLib\Checksums\CRC32.cs" />
+    <Compile Include="ZipLib\Checksums\IChecksum.cs" />
+    <Compile Include="ZipLib\Checksums\StrangeCRC.cs" />
+    <Compile Include="ZipLib\Core\FileSystemScanner.cs" />
+    <Compile Include="ZipLib\Core\INameTransform.cs" />
+    <Compile Include="ZipLib\Core\IScanFilter.cs" />
+    <Compile Include="ZipLib\Core\NameFilter.cs" />
+    <Compile Include="ZipLib\Core\PathFilter.cs" />
+    <Compile Include="ZipLib\Core\StreamUtils.cs" />
+    <Compile Include="ZipLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="ZipLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="ZipLib\Encryption\ZipAESStream.cs" />
+    <Compile Include="ZipLib\Encryption\ZipAESTransform.cs" />
+    <Compile Include="ZipLib\GZip\GZIPConstants.cs" />
+    <Compile Include="ZipLib\GZip\GZipException.cs" />
+    <Compile Include="ZipLib\GZip\GzipInputStream.cs" />
+    <Compile Include="ZipLib\GZip\GzipOutputStream.cs" />
+    <Compile Include="ZipLib\Lzw\LzwConstants.cs" />
+    <Compile Include="ZipLib\Lzw\LzwException.cs" />
+    <Compile Include="ZipLib\Lzw\LzwInputStream.cs" />
+    <Compile Include="ZipLib\Tar\InvalidHeaderException.cs" />
+    <Compile Include="ZipLib\Tar\TarArchive.cs" />
+    <Compile Include="ZipLib\Tar\TarBuffer.cs" />
+    <Compile Include="ZipLib\Tar\TarEntry.cs" />
+    <Compile Include="ZipLib\Tar\TarException.cs" />
+    <Compile Include="ZipLib\Tar\TarHeader.cs" />
+    <Compile Include="ZipLib\Tar\TarInputStream.cs" />
+    <Compile Include="ZipLib\Tar\TarOutputStream.cs" />
+    <Compile Include="ZipLib\ZipBaseException.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="ZipLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="ZipLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="ZipLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="ZipLib\Zip\FastZip.cs" />
+    <Compile Include="ZipLib\Zip\IEntryFactory.cs" />
+    <Compile Include="ZipLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="ZipLib\Zip\ZipConstants.cs" />
+    <Compile Include="ZipLib\Zip\ZipEntry.cs" />
+    <Compile Include="ZipLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="ZipLib\Zip\ZipException.cs" />
+    <Compile Include="ZipLib\Zip\ZipExtraData.cs" />
+    <Compile Include="ZipLib\Zip\ZipFile.cs" />
+    <Compile Include="ZipLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="ZipLib\Zip\ZipInputStream.cs" />
+    <Compile Include="ZipLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="ZipLib\Zip\ZipOutputStream.cs" />
+  </ItemGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+	-->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <MTouchProfiling>4</MTouchProfiling>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <MTouchProfiling>4</MTouchProfiling>
+    <CodesignKey>4</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>4</CodesignKey>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+</Project>

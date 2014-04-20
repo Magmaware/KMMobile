@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMMobileOUYA", "KMMobile\LauncherOUYA\Launcher.csproj", "{186498A8-498A-42CE-8E3B-CDD8718FFED9}" 
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMMobileApplicationOUYA", "KMMobile\KMMobileApplication\KMMobileApplicationOUYA.csproj", "{D5A80ED3-AFBE-413A-B11B-17D4CAD42408}" 
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMMobileReadersOUYA", "KMMobile\KMMobileReaders\KMMobileReadersOUYA.csproj", "{BD725B43-3FD5-4E10-B2DE-A851DD08E305}" 
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = 
+	EndGlobalSection
+EndGlobal
+

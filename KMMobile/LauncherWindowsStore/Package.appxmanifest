@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="BD725B43-3FD5-4E10-B2DE-A851DD08E305" Publisher="" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>KMMobileApplication</DisplayName>
+    <PublisherDisplayName>waveengine</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+    <Description>KMMobileApplication Launcher</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Launcher.App">
+      <VisualElements DisplayName="KMMobileApplication" Logo="Images\Logo.png" SmallLogo="Images\SmallLogo.png" Description="KMMobileApplication Launcher" ForegroundText="light" BackgroundColor="#222222">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Images\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

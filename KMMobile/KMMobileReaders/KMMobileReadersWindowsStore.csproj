@@ -1,0 +1,175 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD725B43-3FD5-4E10-B2DE-A851DD08E305}</ProjectGuid>
+    <WaveEngineProject>{196BC63C-5C01-4C02-9F24-E720CA3AD406}</WaveEngineProject>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KMMobile</RootNamespace>
+    <AssemblyName>KMMobileReaders</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\AnyCPU\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\AnyCPU\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="WaveEngine.Common">
+      <HintPath>$(waveengine)v1.0\Lib\Metro\WaveEngineMetro.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngine.Framework">
+      <HintPath>$(waveengine)v1.0\Lib\Metro\WaveEngineMetro.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngine.Components">
+      <HintPath>$(waveengine)v1.0\Lib\Metro\WaveEngineMetro.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngine.Materials">
+      <HintPath>$(waveengine)v1.0\Lib\Metro\WaveEngineMetro.Materials.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="BadouiClarksonApproximator.cs" />
+    <Compile Include="BaseObject.cs" />
+    <Compile Include="BaseObjectWithVertices.cs" />
+    <Compile Include="Bone.cs" />
+    <Compile Include="BoundsEvaluator.cs" />
+    <Compile Include="CF2\CF2Reader.cs" />
+    <Compile Include="Colour.cs" />
+    <Compile Include="CullMode.cs" />
+    <Compile Include="DummySceneNode.cs" />
+    <Compile Include="FaceType.cs" />
+    <Compile Include="Hinge.cs" />
+    <Compile Include="IMesh.cs" />
+    <Compile Include="JointedSceneNode.cs" />
+    <Compile Include="Material.cs" />
+    <Compile Include="Mesh.cs" />
+    <Compile Include="MeshSceneNode.cs" />
+    <Compile Include="MeshType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SceneNode.cs" />
+    <Compile Include="SceneNodeSelectionType.cs" />
+    <Compile Include="SceneNodeType.cs" />
+    <Compile Include="SkinnedMesh.cs" />
+    <Compile Include="SkinnedMeshAnimation.cs" />
+    <Compile Include="SkinnedSurface.cs" />
+    <Compile Include="Surface.cs" />
+    <Compile Include="SurfaceType.cs" />
+    <Compile Include="UnitDimension.cs" />
+    <Compile Include="VertexWeight.cs" />
+    <Compile Include="World.cs" />
+    <Compile Include="X3D\Helper.cs" />
+    <Compile Include="X3D\IGLE.cs" />
+    <Compile Include="X3D\X3DAnimation.cs" />
+    <Compile Include="X3D\X3DBaseReader.cs" />
+    <Compile Include="X3D\X3DCameraAnimation.cs" />
+    <Compile Include="X3D\X3DCurveWallDeformationAnimation.cs" />
+    <Compile Include="X3D\X3DDeformation.cs" />
+    <Compile Include="X3D\X3DFancyStuff.cs" />
+    <Compile Include="X3D\X3DFormatReader.cs" />
+    <Compile Include="X3D\X3DJointedSystemAnimation.cs" />
+    <Compile Include="X3D\X3DKeyFrameAnimation.cs" />
+    <Compile Include="X3D\X3DLightAnimation.cs" />
+    <Compile Include="X3D\X3DMeasurement.cs" />
+    <Compile Include="X3D\X3DMobileImage.cs" />
+    <Compile Include="X3D\X3DOrigami.cs" />
+    <Compile Include="X3D\X3DPrimitive.cs" />
+    <Compile Include="X3D\X3DPrimitiveAnimation.cs" />
+    <Compile Include="X3D\X3DReader.cs" />
+    <Compile Include="X3D\X3DShape.cs" />
+    <Compile Include="X3D\X3DShapeAnimation.cs" />
+    <Compile Include="X3D\X3DSoundAnimation.cs" />
+    <Compile Include="X3D\X3DThumbnailReader.cs" />
+    <Compile Include="X3D\X3DTok.cs" />
+    <Compile Include="X3D\X3DTypes.cs" />
+    <Compile Include="VectorDrawing.cs" />
+    <Compile Include="Platform\PlatformSpecific.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2Constants.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2Exception.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2InputStream.cs" />
+    <Compile Include="ZipLib\BZip2\BZip2OutputStream.cs" />
+    <Compile Include="ZipLib\Checksums\Adler32.cs" />
+    <Compile Include="ZipLib\Checksums\CRC32.cs" />
+    <Compile Include="ZipLib\Checksums\IChecksum.cs" />
+    <Compile Include="ZipLib\Checksums\StrangeCRC.cs" />
+    <Compile Include="ZipLib\Core\FileSystemScanner.cs" />
+    <Compile Include="ZipLib\Core\INameTransform.cs" />
+    <Compile Include="ZipLib\Core\IScanFilter.cs" />
+    <Compile Include="ZipLib\Core\NameFilter.cs" />
+    <Compile Include="ZipLib\Core\PathFilter.cs" />
+    <Compile Include="ZipLib\Core\StreamUtils.cs" />
+    <Compile Include="ZipLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="ZipLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="ZipLib\Encryption\ZipAESStream.cs" />
+    <Compile Include="ZipLib\Encryption\ZipAESTransform.cs" />
+    <Compile Include="ZipLib\GZip\GZIPConstants.cs" />
+    <Compile Include="ZipLib\GZip\GZipException.cs" />
+    <Compile Include="ZipLib\GZip\GzipInputStream.cs" />
+    <Compile Include="ZipLib\GZip\GzipOutputStream.cs" />
+    <Compile Include="ZipLib\Lzw\LzwConstants.cs" />
+    <Compile Include="ZipLib\Lzw\LzwException.cs" />
+    <Compile Include="ZipLib\Lzw\LzwInputStream.cs" />
+    <Compile Include="ZipLib\Tar\InvalidHeaderException.cs" />
+    <Compile Include="ZipLib\Tar\TarArchive.cs" />
+    <Compile Include="ZipLib\Tar\TarBuffer.cs" />
+    <Compile Include="ZipLib\Tar\TarEntry.cs" />
+    <Compile Include="ZipLib\Tar\TarException.cs" />
+    <Compile Include="ZipLib\Tar\TarHeader.cs" />
+    <Compile Include="ZipLib\Tar\TarInputStream.cs" />
+    <Compile Include="ZipLib\Tar\TarOutputStream.cs" />
+    <Compile Include="ZipLib\ZipBaseException.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="ZipLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="ZipLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="ZipLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="ZipLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="ZipLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="ZipLib\Zip\FastZip.cs" />
+    <Compile Include="ZipLib\Zip\IEntryFactory.cs" />
+    <Compile Include="ZipLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="ZipLib\Zip\ZipConstants.cs" />
+    <Compile Include="ZipLib\Zip\ZipEntry.cs" />
+    <Compile Include="ZipLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="ZipLib\Zip\ZipException.cs" />
+    <Compile Include="ZipLib\Zip\ZipExtraData.cs" />
+    <Compile Include="ZipLib\Zip\ZipFile.cs" />
+    <Compile Include="ZipLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="ZipLib\Zip\ZipInputStream.cs" />
+    <Compile Include="ZipLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="ZipLib\Zip\ZipOutputStream.cs" />
+  </ItemGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+	-->
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup Condition="  '$(VisualStudioVersion)' == '' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+</Project>

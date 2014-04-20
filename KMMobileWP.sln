@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2012
+Project("{fae04ec0-301f-11d3-bf4b-00c04f79efbc}") = "KMMobileWP", "KMMobile\LauncherWP\Launcher.csproj", "{C324C41A-4AF0-4865-962D-3212C4CB3904}" 
+EndProject
+Project("{fae04ec0-301f-11d3-bf4b-00c04f79efbc}") = "KMMobileApplicationWP", "KMMobile\KMMobileApplication\KMMobileApplicationWP.csproj", "{D5A80ED3-AFBE-413A-B11B-17D4CAD42408}" 
+EndProject
+Project("{fae04ec0-301f-11d3-bf4b-00c04f79efbc}") = "KMMobileReadersWP", "KMMobile\KMMobileReaders\KMMobileReadersWP.csproj", "{BD725B43-3FD5-4E10-B2DE-A851DD08E305}" 
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = 
+	EndGlobalSection
+EndGlobal
+
