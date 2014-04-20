@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using WaveEngine.Framework.Services;
 using MonoMac.Foundation;
-using WaveEngine.Framework.Services;
 using WaveEngine.Framework.Graphics;
 using WaveEngine.Common.Math;
 using WaveEngine.Common.Graphics;
@@ -10,12 +9,12 @@ using System.IO;
 using System.Reflection;
 using WaveEngine.Common.Input;
 
-namespace LauncherMac
+namespace KMMobile
 {
 	[Register ("AppDelegate")]
 	public class App : WaveEngine.Adapter.Application
 	{
-		KMMobileApplication.Game game;
+		KMApplication game;
 		SpriteBatch spriteBatch;
 		Texture2D splashScreen;
 		bool splashState = true;
@@ -32,7 +31,7 @@ namespace LauncherMac
 
 		public override void Initialize ()
 		{
-			this.game = new KMMobileApplication.Game ();
+			this.game = new KMApplication ();
 			this.game.Initialize (this);
 
 			#region WAVE SOFTWARE LICENSE AGREEMENT

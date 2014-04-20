@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,6 +22,13 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\AnyCPU\Release\</OutputPath>
@@ -30,19 +38,25 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="WaveEngineMac.Common">
-      <HintPath>/Library/Frameworks/WaveEngine.framework/MacLibraries/WaveEngineMac.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\WaveEngine.framework\MacLibraries\WaveEngineMac.Common.dll</HintPath>
     </Reference>
     <Reference Include="WaveEngineMac.Framework">
-      <HintPath>/Library/Frameworks/WaveEngine.framework/MacLibraries/WaveEngineMac.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\WaveEngine.framework\MacLibraries\WaveEngineMac.Framework.dll</HintPath>
     </Reference>
     <Reference Include="WaveEngineMac.Components">
-      <HintPath>/Library/Frameworks/WaveEngine.framework/MacLibraries/WaveEngineMac.Components.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\WaveEngine.framework\MacLibraries\WaveEngineMac.Components.dll</HintPath>
     </Reference>
     <Reference Include="WaveEngineMac.Materials">
-      <HintPath>/Library/Frameworks/WaveEngine.framework/MacLibraries/WaveEngineMac.Materials.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\WaveEngine.framework\MacLibraries\WaveEngineMac.Materials.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,18 +65,18 @@
     <Reference Include="MonoMac" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="MyScene.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KMMobileReaders\KMMobileReaders.csproj">
-      <Project>{bd725b43-3fd5-4e10-b2de-a851dd08e305}</Project>
-      <Name>KMMobileReaders</Name>
-    </ProjectReference>
+    <Compile Include="StartMenu.cs" />
+    <Compile Include="KMApplication.cs" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
 	-->
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\KMMobileReaders\KMMobileReadersMac.csproj">
+      <Project>{BD725B43-3FD5-4E10-B2DE-A851DD08E305}</Project>
+      <Name>KMMobileReadersMac</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
