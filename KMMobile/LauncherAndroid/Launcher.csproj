@@ -53,15 +53,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="WaveEngineAndroid.Common">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="WaveEngineAndroid.Framework">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="WaveEngineAndroid.Adapter">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Adapter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
