@@ -1,10 +1,9 @@
+using KMMobile.GeoLib;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoPolygons
 {
-
     /// <summary>
     /// Class to represent a 2D polygon with optional curved lines.
     /// </summary>
@@ -18,29 +17,31 @@ namespace KMMobile.GeoLib
         /// Constructor.
         /// </summary>
         /// <param name="Other">The other polygon.</param> 
-	    public C2DPolyArc(C2DPolyBase Other) : base(Other)
+        public C2DPolyArc(C2DPolyBase Other)
+            : base(Other)
         {
-            
+
         }
         /// <summary>
         /// Constructor.
         /// </summary>
-	    public C2DPolyArc(C2DPolyArc Other): base(Other)
+        public C2DPolyArc(C2DPolyArc Other)
+            : base(Other)
         {
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-	    ~C2DPolyArc() {}
+        ~C2DPolyArc() { }
         /// <summary>
-	    /// Sets the starting point.
+        /// Sets the starting point.
         /// </summary>
         /// <param name="Point">The start point.</param> 
-	    public void SetStartPoint(C2DPoint Point)
+        public void SetStartPoint(C2DPoint Point)
         {
-	        Clear();
+            Clear();
 
-	        Lines.Add(new C2DLine(Point, Point));
+            Lines.Add(new C2DLine(Point, Point));
         }
 
         /// <summary>
@@ -51,45 +52,45 @@ namespace KMMobile.GeoLib
         /// <param name="bCentreOnRight">Indicates whether the centre of the arc is to the right of the line.</param> 
         /// <param name="bArcOnRight">indicates whether the curve is to the right i.e. anti-clockwise.</param> 
         public void LineTo(C2DPoint Point, double dRadius,
-		                        bool bCentreOnRight, bool bArcOnRight)
+                                bool bCentreOnRight, bool bArcOnRight)
         {
-	        if (Lines.Count == 0)
-		        return;
+            if (Lines.Count == 0)
+                return;
 
-	        C2DArc pLine = new C2DArc( Lines[Lines.Count - 1].GetPointTo(), Point, 
-								        dRadius, bCentreOnRight, bArcOnRight);
+            C2DArc pLine = new C2DArc(Lines[Lines.Count - 1].GetPointTo(), Point,
+                                        dRadius, bCentreOnRight, bArcOnRight);
 
-	        if (Lines.Count == 1 && Lines[0] is C2DLine &&
+            if (Lines.Count == 1 && Lines[0] is C2DLine &&
                 Lines[0].GetPointTo().PointEqualTo(Lines[0].GetPointFrom()))  // CR 19-1-09
-	        {
+            {
                 Lines[0] = pLine;
-	        }
-	        else
-	        {
+            }
+            else
+            {
                 Lines.Add(pLine);
-	        }
+            }
         }
 
         /// <summary>
         /// Adds a point which is a striaght line from the previous.
         /// </summary>
         /// <param name="Point">The point to go to.</param> 
-	    public void LineTo(C2DPoint Point)
+        public void LineTo(C2DPoint Point)
         {
-	        if (Lines.Count == 0)
-		        return;
+            if (Lines.Count == 0)
+                return;
 
-	        C2DLine pLine = new C2DLine( Lines[Lines.Count - 1].GetPointTo(), Point );
+            C2DLine pLine = new C2DLine(Lines[Lines.Count - 1].GetPointTo(), Point);
 
-	        if (Lines.Count == 1 && Lines[0] is C2DLine &&
+            if (Lines.Count == 1 && Lines[0] is C2DLine &&
                 Lines[0].GetPointTo().PointEqualTo(Lines[0].GetPointFrom()))  // CR 19-1-09
-	        {
+            {
                 Lines[0] = pLine;
-	        }
-	        else
-	        {
+            }
+            else
+            {
                 Lines.Add(pLine);
-	        }
+            }
         }
 
         /// <summary>
@@ -98,31 +99,31 @@ namespace KMMobile.GeoLib
         /// <param name="dRadius">The radius.</param> 
         /// <param name="bCentreOnRight">Indicates whether the centre of the arc is to the right of the line.</param> 
         /// <param name="bArcOnRight">indicates whether the curve is to the right i.e. anti-clockwise.</param> 
-	    public void Close(double dRadius, bool bCentreOnRight, bool bArcOnRight)
+        public void Close(double dRadius, bool bCentreOnRight, bool bArcOnRight)
         {
-	        if (Lines.Count == 0)
-		        return;
+            if (Lines.Count == 0)
+                return;
 
-	        Lines.Add( new C2DArc( Lines[Lines.Count - 1].GetPointTo(), Lines[0].GetPointFrom(), 
-							        dRadius, bCentreOnRight, bArcOnRight));
+            Lines.Add(new C2DArc(Lines[Lines.Count - 1].GetPointTo(), Lines[0].GetPointFrom(),
+                                    dRadius, bCentreOnRight, bArcOnRight));
 
-	        MakeLineRects();
-	        MakeBoundingRect();
+            MakeLineRects();
+            MakeBoundingRect();
 
         }
 
         /// <summary>
         /// Close with a straight line back to the first point.
         /// </summary>
-	    public void Close()
+        public void Close()
         {
-	        if (Lines.Count == 0)
-		        return;
+            if (Lines.Count == 0)
+                return;
 
-	        Lines.Add( new C2DLine( Lines[Lines.Count - 1].GetPointTo(), Lines[0].GetPointFrom() ));
+            Lines.Add(new C2DLine(Lines[Lines.Count - 1].GetPointTo(), Lines[0].GetPointFrom()));
 
-	        MakeLineRects();
-	        MakeBoundingRect();
+            MakeLineRects();
+            MakeBoundingRect();
 
         }
         /// <summary>
@@ -131,40 +132,40 @@ namespace KMMobile.GeoLib
         /// <param name="cBoundary">The boundary.</param> 
         /// <param name="nMinPoints">The minimum points.</param> 
         /// <param name="nMaxPoints">The maximum points.</param> 
-	    public bool CreateRandom(C2DRect cBoundary, int nMinPoints, int nMaxPoints)
+        public bool CreateRandom(C2DRect cBoundary, int nMinPoints, int nMaxPoints)
         {
-	        C2DPolygon Poly = new C2DPolygon();
-	        if (!Poly.CreateRandom(cBoundary, nMinPoints, nMaxPoints))
-		        return false;
+            C2DPolygon Poly = new C2DPolygon();
+            if (!Poly.CreateRandom(cBoundary, nMinPoints, nMaxPoints))
+                return false;
 
-	        CRandomNumber rCenOnRight = new CRandomNumber(0, 1);
+            CRandomNumber rCenOnRight = new CRandomNumber(0, 1);
 
-	        this.Set( Poly );
+            this.Set(Poly);
 
-	        for (int i = 0 ; i < Lines.Count; i ++)
-	        {
-		        C2DLineBase pLine = Lines[i];
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                C2DLineBase pLine = Lines[i];
 
-		        bool bCenOnRight = (rCenOnRight.GetInt() > 0 );
-		        double dLength = pLine.GetLength();
-		        CRandomNumber Radius = new CRandomNumber(dLength , dLength * 3);
+                bool bCenOnRight = (rCenOnRight.GetInt() > 0);
+                double dLength = pLine.GetLength();
+                CRandomNumber Radius = new CRandomNumber(dLength, dLength * 3);
 
 
-		        C2DArc pNew = new C2DArc( pLine.GetPointFrom(), pLine.GetPointTo(), 
-							        Radius.Get(), bCenOnRight, !bCenOnRight);
+                C2DArc pNew = new C2DArc(pLine.GetPointFrom(), pLine.GetPointTo(),
+                                    Radius.Get(), bCenOnRight, !bCenOnRight);
 
-		        if (!this.Crosses( pNew ))
-		        {
+                if (!this.Crosses(pNew))
+                {
                     Lines[i] = pNew;
                     pNew.GetBoundingRect(LineRects[i]);
                     BoundingRect.ExpandToInclude(LineRects[i]);
-		        }
-	        }
+                }
+            }
 
-	   //     this.MakeLineRects();
-	  //      this.MakeBoundingRect();
+            //     this.MakeLineRects();
+            //      this.MakeBoundingRect();
 
-	        return true;
+            return true;
         }
 
 
@@ -174,8 +175,8 @@ namespace KMMobile.GeoLib
         /// <param name="Other">The other shape.</param> 
         /// <param name="Polygons">The set to recieve the result.</param> 
         /// <param name="grid">The degenerate settings.</param> 
-        public void GetNonOverlaps(C2DPolyArc Other, List<C2DHoledPolyArc> Polygons, 
-										    CGrid grid) 
+        public void GetNonOverlaps(C2DPolyArc Other, List<C2DHoledPolyArc> Polygons,
+                                            CGrid grid)
         {
             List<C2DHoledPolyBase> NewPolys = new List<C2DHoledPolyBase>();
 
@@ -192,7 +193,7 @@ namespace KMMobile.GeoLib
         /// <param name="Polygons">The set to recieve the result.</param> 
         /// <param name="grid">The degenerate settings.</param> 
         public void GetUnion(C2DPolyArc Other, List<C2DHoledPolyArc> Polygons,
-										    CGrid grid) 
+                                            CGrid grid)
         {
             List<C2DHoledPolyBase> NewPolys = new List<C2DHoledPolyBase>();
 
@@ -210,7 +211,7 @@ namespace KMMobile.GeoLib
         /// <param name="Polygons">The set to recieve the result.</param> 
         /// <param name="grid">The degenerate settings.</param> 
         public void GetOverlaps(C2DPolyArc Other, List<C2DHoledPolyArc> Polygons,
-										    CGrid grid)
+                                            CGrid grid)
         {
             List<C2DHoledPolyBase> NewPolys = new List<C2DHoledPolyBase>();
 
@@ -223,91 +224,91 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Gets the area.
         /// </summary>
-	    public double GetArea() 
+        public double GetArea()
         {
-	        double dArea = 0;
+            double dArea = 0;
 
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
+            for (int i = 0; i < Lines.Count; i++)
+            {
                 C2DPoint pt1 = _Lines[i].GetPointFrom();
                 C2DPoint pt2 = _Lines[i].GetPointTo();
 
                 dArea += pt1.x * pt2.y - pt2.x * pt1.y;
-	        }
-	        dArea = dArea / 2.0;
+            }
+            dArea = dArea / 2.0;
 
-	        for (int i = 0; i < Lines.Count; i++)	
-	        {
-		        if (_Lines[i] is C2DArc)
-		        {
-			        C2DArc Arc = _Lines[i] as C2DArc;
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                if (_Lines[i] is C2DArc)
+                {
+                    C2DArc Arc = _Lines[i] as C2DArc;
 
-			        C2DSegment Seg = new C2DSegment( Arc );
+                    C2DSegment Seg = new C2DSegment(Arc);
 
-			        dArea += Seg.GetAreaSigned();
-		        }
-	        }
-        	
-	        return Math.Abs(dArea);
+                    dArea += Seg.GetAreaSigned();
+                }
+            }
+
+            return Math.Abs(dArea);
 
         }
 
         /// <summary>
         /// Returns the centroid.
         /// </summary>
-	    public C2DPoint GetCentroid() 
+        public C2DPoint GetCentroid()
         {
-	        // Find the centroid and area of the straight line polygon.
-	        C2DPoint Centroid = new C2DPoint(0, 0);
-	     //   C2DPoint pti = new C2DPoint();
-	     //   C2DPoint ptii;
-	        double dArea = 0;
+            // Find the centroid and area of the straight line polygon.
+            C2DPoint Centroid = new C2DPoint(0, 0);
+            //   C2DPoint pti = new C2DPoint();
+            //   C2DPoint ptii;
+            double dArea = 0;
 
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
-		        C2DPoint pti = Lines[i].GetPointFrom();
-		        C2DPoint ptii = Lines[i].GetPointTo();
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                C2DPoint pti = Lines[i].GetPointFrom();
+                C2DPoint ptii = Lines[i].GetPointTo();
 
-		        Centroid.x += (pti.x + ptii.x) * (pti.x * ptii.y - ptii.x * pti.y);
-		        Centroid.y += (pti.y + ptii.y) * (pti.x * ptii.y - ptii.x * pti.y);
+                Centroid.x += (pti.x + ptii.x) * (pti.x * ptii.y - ptii.x * pti.y);
+                Centroid.y += (pti.y + ptii.y) * (pti.x * ptii.y - ptii.x * pti.y);
 
-		        dArea += pti.x * ptii.y - ptii.x * pti.y;
-	        }
-	        dArea = dArea / 2.0;
+                dArea += pti.x * ptii.y - ptii.x * pti.y;
+            }
+            dArea = dArea / 2.0;
 
-	        Centroid.x = Centroid.x / (6.0 * dArea);
-	        Centroid.y = Centroid.y / (6.0 * dArea);
+            Centroid.x = Centroid.x / (6.0 * dArea);
+            Centroid.y = Centroid.y / (6.0 * dArea);
 
-	        List<double> dSegAreas = new List<double>();
-	        double dTotalArea = dArea;
-	        List<C2DPoint> SegCentroids = new List<C2DPoint>();
+            List<double> dSegAreas = new List<double>();
+            double dTotalArea = dArea;
+            List<C2DPoint> SegCentroids = new List<C2DPoint>();
 
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
-		        if (Lines[i] is C2DArc)
-		        {
-			        C2DSegment Seg = new C2DSegment( Lines[i] as C2DArc );
-			        double dSegArea = Seg.GetAreaSigned();
-			        dTotalArea += dSegArea;
-			        dSegAreas.Add( dSegArea );
-			        SegCentroids.Add( Seg.GetCentroid() );
-		        }
-	        }
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                if (Lines[i] is C2DArc)
+                {
+                    C2DSegment Seg = new C2DSegment(Lines[i] as C2DArc);
+                    double dSegArea = Seg.GetAreaSigned();
+                    dTotalArea += dSegArea;
+                    dSegAreas.Add(dSegArea);
+                    SegCentroids.Add(Seg.GetCentroid());
+                }
+            }
 
-	        Centroid.Multiply( dArea);
+            Centroid.Multiply(dArea);
 
-	        for (int i = 0; i < dSegAreas.Count; i++)
-	        {
-		        Centroid.x += SegCentroids[i].x * dSegAreas[i];
+            for (int i = 0; i < dSegAreas.Count; i++)
+            {
+                Centroid.x += SegCentroids[i].x * dSegAreas[i];
                 Centroid.y += SegCentroids[i].y * dSegAreas[i];
-	        }
+            }
 
-            Centroid.Multiply( 1/ dTotalArea);
-	        return Centroid;
+            Centroid.Multiply(1 / dTotalArea);
+            return Centroid;
 
         }
-        
-	    /// Rotates the polygon to the right around the centroid.
+
+        /// Rotates the polygon to the right around the centroid.
         /// 
         /// <summary>
         /// Rotates the shape to the right about the centroid.	
@@ -315,7 +316,7 @@ namespace KMMobile.GeoLib
         /// <param name="dAng">The angle to rotate by.</param> 
         public void RotateToRight(double dAng)
         {
-	        RotateToRight( dAng, GetCentroid());
+            RotateToRight(dAng, GetCentroid());
         }
 
 

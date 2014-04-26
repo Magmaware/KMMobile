@@ -1,22 +1,6 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file CMercator.cpp
-///Implementation file for a CMercator class.
-
-Implementation file for a CMercator class.
----------------------------------------------------------------------------*/
-
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
 
     /// <summary>

@@ -1,33 +1,12 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file Orthographic.cpp
-///Implementation file for a COrthographic class.
-
-Implementation file for a COrthographic class.
----------------------------------------------------------------------------*/
-
-
-
-
 using System;
 
-
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
-
     /// <summary>
     /// Class representing an albers equal area projection.
     /// </summary>
     public class COrthographic : CProjection
     {
-
         /// <summary>
         /// Constructor.
         /// </summary>

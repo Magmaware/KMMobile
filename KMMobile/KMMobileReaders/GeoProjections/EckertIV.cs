@@ -1,22 +1,6 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file EckertIV.cpp
-///Implementation file for a CEckertIV class.
-
-Implementation file for a CEckertIV class.
----------------------------------------------------------------------------*/
-
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
 
     /// <summary>

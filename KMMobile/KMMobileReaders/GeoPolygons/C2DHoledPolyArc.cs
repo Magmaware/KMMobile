@@ -1,10 +1,8 @@
-using System;
+using KMMobile.GeoLib;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoPolygons
 {
     /// <summary>
     /// Class to represent a 2D polyarc with holes.
@@ -32,7 +30,7 @@ namespace KMMobile.GeoLib
             }
         }
 
-                /// <summary>
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="Other">Other polygon to set this to.</param> 
@@ -97,17 +95,17 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Gets the area.
         /// </summary>
-         public double GetArea() 
+        public double GetArea()
         {
-	        double dResult = 0;
+            double dResult = 0;
 
-		    dResult += Rim.GetArea();
+            dResult += Rim.GetArea();
 
-	        for ( int i = 0 ; i < _Holes.Count; i++)
-	        {
-		        dResult -= GetHole(i).GetArea();
-	        }
-	        return dResult;
+            for (int i = 0; i < _Holes.Count; i++)
+            {
+                dResult -= GetHole(i).GetArea();
+            }
+            return dResult;
 
 
         }
@@ -120,22 +118,22 @@ namespace KMMobile.GeoLib
             C2DPoint Centroid = Rim.GetCentroid();
             double dArea = Rim.GetArea();
 
-	        for (int i = 0; i < _Holes.Count; i++)
-	        {
-			        C2DVector vec = new C2DVector( Centroid, GetHole(i).GetCentroid());
+            for (int i = 0; i < _Holes.Count; i++)
+            {
+                C2DVector vec = new C2DVector(Centroid, GetHole(i).GetCentroid());
 
-			        double dHoleArea = GetHole(i).GetArea();
+                double dHoleArea = GetHole(i).GetArea();
 
-			        double dFactor =  dHoleArea / (dHoleArea + dArea);	
+                double dFactor = dHoleArea / (dHoleArea + dArea);
 
-			        vec.Multiply( dFactor);
-			        Centroid.x += vec.i;
-                    Centroid.y += vec.j;
-			        dArea += dHoleArea;
-	        }
+                vec.Multiply(dFactor);
+                Centroid.x += vec.i;
+                Centroid.y += vec.j;
+                dArea += dHoleArea;
+            }
 
 
-	        return Centroid;
+            return Centroid;
 
         }
 
@@ -254,7 +252,7 @@ namespace KMMobile.GeoLib
             }
             else
             {
-                Debug.Assert(false, "Invalid Hole type" );
+                Debug.Assert(false, "Invalid Hole type");
             }
         }
 

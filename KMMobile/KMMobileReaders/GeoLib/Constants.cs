@@ -1,15 +1,3 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------------
-\file Constants.h
-\brief File containing useful constants and conversion factors.
----------------------------------------------------------------------------*/
-
 namespace KMMobile.GeoLib
 {
     /// <summary>
@@ -135,7 +123,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// 
         /// </summary>
-        public const double conE   =     2.71828182845904523536;
+        public const double conE = 2.71828182845904523536;
         /// <summary>
         /// 
         /// </summary>

@@ -5,7 +5,6 @@ using System.Diagnostics;
 
 namespace KMMobile.GeoLib
 {
-
     /// <summary>
     /// Set of abstract lines.
     /// </summary>
@@ -93,7 +92,7 @@ namespace KMMobile.GeoLib
             /// <summary>
             /// Line reference
             /// </summary>
-	        public C2DLineBase Line = null;
+            public C2DLineBase Line = null;
             /// <summary>
             /// Line bounding rect
             /// </summary>
@@ -101,7 +100,7 @@ namespace KMMobile.GeoLib
             /// <summary>
             /// Line index
             /// </summary>
-	        public int usIndex = 0;
+            public int usIndex = 0;
             /// <summary>
             /// Set flag
             /// </summary>
@@ -116,51 +115,51 @@ namespace KMMobile.GeoLib
         /// <param name="pPoints">Output. The point set.</param>
         /// <param name="pIndexes1">Output. The indexes.</param>
         /// <param name="pIndexes2">Output. The indexes.</param>
-	    public void GetIntersections( List<C2DPoint> pPoints,  List<int> pIndexes1,
+        public void GetIntersections(List<C2DPoint> pPoints, List<int> pIndexes1,
                              List<int> pIndexes2)
         {
             List<CLineBaseRect> Lines = new List<CLineBaseRect>();
 
-	        for (int i = 0 ; i < Count ; i++)
-	        {
-		        CLineBaseRect LineRect = new CLineBaseRect();
+            for (int i = 0; i < Count; i++)
+            {
+                CLineBaseRect LineRect = new CLineBaseRect();
                 LineRect.Line = this[i];
-                LineRect.Line.GetBoundingRect( LineRect.Rect);
+                LineRect.Line.GetBoundingRect(LineRect.Rect);
                 LineRect.usIndex = i;
-		        Lines.Add(LineRect);
-	        }
+                Lines.Add(LineRect);
+            }
 
             CLineBaseRectLeftToRight Comparitor = new CLineBaseRectLeftToRight();
             Lines.Sort(Comparitor);
 
             int j = 0;
             List<C2DPoint> IntPt = new List<C2DPoint>();
-	        // For each line...
-	        while (j < Lines.Count)
-	        {
-		        int r = j + 1;
+            // For each line...
+            while (j < Lines.Count)
+            {
+                int r = j + 1;
 
-		        double dXLimit = Lines[j].Rect.GetRight();
-		        // ...search forward untill the end or a line whose rect starts after this ends
-		        while (r < Lines.Count && Lines[r].Rect.GetLeft() < dXLimit)
-		        {
-        			
-			        if ( Lines[j].Rect.Overlaps(  Lines[r].Rect) &&
-				        Lines[j].Line.Crosses(  Lines[r].Line,  IntPt ))
-			        {
-				        while (IntPt.Count > 0)
-				        {
-					        pPoints.Add( IntPt[IntPt.Count - 1] );
+                double dXLimit = Lines[j].Rect.GetRight();
+                // ...search forward untill the end or a line whose rect starts after this ends
+                while (r < Lines.Count && Lines[r].Rect.GetLeft() < dXLimit)
+                {
+
+                    if (Lines[j].Rect.Overlaps(Lines[r].Rect) &&
+                        Lines[j].Line.Crosses(Lines[r].Line, IntPt))
+                    {
+                        while (IntPt.Count > 0)
+                        {
+                            pPoints.Add(IntPt[IntPt.Count - 1]);
                             IntPt.RemoveAt(IntPt.Count - 1);
 
-					        pIndexes1.Add( Lines[j].usIndex );
-					        pIndexes2.Add( Lines[r].usIndex );
-				        }
-			        }
-			        r++;
-		        }	
-		        j++;
-	        }
+                            pIndexes1.Add(Lines[j].usIndex);
+                            pIndexes2.Add(Lines[r].usIndex);
+                        }
+                    }
+                    r++;
+                }
+                j++;
+            }
         }
 
 
@@ -175,129 +174,129 @@ namespace KMMobile.GeoLib
         /// <param name="pIndexesOther">Output. The indexes for the other set.</param>
         /// <param name="pBoundingRectThis">Input. The bounding rect for this.</param>
         /// <param name="pBoundingRectOther">Input. The bounding rect for the other.</param>
-        public void GetIntersections(List<C2DLineBase> Other,  List<C2DPoint> pPoints,
-             List<int> pIndexesThis,  List<int> pIndexesOther,
+        public void GetIntersections(List<C2DLineBase> Other, List<C2DPoint> pPoints,
+             List<int> pIndexesThis, List<int> pIndexesOther,
             C2DRect pBoundingRectThis, C2DRect pBoundingRectOther)
         {
 
             List<CLineBaseRect> Lines = new List<CLineBaseRect>();
 
-	        for (int i = 0 ; i <  Count ; i++)
-	        {
-		        CLineBaseRect LineRect = new CLineBaseRect();
+            for (int i = 0; i < Count; i++)
+            {
+                CLineBaseRect LineRect = new CLineBaseRect();
                 LineRect.Line = this[i];
-                LineRect.Line.GetBoundingRect( LineRect.Rect);
+                LineRect.Line.GetBoundingRect(LineRect.Rect);
                 LineRect.usIndex = i;
                 LineRect.bSetFlag = true;
 
-		        if ( pBoundingRectOther.Overlaps( LineRect.Rect))
-		        {
-			        Lines.Add(LineRect);
-		        }
-	        }
+                if (pBoundingRectOther.Overlaps(LineRect.Rect))
+                {
+                    Lines.Add(LineRect);
+                }
+            }
 
-	        for (int d = 0 ; d <  Other.Count ; d++)
-	        {
-		        CLineBaseRect LineRect = new CLineBaseRect();
-		        LineRect.Line = Other[d];
-		        LineRect.Line.GetBoundingRect( LineRect.Rect);
-		        LineRect.usIndex = d;
-		        LineRect.bSetFlag = false;
+            for (int d = 0; d < Other.Count; d++)
+            {
+                CLineBaseRect LineRect = new CLineBaseRect();
+                LineRect.Line = Other[d];
+                LineRect.Line.GetBoundingRect(LineRect.Rect);
+                LineRect.usIndex = d;
+                LineRect.bSetFlag = false;
 
-		        if ( pBoundingRectThis.Overlaps( LineRect.Rect))
-		        {
-			        Lines.Add(LineRect);
-		        }
-	        }
+                if (pBoundingRectThis.Overlaps(LineRect.Rect))
+                {
+                    Lines.Add(LineRect);
+                }
+            }
 
             CLineBaseRectLeftToRight Comparitor = new CLineBaseRectLeftToRight();
             Lines.Sort(Comparitor);
 
             int j = 0;
-	        List<C2DPoint> IntPt = new List<C2DPoint>();
-	        while (j < Lines.Count)
-	        {
-		        int r = j + 1;
+            List<C2DPoint> IntPt = new List<C2DPoint>();
+            while (j < Lines.Count)
+            {
+                int r = j + 1;
 
-		        double dXLimit = Lines[j].Rect.GetRight();
+                double dXLimit = Lines[j].Rect.GetRight();
 
-		        while (r < Lines.Count && 
-			           Lines[r].Rect.GetLeft() < dXLimit)
-		        {
-        			
-			        if (  ( Lines[j].bSetFlag ^ Lines[r].bSetFlag  ) &&				
-					        Lines[j].Rect.Overlaps(  Lines[r].Rect) &&
-					        Lines[j].Line.Crosses(  Lines[r].Line,  IntPt) )
-			        {
-				        while (IntPt.Count > 0)
-				        {
-					        pPoints.Add( IntPt[ IntPt.Count - 1]);
-                            IntPt.RemoveAt( IntPt.Count - 1);
+                while (r < Lines.Count &&
+                       Lines[r].Rect.GetLeft() < dXLimit)
+                {
+
+                    if ((Lines[j].bSetFlag ^ Lines[r].bSetFlag) &&
+                            Lines[j].Rect.Overlaps(Lines[r].Rect) &&
+                            Lines[j].Line.Crosses(Lines[r].Line, IntPt))
+                    {
+                        while (IntPt.Count > 0)
+                        {
+                            pPoints.Add(IntPt[IntPt.Count - 1]);
+                            IntPt.RemoveAt(IntPt.Count - 1);
 
 
-					        if (Lines[j].bSetFlag)
-						        pIndexesThis.Add( Lines[j].usIndex );
-					        else
-						        pIndexesThis.Add( Lines[r].usIndex );
+                            if (Lines[j].bSetFlag)
+                                pIndexesThis.Add(Lines[j].usIndex);
+                            else
+                                pIndexesThis.Add(Lines[r].usIndex);
 
-					        if (Lines[j].bSetFlag)
-						        pIndexesOther.Add( Lines[r].usIndex );
-					        else
-						        pIndexesOther.Add( Lines[j].usIndex );
+                            if (Lines[j].bSetFlag)
+                                pIndexesOther.Add(Lines[r].usIndex);
+                            else
+                                pIndexesOther.Add(Lines[j].usIndex);
 
-				        }
-			        }
-			        r++;
-		        }	
-		        j++;
-	        }
+                        }
+                    }
+                    r++;
+                }
+                j++;
+            }
 
         }
 
         /// <summary>
         /// True if there are crossing lines within the set.
         /// </summary>
-	    public bool HasCrossingLines()
+        public bool HasCrossingLines()
         {
 
-	        // Set up an array of these structures and the left most points of the line rects
+            // Set up an array of these structures and the left most points of the line rects
             List<CLineBaseRect> Lines = new List<CLineBaseRect>();
 
 
-	        for (int i = 0 ; i <  Count ; i++)
-	        {
-		        CLineBaseRect LineRect = new CLineBaseRect();
+            for (int i = 0; i < Count; i++)
+            {
+                CLineBaseRect LineRect = new CLineBaseRect();
                 LineRect.Line = this[i];
-                LineRect.Line.GetBoundingRect( LineRect.Rect);
-		        Lines.Add(LineRect);
-	        }
+                LineRect.Line.GetBoundingRect(LineRect.Rect);
+                Lines.Add(LineRect);
+            }
 
             CLineBaseRectLeftToRight Comparitor = new CLineBaseRectLeftToRight();
             Lines.Sort(Comparitor);
 
-	        int j = 0;
-	        List<C2DPoint> IntPt = new List<C2DPoint>();
-	        bool bIntersect = false;
-	        // For each line...
-	        while (j < Lines.Count && !bIntersect)
-	        {
-		        int r = j + 1;
+            int j = 0;
+            List<C2DPoint> IntPt = new List<C2DPoint>();
+            bool bIntersect = false;
+            // For each line...
+            while (j < Lines.Count && !bIntersect)
+            {
+                int r = j + 1;
 
-		        double dXLimit = Lines[j].Rect.GetRight();
-		        // ...search forward untill the end or a line whose rect starts after this ends
-		        while ( !bIntersect && r < Lines.Count && Lines[r].Rect.GetLeft() < dXLimit )
-		        {
-			        if ( Lines[j].Rect.Overlaps(  Lines[r].Rect) &&
-				        Lines[j].Line.Crosses(  Lines[r].Line,  IntPt) )
-			        {
-				        bIntersect = true;
-			        }
-			        r++;
-		        }	
-		        j++;
-	        }
+                double dXLimit = Lines[j].Rect.GetRight();
+                // ...search forward untill the end or a line whose rect starts after this ends
+                while (!bIntersect && r < Lines.Count && Lines[r].Rect.GetLeft() < dXLimit)
+                {
+                    if (Lines[j].Rect.Overlaps(Lines[r].Rect) &&
+                        Lines[j].Line.Crosses(Lines[r].Line, IntPt))
+                    {
+                        bIntersect = true;
+                    }
+                    r++;
+                }
+                j++;
+            }
 
-	        return bIntersect;
+            return bIntersect;
 
         }
 
@@ -307,47 +306,47 @@ namespace KMMobile.GeoLib
         /// <param name="bEndsOnly">Input. True to only check the ends of the array.</param>
         public bool IsClosed(bool bEndsOnly)
         {
-	        int usSize = Count;
-        	
-	        if (bEndsOnly)
-	        {
-		        if (this[0].GetPointFrom().PointEqualTo(  this[usSize - 1].GetPointTo())  )
-			        return true;
-		        else
-			        return false;
-	        }
-	        else
-	        {
-		        for (int i = 0; i < usSize; i++)
-		        {
-			        int usNext = (i + 1) % usSize;
+            int usSize = Count;
 
-			        if (!this[i].GetPointTo().PointEqualTo(  this[usNext].GetPointFrom() ))
-				        return false;
-		        }
+            if (bEndsOnly)
+            {
+                if (this[0].GetPointFrom().PointEqualTo(this[usSize - 1].GetPointTo()))
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                for (int i = 0; i < usSize; i++)
+                {
+                    int usNext = (i + 1) % usSize;
 
-		        return true;
-	        }
+                    if (!this[i].GetPointTo().PointEqualTo(this[usNext].GetPointFrom()))
+                        return false;
+                }
+
+                return true;
+            }
         }
 
         /// <summary>
         /// Adds the other to this if there is a common end i.e. they can be joined up.
         /// </summary>
         /// <param name="Other">Input. The other set.</param>
-        public bool AddIfCommonEnd( C2DLineBaseSet Other)
+        public bool AddIfCommonEnd(C2DLineBaseSet Other)
         {
             Debug.Assert(!IsClosed(true));
             Debug.Assert(!Other.IsClosed(true));
 
             int nThisCount = Count;
-            if (nThisCount < 1) 
+            if (nThisCount < 1)
                 return false;
 
             int nOtherCount = Other.Count;
-            if (nOtherCount < 1) 
+            if (nOtherCount < 1)
                 return false;
 
-            if (this[0].GetPointFrom().PointEqualTo(  Other[0].GetPointFrom())  )
+            if (this[0].GetPointFrom().PointEqualTo(Other[0].GetPointFrom()))
             {
                 ReverseDirection();
 
@@ -355,7 +354,7 @@ namespace KMMobile.GeoLib
 
                 return true;
             }
-            else if (this[0].GetPointFrom().PointEqualTo(Other[nOtherCount - 1].GetPointTo()) )
+            else if (this[0].GetPointFrom().PointEqualTo(Other[nOtherCount - 1].GetPointTo()))
             {
                 ReverseDirection();
 
@@ -365,13 +364,13 @@ namespace KMMobile.GeoLib
 
                 return true;
             }
-            else if (this[nThisCount - 1].GetPointTo().PointEqualTo(  Other[0].GetPointFrom()))
+            else if (this[nThisCount - 1].GetPointTo().PointEqualTo(Other[0].GetPointFrom()))
             {
                 this.ExtractAllOf(Other);
 
                 return true;
             }
-            else if (this[nThisCount - 1].GetPointTo().PointEqualTo( Other[nOtherCount - 1].GetPointTo()) )
+            else if (this[nThisCount - 1].GetPointTo().PointEqualTo(Other[nOtherCount - 1].GetPointTo()))
             {
                 Other.ReverseDirection();
 
@@ -390,27 +389,27 @@ namespace KMMobile.GeoLib
         /// <param name="dTolerance">Input. The length defined to be null.</param>
         public void Remove0Lines(double dTolerance)
         {
-	        for (int i = 0 ; i < Count; i++)
-	        {
-		        double dLength = this[i].GetLength();
+            for (int i = 0; i < Count; i++)
+            {
+                double dLength = this[i].GetLength();
 
-		        if (dLength < dTolerance)
-		        {
-			        RemoveAt(i);
-		        }
-	        }
+                if (dLength < dTolerance)
+                {
+                    RemoveAt(i);
+                }
+            }
         }
         /// <summary>
         /// Reverses the direction. 
         /// </summary>
         public void ReverseDirection()
         {
-	        this.Reverse();
+            this.Reverse();
 
-	        for (int i = 0; i < Count ; i++)
-	        {
-		        this[i].ReverseDirection();
-	        }	
+            for (int i = 0; i < Count; i++)
+            {
+                this[i].ReverseDirection();
+            }
         }
 
         /// <summary>

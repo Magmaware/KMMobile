@@ -1,12 +1,9 @@
-using System;
+using KMMobile.GeoLib;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoPolygons
 {
-
     /// <summary>
     /// Class to represent a 2D polygon with holes.
     /// </summary>
@@ -15,7 +12,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Constructor.
         /// </summary>
-        public C2DHoledPolygon() 
+        public C2DHoledPolygon()
         {
             _Rim = new C2DPolygon();
         }
@@ -28,7 +25,7 @@ namespace KMMobile.GeoLib
             _Rim = new C2DPolygon(Other.Rim);
             for (int i = 0; i < Other.HoleCount; i++)
             {
-                _Holes.Add(new C2DPolygon(Other.GetHole(i) ));
+                _Holes.Add(new C2DPolygon(Other.GetHole(i)));
             }
         }
 
@@ -120,8 +117,8 @@ namespace KMMobile.GeoLib
         /// </summary>
         public C2DPoint GetCentroid()
         {
-                 
-	        C2DPoint HoleCen = new C2DPoint(0, 0);
+
+            C2DPoint HoleCen = new C2DPoint(0, 0);
 
             if (_Holes.Count == 0)
                 return Rim.GetCentroid();
@@ -130,50 +127,50 @@ namespace KMMobile.GeoLib
             C2DPoint PolyCen = Rim.GetCentroid();
 
             double dPolyArea = Rim.GetArea();
-	        double dHoleArea = 0;
+            double dHoleArea = 0;
 
-	        for ( int i = 0 ; i < _Holes.Count; i++)
-	        {
-		        dHoleArea += GetHole(i).GetArea();
-	        }
+            for (int i = 0; i < _Holes.Count; i++)
+            {
+                dHoleArea += GetHole(i).GetArea();
+            }
 
 
-	        if (dHoleArea == 0 || dHoleArea == dPolyArea)
-		        return Rim.GetCentroid();
-	        else
-	        {
-		        for (int i = 0 ; i < _Holes.Count; i++)
-		        {
+            if (dHoleArea == 0 || dHoleArea == dPolyArea)
+                return Rim.GetCentroid();
+            else
+            {
+                for (int i = 0; i < _Holes.Count; i++)
+                {
                     C2DPoint pt = GetHole(i).GetCentroid();
                     pt.Multiply(GetHole(i).GetArea() / dHoleArea);
-			        HoleCen += pt;
-		        }
-	        }
+                    HoleCen += pt;
+                }
+            }
 
-	        C2DVector Vec = new C2DVector(HoleCen, PolyCen);
+            C2DVector Vec = new C2DVector(HoleCen, PolyCen);
 
-	        Vec.Multiply( dHoleArea / (dPolyArea - dHoleArea));
+            Vec.Multiply(dHoleArea / (dPolyArea - dHoleArea));
 
-	        PolyCen.Move(Vec);
+            PolyCen.Move(Vec);
 
-	        return PolyCen;
+            return PolyCen;
         }
 
 
         /// <summary>
         /// Calculates the area.
         /// </summary>
-        public double GetArea() 
+        public double GetArea()
         {
-	        double dResult = 0;
+            double dResult = 0;
 
             dResult += Rim.GetArea();
 
-	        for (int i = 0 ; i < _Holes.Count; i++)
-	        {
+            for (int i = 0; i < _Holes.Count; i++)
+            {
                 dResult -= GetHole(i).GetArea();
-	        }
-	        return dResult;
+            }
+            return dResult;
         }
 
         /// <summary>
@@ -208,7 +205,7 @@ namespace KMMobile.GeoLib
             }
 
             int i = 0;
-            while ( i < _Holes.Count)
+            while (i < _Holes.Count)
             {
                 if (GetHole(i).RemoveNullAreas(dTolerance))
                 {

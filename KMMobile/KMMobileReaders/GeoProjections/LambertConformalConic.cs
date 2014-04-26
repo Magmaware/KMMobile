@@ -1,32 +1,12 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file LambertConformalConic.cpp
-///Implementation file for a CLambertConformalConic class.
-
-Implementation file for a CLambertConformalConic class.
----------------------------------------------------------------------------*/
-
-
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
-
     /// <summary>
     /// Class representing a circle.
     /// </summary>
     public class CLambertConformalConic : CProjection
     {
-
-
         /// <summary>
         /// Constructor.
         /// </summary>

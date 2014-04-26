@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace KMMobile.GeoLib
 {
     /// <summary>
@@ -13,41 +12,41 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Moves the entity by the vector provided.
         /// </summary>
-	    public abstract  void Move(C2DVector Vector);
+        public abstract void Move(C2DVector Vector);
         /// <summary>
         /// Rotates this to the right about the origin provided.
         /// </summary>
         /// <param name="dAng">The angle through which to rotate.</param>
         /// <param name="Origin">The origin about which to rotate.</param>
-        public abstract  void RotateToRight(double dAng, C2DPoint Origin);
+        public abstract void RotateToRight(double dAng, C2DPoint Origin);
         /// <summary>
-	    /// Grows the entity
+        /// Grows the entity
         /// </summary>
-        public abstract  void Grow(double dFactor, C2DPoint Origin);
+        public abstract void Grow(double dFactor, C2DPoint Origin);
         /// <summary>
         /// Reflection in a point
         /// </summary>
-        public abstract  void Reflect(C2DPoint Point);
+        public abstract void Reflect(C2DPoint Point);
         /// <summary>
         /// Reflection in a line
         /// </summary>
-        public abstract  void Reflect( C2DLine Line);
+        public abstract void Reflect(C2DLine Line);
         /// <summary>
         /// Distance to a point
         /// </summary>
-        public abstract  double Distance( C2DPoint Point) ;
+        public abstract double Distance(C2DPoint Point);
         /// <summary>
         /// Return the bounding rect
         /// </summary>
-        public abstract  void GetBoundingRect( C2DRect Rect) ;
+        public abstract void GetBoundingRect(C2DRect Rect);
         /// <summary>
         /// Projects this onto the line provided with the interval on the line returned.
         /// </summary>
-        public abstract  void Project( C2DLine Line,  CInterval Interval);
+        public abstract void Project(C2DLine Line, CInterval Interval);
         /// <summary>
         /// Projects this onto the vector provided with the interval on the line returned.
         /// </summary>
-        public abstract  void Project(C2DVector Vector,  CInterval Interval);
+        public abstract void Project(C2DVector Vector, CInterval Interval);
         /// <summary>
         /// Snaps this to the conceptual grid.
         /// </summary>

@@ -1,32 +1,12 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file VerticalPerspective.cpp
-///Implementation file for a CVerticalPerspective class.
-
-Implementation file for a CVerticalPerspective class.
----------------------------------------------------------------------------*/
-
-
-
 using System;
 
-
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
-
     /// <summary>
     /// Class representing an albers equal area projection.
     /// </summary>
     public class CVerticalPerspective : CProjection
     {
-
         /// <summary>
         ///Destructor.
         /// </summary>

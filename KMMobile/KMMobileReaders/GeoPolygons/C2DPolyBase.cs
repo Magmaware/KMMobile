@@ -1,10 +1,9 @@
+using KMMobile.GeoLib;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoPolygons
 {
     /// <summary>
     /// Class to represent a shape bounded by lines. Lines currently supported are 
@@ -12,25 +11,24 @@ namespace KMMobile.GeoLib
     /// </summary>
     public class C2DPolyBase : C2DBase
     {
-
         /// <summary>
-	    /// Constructor
+        /// Constructor
         /// </summary> 
-	    public C2DPolyBase() {}
+        public C2DPolyBase() { }
 
         /// <summary>
-	    /// Constructor sets from another
+        /// Constructor sets from another
         /// </summary> 
         /// <param name="Other">The other polygon.</param> 
-	    public C2DPolyBase(C2DPolyBase Other)
+        public C2DPolyBase(C2DPolyBase Other)
         {
-        	Set(Other);
+            Set(Other);
         }
 
         /// <summary>
-	    /// Destructor
+        /// Destructor
         /// </summary> 
-	    ~C2DPolyBase() {}
+        ~C2DPolyBase() { }
 
 
         /// <summary>
@@ -39,23 +37,23 @@ namespace KMMobile.GeoLib
         /// <param name="Other">The other polygon.</param> 
         public void Set(C2DPolyBase Other)
         {
-	        Clear();
+            Clear();
 
-	        Lines.MakeValueCopy(Other.Lines);
+            Lines.MakeValueCopy(Other.Lines);
 
-	        BoundingRect.Set(Other.BoundingRect);
+            BoundingRect.Set(Other.BoundingRect);
 
-	        for (int i = 0 ; i < Other.LineRects.Count ; i ++)
-	        {
-		        LineRects.Add(new C2DRect( Other.LineRects[i]) );
-	        }
+            for (int i = 0; i < Other.LineRects.Count; i++)
+            {
+                LineRects.Add(new C2DRect(Other.LineRects[i]));
+            }
         }
 
         /// <summary>
         /// Creates directly from a set of lines by extracting them from the set provided.
         /// </summary> 
         /// <param name="NewLines">The line set.</param> 
-	    public void CreateDirect( C2DLineBaseSet NewLines)
+        public void CreateDirect(C2DLineBaseSet NewLines)
         {
             Lines.Clear();
             Lines.ExtractAllOf(NewLines);
@@ -68,7 +66,7 @@ namespace KMMobile.GeoLib
         /// Creates from the set of lines using copies.
         /// </summary> 
         /// <param name="Lines">The line set.</param> 
-	    public void Create(C2DLineBaseSet Lines)
+        public void Create(C2DLineBaseSet Lines)
         {
             Lines.MakeValueCopy(Lines);
 
@@ -80,36 +78,36 @@ namespace KMMobile.GeoLib
         /// True if the point is in the shape.
         /// </summary> 
         /// <param name="pt">The point to test set.</param> 
-	    public bool Contains(C2DPoint pt)
+        public bool Contains(C2DPoint pt)
         {
-	        if (!BoundingRect.Contains(pt))
-		        return false;
+            if (!BoundingRect.Contains(pt))
+                return false;
 
-	        C2DPointSet IntersectedPts = new C2DPointSet ();
+            C2DPointSet IntersectedPts = new C2DPointSet();
 
-	        C2DLine Ray = new C2DLine(pt, new C2DVector(BoundingRect.Width(), 0.000001)); // Make sure to leave
+            C2DLine Ray = new C2DLine(pt, new C2DVector(BoundingRect.Width(), 0.000001)); // Make sure to leave
 
-	        if (!this.Crosses(Ray,  IntersectedPts))
-		        return false;
-	        else
-	        {
-		        IntersectedPts.SortByDistance(Ray.point);
-		        if ( IntersectedPts[0].PointEqualTo(pt))
-		        {
-			        // For integers, the pt can start On a line, meaning it's INSIDE, but the ray could cross again
-			        // so just return true. Because the equality test is really a test for proximity, this leads to the
-			        // possibility that a point could lie just outside the shape but be considered to be inside. This would
-			        // only be a problem with very small shapes that are a very long way from the origin. E.g. a 1m2 object
-			        // 1 million metres from the origin and a point 0.1mm away from the edge would give rise to a relative 
-			        // difference of 0.0001 / 1000000 = 0.000000001 which would just be consider to be inside.
-			        return true;
-		        }
-		        else
-		        {
-			        // Return true if the ray 
-			        return (IntersectedPts.Count & (int)1) > 0;
-		        }
-	        }
+            if (!this.Crosses(Ray, IntersectedPts))
+                return false;
+            else
+            {
+                IntersectedPts.SortByDistance(Ray.point);
+                if (IntersectedPts[0].PointEqualTo(pt))
+                {
+                    // For integers, the pt can start On a line, meaning it's INSIDE, but the ray could cross again
+                    // so just return true. Because the equality test is really a test for proximity, this leads to the
+                    // possibility that a point could lie just outside the shape but be considered to be inside. This would
+                    // only be a problem with very small shapes that are a very long way from the origin. E.g. a 1m2 object
+                    // 1 million metres from the origin and a point 0.1mm away from the edge would give rise to a relative 
+                    // difference of 0.0001 / 1000000 = 0.000000001 which would just be consider to be inside.
+                    return true;
+                }
+                else
+                {
+                    // Return true if the ray 
+                    return (IntersectedPts.Count & (int)1) > 0;
+                }
+            }
 
         }
 
@@ -161,21 +159,21 @@ namespace KMMobile.GeoLib
         /// <param name="pt">The point to test.</param> 
         public override double Distance(C2DPoint pt)
         {
-	        if (Lines.Count == 0)
-		        return 0;
+            if (Lines.Count == 0)
+                return 0;
 
-	        double dResult = Lines[0].Distance(pt);
-	        for (int i = 1; i < Lines.Count; i++)
-	        {
-		        double dDist = Lines[i].Distance(pt);
-		        if (dDist < dResult)
-			        dResult = dDist;
-	        }
+            double dResult = Lines[0].Distance(pt);
+            for (int i = 1; i < Lines.Count; i++)
+            {
+                double dDist = Lines[i].Distance(pt);
+                if (dDist < dResult)
+                    dResult = dDist;
+            }
 
-	        if (Contains(pt))
-		        return -dResult;
-	        else
-		        return dResult;
+            if (Contains(pt))
+                return -dResult;
+            else
+                return dResult;
         }
 
         /// <summary>
@@ -184,28 +182,28 @@ namespace KMMobile.GeoLib
         /// <param name="Line">The line to test.</param> 
         public double Distance(C2DLineBase Line)
         {
-	        if (Lines.Count == 0)
-		        return 0;
+            if (Lines.Count == 0)
+                return 0;
 
             C2DPoint pt1 = new C2DPoint();
             C2DPoint pt2 = new C2DPoint();
 
             double dMin = Lines[0].Distance(Line, pt1, pt2);
-	        double dDist;
+            double dDist;
 
-	        for (int i = 1 ; i < Lines.Count; i++)
-	        {
-		        dDist = Lines[i].Distance(Line, pt1, pt2);
-		        if (dDist == 0 )
-			        return 0;
-		        if (dDist < dMin)
-			        dMin = dDist;
-	        }
+            for (int i = 1; i < Lines.Count; i++)
+            {
+                dDist = Lines[i].Distance(Line, pt1, pt2);
+                if (dDist == 0)
+                    return 0;
+                if (dDist < dMin)
+                    dMin = dDist;
+            }
 
-	        if ( Contains(Line.GetPointFrom()))
-		        return -dMin;
-	        else
-		        return dMin;
+            if (Contains(Line.GetPointFrom()))
+                return -dMin;
+            else
+                return dMin;
         }
 
         /// <summary>
@@ -216,96 +214,96 @@ namespace KMMobile.GeoLib
         /// <param name="ptOnOther">The closest point on the other.</param> 
         public double Distance(C2DPolyBase Other, C2DPoint ptOnThis, C2DPoint ptOnOther)
         {
-	        if (Lines.Count == 0)
-		        return 0;
+            if (Lines.Count == 0)
+                return 0;
 
-	        if (Other.Lines.Count == 0)
-		        return 0;
+            if (Other.Lines.Count == 0)
+                return 0;
 
-	        if (Other.LineRects.Count != Other.Lines.Count)
-		        return 0;
+            if (Other.LineRects.Count != Other.Lines.Count)
+                return 0;
 
-	        if (Lines.Count != LineRects.Count)
-		        return 0;
+            if (Lines.Count != LineRects.Count)
+                return 0;
 
-	        // First we find the closest line rect to the other's bounding rectangle.
-	        int usThisClosestLineGuess = 0;
-	        C2DRect OtherBoundingRect = Other.BoundingRect;
-	        double dClosestDist = LineRects[0].Distance(OtherBoundingRect);
-	        for (int i = 1; i < LineRects.Count; i++)
-	        {
-		        double dDist = LineRects[i].Distance(OtherBoundingRect);
-		        if (dDist < dClosestDist)
-		        {
-			        dClosestDist = dDist;
-			        usThisClosestLineGuess = i;
-		        }
-	        }
-	        // Now cycle through all the other poly's line rects to find the closest to the
-	        // guessed at closest line on this.
-	        int usOtherClosestLineGuess = 0;
-	        dClosestDist = Other.LineRects[0].Distance(LineRects[usThisClosestLineGuess]);
-	        for (int j = 1; j < Other.LineRects.Count; j++)
-	        {
-		        double dDist = Other.LineRects[j].Distance(LineRects[usThisClosestLineGuess]);
-		        if (dDist < dClosestDist)
-		        {
-			        dClosestDist = dDist;
-			        usOtherClosestLineGuess = j;
-		        }
-	        }
+            // First we find the closest line rect to the other's bounding rectangle.
+            int usThisClosestLineGuess = 0;
+            C2DRect OtherBoundingRect = Other.BoundingRect;
+            double dClosestDist = LineRects[0].Distance(OtherBoundingRect);
+            for (int i = 1; i < LineRects.Count; i++)
+            {
+                double dDist = LineRects[i].Distance(OtherBoundingRect);
+                if (dDist < dClosestDist)
+                {
+                    dClosestDist = dDist;
+                    usThisClosestLineGuess = i;
+                }
+            }
+            // Now cycle through all the other poly's line rects to find the closest to the
+            // guessed at closest line on this.
+            int usOtherClosestLineGuess = 0;
+            dClosestDist = Other.LineRects[0].Distance(LineRects[usThisClosestLineGuess]);
+            for (int j = 1; j < Other.LineRects.Count; j++)
+            {
+                double dDist = Other.LineRects[j].Distance(LineRects[usThisClosestLineGuess]);
+                if (dDist < dClosestDist)
+                {
+                    dClosestDist = dDist;
+                    usOtherClosestLineGuess = j;
+                }
+            }
 
-	        // Now we have a guess at the 2 closest lines.
-	        double dMinDistGuess = Lines[usThisClosestLineGuess].Distance(
-							        Other.Lines[usOtherClosestLineGuess],
-							        ptOnThis,
-							        ptOnOther);
-	        // If its 0 then return 0.
-	        if (dMinDistGuess == 0)
-		        return 0;
+            // Now we have a guess at the 2 closest lines.
+            double dMinDistGuess = Lines[usThisClosestLineGuess].Distance(
+                                    Other.Lines[usOtherClosestLineGuess],
+                                    ptOnThis,
+                                    ptOnOther);
+            // If its 0 then return 0.
+            if (dMinDistGuess == 0)
+                return 0;
 
-	        C2DPoint ptOnThisTemp = new C2DPoint();
-	        C2DPoint ptOnOtherTemp = new C2DPoint();
+            C2DPoint ptOnThisTemp = new C2DPoint();
+            C2DPoint ptOnOtherTemp = new C2DPoint();
 
-	        // Now go through all of our line rects and only check further if they are closer
-	        // to the other's bounding rect than the min guess.
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
-		        if (LineRects[i].Distance( OtherBoundingRect ) <  dMinDistGuess)
-		        {
-			        for (  int j = 0 ; j < Other.Lines.Count ; j++)
-			        {
-				        double dDist = Lines[i].Distance(Other.Lines[j],
-													        ptOnThisTemp,
-													        ptOnOtherTemp);
-        				
-				        if (dDist < dMinDistGuess)
-				        {	
-						    ptOnThis.Set(ptOnThisTemp);
-					        ptOnOther.Set(ptOnOtherTemp);
+            // Now go through all of our line rects and only check further if they are closer
+            // to the other's bounding rect than the min guess.
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                if (LineRects[i].Distance(OtherBoundingRect) < dMinDistGuess)
+                {
+                    for (int j = 0; j < Other.Lines.Count; j++)
+                    {
+                        double dDist = Lines[i].Distance(Other.Lines[j],
+                                                            ptOnThisTemp,
+                                                            ptOnOtherTemp);
 
-					        if (dDist == 0)
-						        return 0;
+                        if (dDist < dMinDistGuess)
+                        {
+                            ptOnThis.Set(ptOnThisTemp);
+                            ptOnOther.Set(ptOnOtherTemp);
 
-					        dMinDistGuess = dDist; 
-				        }
-			        }
-		        }
-	        }
+                            if (dDist == 0)
+                                return 0;
 
-	        // if we are here, there is no intersection but the other could be inside this or vice-versa
-	        if ( BoundingRect.Contains(Other.BoundingRect)
-		        && Contains(ptOnOtherTemp)  )
-	        {
-		        dMinDistGuess *= -1.0;
-	        }
-	        else if ( Other.BoundingRect.Contains(BoundingRect)
-		        && Other.Contains( ptOnThisTemp ))
-	        {
-		        dMinDistGuess *= -1.0;
-	        }
+                            dMinDistGuess = dDist;
+                        }
+                    }
+                }
+            }
 
-	        return dMinDistGuess;
+            // if we are here, there is no intersection but the other could be inside this or vice-versa
+            if (BoundingRect.Contains(Other.BoundingRect)
+                && Contains(ptOnOtherTemp))
+            {
+                dMinDistGuess *= -1.0;
+            }
+            else if (Other.BoundingRect.Contains(BoundingRect)
+                && Other.Contains(ptOnThisTemp))
+            {
+                dMinDistGuess *= -1.0;
+            }
+
+            return dMinDistGuess;
         }
 
 
@@ -316,37 +314,37 @@ namespace KMMobile.GeoLib
         /// <param name="dRange">The range to test against.</param> 
         public bool IsWithinDistance(C2DPoint pt, double dRange)
         {
-	        C2DRect RectTemp = new C2DRect(BoundingRect);
-	        RectTemp.Expand(dRange);
+            C2DRect RectTemp = new C2DRect(BoundingRect);
+            RectTemp.Expand(dRange);
 
-	        if (!RectTemp.Contains(pt))
-		        return false;
+            if (!RectTemp.Contains(pt))
+                return false;
 
-	        if (Lines.Count == 0)
-		        return false;
+            if (Lines.Count == 0)
+                return false;
 
-	        if (Lines[0].GetPointFrom().Distance(pt) < dRange)
-		        return true;
+            if (Lines[0].GetPointFrom().Distance(pt) < dRange)
+                return true;
 
-	        if (this.Contains(pt))
-		        return true;
+            if (this.Contains(pt))
+                return true;
 
-	        for (int i = 1; i < Lines.Count; i++)
-	        {
-		        if(Lines[i].Distance(pt) < dRange)
-			        return true;
-	        }
+            for (int i = 1; i < Lines.Count; i++)
+            {
+                if (Lines[i].Distance(pt) < dRange)
+                    return true;
+            }
 
-	        return false;
+            return false;
         }
 
         /// <summary>
         /// Returns the bounding rectangle. Can access directly as well.
         /// </summary> 
         /// <param name="Rect">Output. The bounding rectangle.</param> 
-        public override void GetBoundingRect(C2DRect Rect) 
+        public override void GetBoundingRect(C2DRect Rect)
         {
-            Rect.Set(BoundingRect); 
+            Rect.Set(BoundingRect);
         }
 
         /// <summary>
@@ -354,42 +352,42 @@ namespace KMMobile.GeoLib
         /// </summary> 
         public double GetPerimeter()
         {
-	        double dResult = 0;
-	        for (int i = 0; i < this.Lines.Count; i++)
-	        {
-		        dResult += Lines[i].GetLength();
-	        }
-	        return dResult;
+            double dResult = 0;
+            for (int i = 0; i < this.Lines.Count; i++)
+            {
+                dResult += Lines[i].GetLength();
+            }
+            return dResult;
         }
 
         /// <summary>
         /// Clears all.
         /// </summary> 
-	    public void Clear()
+        public void Clear()
         {
-	        BoundingRect.Clear();
-	        Lines.Clear();
-	        LineRects.Clear();
+            BoundingRect.Clear();
+            Lines.Clear();
+            LineRects.Clear();
         }
 
         /// <summary>
         /// Moves this point by the vector given.
         /// </summary>
         /// <param name="vector">The vector.</param>
-	    public override void Move(C2DVector vector)
+        public override void Move(C2DVector vector)
         {
-	        Debug.Assert(Lines.Count == LineRects.Count);
+            Debug.Assert(Lines.Count == LineRects.Count);
 
-	        if(Lines.Count != LineRects.Count)
-		        return;
+            if (Lines.Count != LineRects.Count)
+                return;
 
             for (int i = 0; i < Lines.Count; i++)
-	        {
-		        Lines[i].Move(vector);
-		        LineRects[i].Move(vector);
-	        }
+            {
+                Lines[i].Move(vector);
+                LineRects[i].Move(vector);
+            }
 
-	        BoundingRect.Move(vector);
+            BoundingRect.Move(vector);
         }
         /// <summary>
         /// Rotates this to the right about the origin provided.
@@ -400,16 +398,16 @@ namespace KMMobile.GeoLib
         {
             Debug.Assert(Lines.Count == LineRects.Count);
 
-	        if(Lines.Count != LineRects.Count)
-		        return;
+            if (Lines.Count != LineRects.Count)
+                return;
 
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
-		        Lines[i].RotateToRight(dAng, Origin);
-		        Lines[i].GetBoundingRect(LineRects[i]);		
-	        }
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                Lines[i].RotateToRight(dAng, Origin);
+                Lines[i].GetBoundingRect(LineRects[i]);
+            }
 
-	        MakeBoundingRect();
+            MakeBoundingRect();
 
         }
 
@@ -420,18 +418,18 @@ namespace KMMobile.GeoLib
         /// <param name="Origin">The origin about which to grow.</param>
         public override void Grow(double dFactor, C2DPoint Origin)
         {
-	        Debug.Assert(Lines.Count == LineRects.Count);
+            Debug.Assert(Lines.Count == LineRects.Count);
 
-	        if(Lines.Count != LineRects.Count)
-		        return;
+            if (Lines.Count != LineRects.Count)
+                return;
 
             for (int i = 0; i < Lines.Count; i++)
-	        {
-		        Lines[i].Grow(dFactor, Origin);
-		        Lines[i].GetBoundingRect(LineRects[i]);		
-	        }
+            {
+                Lines[i].Grow(dFactor, Origin);
+                Lines[i].GetBoundingRect(LineRects[i]);
+            }
 
-	        BoundingRect.Grow(dFactor, Origin);
+            BoundingRect.Grow(dFactor, Origin);
 
         }
 
@@ -441,18 +439,18 @@ namespace KMMobile.GeoLib
         /// <param name="point">The point to reflect through.</param>
         public override void Reflect(C2DPoint point)
         {
-	        Debug.Assert(Lines.Count == LineRects.Count);
+            Debug.Assert(Lines.Count == LineRects.Count);
 
-	        if(Lines.Count != LineRects.Count)
-		        return;
+            if (Lines.Count != LineRects.Count)
+                return;
 
             for (int i = 0; i < Lines.Count; i++)
-	        {
-		        Lines[i].Reflect(point);
-	        }
-	        ReverseDirection(); // ALSO MAKES THE LINES AGAIN.
+            {
+                Lines[i].Reflect(point);
+            }
+            ReverseDirection(); // ALSO MAKES THE LINES AGAIN.
 
-	        BoundingRect.Reflect(point);
+            BoundingRect.Reflect(point);
 
         }
 
@@ -462,18 +460,18 @@ namespace KMMobile.GeoLib
         /// <param name="Line">The line to reflect through.</param>
         public override void Reflect(C2DLine Line)
         {
-	        Debug.Assert(Lines.Count == LineRects.Count);
+            Debug.Assert(Lines.Count == LineRects.Count);
 
-	        if(Lines.Count != LineRects.Count)
-		        return;
+            if (Lines.Count != LineRects.Count)
+                return;
 
             for (int i = 0; i < Lines.Count; i++)
-	        {
-		        Lines[i].Reflect(Line);
-	        }
-	        ReverseDirection(); // ALSO MAKES THE LINES AGAIN.
+            {
+                Lines[i].Reflect(Line);
+            }
+            ReverseDirection(); // ALSO MAKES THE LINES AGAIN.
 
-	        BoundingRect.Reflect(Line);
+            BoundingRect.Reflect(Line);
 
 
         }
@@ -485,16 +483,16 @@ namespace KMMobile.GeoLib
         /// <param name="Other">The other polygon.</param>
         public bool Crosses(C2DPolyBase Other)
         {
-	        if (!BoundingRect.Overlaps(Other.BoundingRect))
-		        return false;
+            if (!BoundingRect.Overlaps(Other.BoundingRect))
+                return false;
 
             List<C2DPoint> Temp = new List<C2DPoint>();
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
+            for (int i = 0; i < Lines.Count; i++)
+            {
                 if (Other.Crosses(Lines[i], Temp))
-			        return true;
-	        }
-	        return false;
+                    return true;
+            }
+            return false;
 
         }
 
@@ -528,17 +526,17 @@ namespace KMMobile.GeoLib
         /// <param name="Line">The other line.</param>
         public bool Crosses(C2DLineBase Line)
         {
-	        C2DRect LineRect = new C2DRect ();
-	        Line.GetBoundingRect(LineRect);
+            C2DRect LineRect = new C2DRect();
+            Line.GetBoundingRect(LineRect);
 
             List<C2DPoint> Temp = new List<C2DPoint>();
 
-	        for (int i = 0; i < this.Lines.Count; i++)
-	        {
-		        if (LineRects[i].Overlaps( LineRect ) &&  Lines[i].Crosses(Line, Temp))
-			        return true;
-	        }
-	        return false;
+            for (int i = 0; i < this.Lines.Count; i++)
+            {
+                if (LineRects[i].Overlaps(LineRect) && Lines[i].Crosses(Line, Temp))
+                    return true;
+            }
+            return false;
 
         }
 
@@ -549,33 +547,33 @@ namespace KMMobile.GeoLib
         /// <param name="IntersectionPts">Output. The intersection points.</param>
         public bool Crosses(C2DLineBase Line, List<C2DPoint> IntersectionPts)
         {
-	        C2DRect LineRect = new C2DRect();
-	        Line.GetBoundingRect( LineRect);
+            C2DRect LineRect = new C2DRect();
+            Line.GetBoundingRect(LineRect);
 
-	        if (!BoundingRect.Overlaps(LineRect))
-		        return false;
+            if (!BoundingRect.Overlaps(LineRect))
+                return false;
 
-	        Debug.Assert(Lines.Count == LineRects.Count);
+            Debug.Assert(Lines.Count == LineRects.Count);
 
-	        if(Lines.Count != LineRects.Count)
-		        return false;
+            if (Lines.Count != LineRects.Count)
+                return false;
 
-	        C2DPointSet IntersectionTemp = new C2DPointSet();
+            C2DPointSet IntersectionTemp = new C2DPointSet();
 
-	        bool bResult = false;
+            bool bResult = false;
 
             for (int i = 0; i < this.Lines.Count; i++)
-	        {
-		        if (LineRects[i].Overlaps(LineRect) &&
-			        Lines[i].Crosses(Line, IntersectionTemp as List<C2DPoint>))
-		        {
-			        bResult = true;
-		        }
-	        }
+            {
+                if (LineRects[i].Overlaps(LineRect) &&
+                    Lines[i].Crosses(Line, IntersectionTemp as List<C2DPoint>))
+                {
+                    bResult = true;
+                }
+            }
 
-	        IntersectionPts.InsertRange(0, IntersectionTemp);
+            IntersectionPts.InsertRange(0, IntersectionTemp);
 
-	        return bResult;
+            return bResult;
         }
 
         /// <summary>
@@ -640,7 +638,7 @@ namespace KMMobile.GeoLib
             {
                 _Lines[i].SnapToGrid(grid);
             }
-            for(int i = 0; i < _LineRects.Count; i++)
+            for (int i = 0; i < _LineRects.Count; i++)
             {
                 _LineRects[i].SnapToGrid(grid);
             }
@@ -678,7 +676,7 @@ namespace KMMobile.GeoLib
         /// <param name="Polygons">The output polygons.</param>
         /// <param name="grid">The degenerate settings.</param>
         public void GetOverlaps(C2DPolyBase Other, List<C2DHoledPolyBase> Polygons,
-										    CGrid grid)
+                                            CGrid grid)
         {
             GetBoolean(Other, Polygons, true, true, grid);
         }
@@ -695,80 +693,80 @@ namespace KMMobile.GeoLib
         public void GetRoutes(C2DPointSet IntPts, List<int> IntIndexes,
             C2DLineBaseSetSet Routes, bool bStartInside, bool bRoutesInside)
         {
-            
-	        // Make sure the intersection indexes and points are the same size.
-	        if (IntIndexes.Count != IntPts.Count )
-	        {
-		        Debug.Assert(false);
-		        return;
-	        }
-	        // Set up a new collection of routes.
-	        C2DLineBaseSetSet NewRoutes = new C2DLineBaseSetSet();
-	        // If the polygon has no points then return.
-	        if ( _Lines.Count < 1) 
-		        return;
-	        // Sort the intersections by index so we can go through them in order.
-            IntPts.SortByIndex( IntIndexes );   
-            
+
+            // Make sure the intersection indexes and points are the same size.
+            if (IntIndexes.Count != IntPts.Count)
+            {
+                Debug.Assert(false);
+                return;
+            }
+            // Set up a new collection of routes.
+            C2DLineBaseSetSet NewRoutes = new C2DLineBaseSetSet();
+            // If the polygon has no points then return.
+            if (_Lines.Count < 1)
+                return;
+            // Sort the intersections by index so we can go through them in order.
+            IntPts.SortByIndex(IntIndexes);
+
             // Set the inside / outside flag to the same as the start inside / outside flag.
-	        bool bInside = bStartInside;
-	        // If we are inside and want route inside or outside and want routes outside then add a new route.
-	        if (bInside == bRoutesInside)
-	        {
-		        NewRoutes.Add(new C2DLineBaseSet());
-	        }
+            bool bInside = bStartInside;
+            // If we are inside and want route inside or outside and want routes outside then add a new route.
+            if (bInside == bRoutesInside)
+            {
+                NewRoutes.Add(new C2DLineBaseSet());
+            }
 
-	        // The current index of the intersects.
-	        int usCurrentIntIndex = 0;
+            // The current index of the intersects.
+            int usCurrentIntIndex = 0;
 
-	        // cycle through the lines on the polygon.
-	        for (int i = 0 ; i < Lines.Count ; i++)
-	        {
-		        // Set up a list of intersection points on this line only.
-		        C2DPointSet IntsOnLine = new C2DPointSet();
-		        // Cycle through all intersections on this line (leaving the usCurrentIntIndex at the next intersected line).
-		        while ( usCurrentIntIndex < IntIndexes.Count && IntIndexes[usCurrentIntIndex] == i)
-		        {
-			        // Add a copy of the points on this line that are intersections
-			        IntsOnLine.AddCopy( IntPts[ usCurrentIntIndex ] );
-			        usCurrentIntIndex++;
-		        }
+            // cycle through the lines on the polygon.
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                // Set up a list of intersection points on this line only.
+                C2DPointSet IntsOnLine = new C2DPointSet();
+                // Cycle through all intersections on this line (leaving the usCurrentIntIndex at the next intersected line).
+                while (usCurrentIntIndex < IntIndexes.Count && IntIndexes[usCurrentIntIndex] == i)
+                {
+                    // Add a copy of the points on this line that are intersections
+                    IntsOnLine.AddCopy(IntPts[usCurrentIntIndex]);
+                    usCurrentIntIndex++;
+                }
 
-		        // If the line in question intersects the other poly then we have left / entered.
-		        if ( IntsOnLine.Count > 0 )
-		        {
-			        C2DLineBaseSet SubLines = new C2DLineBaseSet();
-			        Lines[i].GetSubLines( IntsOnLine, SubLines );
+                // If the line in question intersects the other poly then we have left / entered.
+                if (IntsOnLine.Count > 0)
+                {
+                    C2DLineBaseSet SubLines = new C2DLineBaseSet();
+                    Lines[i].GetSubLines(IntsOnLine, SubLines);
 
-			        while (SubLines.Count > 1)
-			        {
-				        if (bInside == bRoutesInside)
-				        {
-					        // We have 1. Left and want route in. OR 2. Entered and want routes out.
-					        NewRoutes[NewRoutes.Count - 1].Add( SubLines.ExtractAt(0) );
-					        bInside = true ^ bRoutesInside;
-				        }
-				        else
-				        {
-					        NewRoutes.Add(new C2DLineBaseSet());
-					        bInside = false ^ bRoutesInside;
-					        SubLines.RemoveAt(0);
-				        }
-			        }
-			        if (bInside == bRoutesInside)
-				        NewRoutes[NewRoutes.Count - 1].Add( SubLines.ExtractAt(SubLines.Count - 1 ) );
-			        else
-				        SubLines.RemoveAt(SubLines.Count - 1);
-		        }
-		        // Otherwise, if we are e.g. inside and want routes in the keep adding the end poitn of the line.
-		        else if (bInside == bRoutesInside)
-		        {
-			        NewRoutes[NewRoutes.Count - 1].AddCopy(  Lines[i] );
-		        }
+                    while (SubLines.Count > 1)
+                    {
+                        if (bInside == bRoutesInside)
+                        {
+                            // We have 1. Left and want route in. OR 2. Entered and want routes out.
+                            NewRoutes[NewRoutes.Count - 1].Add(SubLines.ExtractAt(0));
+                            bInside = true ^ bRoutesInside;
+                        }
+                        else
+                        {
+                            NewRoutes.Add(new C2DLineBaseSet());
+                            bInside = false ^ bRoutesInside;
+                            SubLines.RemoveAt(0);
+                        }
+                    }
+                    if (bInside == bRoutesInside)
+                        NewRoutes[NewRoutes.Count - 1].Add(SubLines.ExtractAt(SubLines.Count - 1));
+                    else
+                        SubLines.RemoveAt(SubLines.Count - 1);
+                }
+                // Otherwise, if we are e.g. inside and want routes in the keep adding the end poitn of the line.
+                else if (bInside == bRoutesInside)
+                {
+                    NewRoutes[NewRoutes.Count - 1].AddCopy(Lines[i]);
+                }
 
-	        }
-	        // Put all the new routes into the provided collection.
-	        Routes.ExtractAllOf(NewRoutes);
+            }
+            // Put all the new routes into the provided collection.
+            Routes.ExtractAllOf(NewRoutes);
         }
 
 
@@ -784,143 +782,143 @@ namespace KMMobile.GeoLib
                             bool bThisInside, bool bOtherInside,
                             CGrid grid)
         {
-            
-	        if (BoundingRect.Overlaps(Other.BoundingRect ))
-	        {
-		        switch (grid.DegenerateHandling)
-		        {
-		        case CGrid.eDegenerateHandling.None:
-			        {
-				        C2DLineBaseSetSet Routes1 = new C2DLineBaseSetSet();
-                        C2DLineBaseSetSet Routes2 = new C2DLineBaseSetSet();
-				        C2DPolyBase.GetRoutes( this, bThisInside, Other, bOtherInside, Routes1, Routes2);
-				        Routes1.ExtractAllOf(Routes2);
 
-				        if (Routes1.Count > 0)
-				        {
-					        // Add all the joining routes together to form closed routes
-					        Routes1.MergeJoining();
-					        // Set up some temporary polygons.
-					        List<C2DPolyBase> Polygons = new List<C2DPolyBase>();
-					        // Turn the routes into polygons.
-					        for (int i = Routes1.Count - 1; i >= 0; i--)
-					        {
+            if (BoundingRect.Overlaps(Other.BoundingRect))
+            {
+                switch (grid.DegenerateHandling)
+                {
+                    case CGrid.eDegenerateHandling.None:
+                        {
+                            C2DLineBaseSetSet Routes1 = new C2DLineBaseSetSet();
+                            C2DLineBaseSetSet Routes2 = new C2DLineBaseSetSet();
+                            C2DPolyBase.GetRoutes(this, bThisInside, Other, bOtherInside, Routes1, Routes2);
+                            Routes1.ExtractAllOf(Routes2);
 
-						        if (Routes1[i].IsClosed(true) && Routes1[i].Count > 2)
-						        {
-							        Polygons.Add(new C2DPolyBase());
-							        Polygons[Polygons.Count - 1].CreateDirect( Routes1[i]);
-						        }
-						        else
-						        {
-							     //   Debug.Assert(false);
-							        grid.LogDegenerateError();
-						        }	
-					        }
-                            
+                            if (Routes1.Count > 0)
+                            {
+                                // Add all the joining routes together to form closed routes
+                                Routes1.MergeJoining();
+                                // Set up some temporary polygons.
+                                List<C2DPolyBase> Polygons = new List<C2DPolyBase>();
+                                // Turn the routes into polygons.
+                                for (int i = Routes1.Count - 1; i >= 0; i--)
+                                {
 
-					        // Set up some temporary holed polygons
-					        C2DHoledPolyBaseSet NewComPolys = new C2DHoledPolyBaseSet();
-					        // Turn the set of polygons into holed polygons. Not needed for intersection.
-					        if (!(bThisInside && bOtherInside))
-					        {
-						        C2DHoledPolyBase.PolygonsToHoledPolygons(NewComPolys, Polygons);
-						        if (NewComPolys.Count != 1)
-						        {
-							     //   Debug.Assert(false);
-							        grid.LogDegenerateError();
-						        }
-					        }
-					        else
-					        {
-                                for (int i = 0; i < Polygons.Count; i++)
-						            HoledPolys.Add(new C2DHoledPolyBase(Polygons[i]));
-					        }
+                                    if (Routes1[i].IsClosed(true) && Routes1[i].Count > 2)
+                                    {
+                                        Polygons.Add(new C2DPolyBase());
+                                        Polygons[Polygons.Count - 1].CreateDirect(Routes1[i]);
+                                    }
+                                    else
+                                    {
+                                        //   Debug.Assert(false);
+                                        grid.LogDegenerateError();
+                                    }
+                                }
 
-					        // Now add them all to the provided set.
-                            for (int i = 0 ; i < NewComPolys.Count; i++)
-					            HoledPolys.Add(NewComPolys[i]);
-				        }
-			        }
-			        break;
-		        case CGrid.eDegenerateHandling.RandomPerturbation:
-			        {
-				        C2DPolyBase OtherCopy = new C2DPolyBase(Other);
-				        OtherCopy.RandomPerturb();
-                        grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
-				        GetBoolean( OtherCopy, HoledPolys, bThisInside, bOtherInside, grid);
-                        grid.DegenerateHandling = CGrid.eDegenerateHandling.RandomPerturbation;
-			        }
-			        break;
-		        case CGrid.eDegenerateHandling.DynamicGrid:
-			        {
-				        C2DRect Rect = new C2DRect(); 
-				        if (this.BoundingRect.Overlaps(Other.BoundingRect, Rect))
-				        {
-					        double dOldGrid = grid.GridSize;
-					        grid.SetToMinGridSize(Rect, false);
+
+                                // Set up some temporary holed polygons
+                                C2DHoledPolyBaseSet NewComPolys = new C2DHoledPolyBaseSet();
+                                // Turn the set of polygons into holed polygons. Not needed for intersection.
+                                if (!(bThisInside && bOtherInside))
+                                {
+                                    C2DHoledPolyBase.PolygonsToHoledPolygons(NewComPolys, Polygons);
+                                    if (NewComPolys.Count != 1)
+                                    {
+                                        //   Debug.Assert(false);
+                                        grid.LogDegenerateError();
+                                    }
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < Polygons.Count; i++)
+                                        HoledPolys.Add(new C2DHoledPolyBase(Polygons[i]));
+                                }
+
+                                // Now add them all to the provided set.
+                                for (int i = 0; i < NewComPolys.Count; i++)
+                                    HoledPolys.Add(NewComPolys[i]);
+                            }
+                        }
+                        break;
+                    case CGrid.eDegenerateHandling.RandomPerturbation:
+                        {
+                            C2DPolyBase OtherCopy = new C2DPolyBase(Other);
+                            OtherCopy.RandomPerturb();
+                            grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
+                            GetBoolean(OtherCopy, HoledPolys, bThisInside, bOtherInside, grid);
+                            grid.DegenerateHandling = CGrid.eDegenerateHandling.RandomPerturbation;
+                        }
+                        break;
+                    case CGrid.eDegenerateHandling.DynamicGrid:
+                        {
+                            C2DRect Rect = new C2DRect();
+                            if (this.BoundingRect.Overlaps(Other.BoundingRect, Rect))
+                            {
+                                double dOldGrid = grid.GridSize;
+                                grid.SetToMinGridSize(Rect, false);
+                                grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGrid;
+                                GetBoolean(Other, HoledPolys, bThisInside, bOtherInside, grid);
+                                grid.DegenerateHandling = CGrid.eDegenerateHandling.DynamicGrid;
+                            }
+                        }
+                        break;
+                    case CGrid.eDegenerateHandling.PreDefinedGrid:
+                        {
+                            C2DPolyBase P1 = new C2DPolyBase(this);
+                            C2DPolyBase P2 = new C2DPolyBase(Other);
+                            P1.SnapToGrid(grid);
+                            P2.SnapToGrid(grid);
+                            C2DVector V1 = new C2DVector(P1.BoundingRect.TopLeft, P2.BoundingRect.TopLeft);
+                            double dPerturbation = grid.GridSize; // ensure it snaps back to original grid positions.
+                            if (V1.i > 0)
+                                V1.i = dPerturbation;
+                            else
+                                V1.i = -dPerturbation;	// move away slightly if possible
+                            if (V1.j > 0)
+                                V1.j = dPerturbation;
+                            else
+                                V1.j = -dPerturbation; // move away slightly if possible
+                            V1.i *= 0.411923;// ensure it snaps back to original grid positions.
+                            V1.j *= 0.313131;// ensure it snaps back to original grid positions.
+
+                            P2.Move(V1);
+                            grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
+                            P1.GetBoolean(P2, HoledPolys, bThisInside, bOtherInside, grid);
+
+                            for (int i = 0; i < HoledPolys.Count; i++)
+                                HoledPolys[i].SnapToGrid(grid);
+
                             grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGrid;
-					        GetBoolean( Other, HoledPolys, bThisInside, bOtherInside, grid);
-                            grid.DegenerateHandling = CGrid.eDegenerateHandling.DynamicGrid;
-				        }
-			        }
-			        break;
-		        case CGrid.eDegenerateHandling.PreDefinedGrid:
-			        {
-				        C2DPolyBase P1 = new C2DPolyBase(this);
-                        C2DPolyBase P2 = new C2DPolyBase(Other);
-				        P1.SnapToGrid(grid);
-                        P2.SnapToGrid(grid);
-				        C2DVector V1 = new C2DVector( P1.BoundingRect.TopLeft,  P2.BoundingRect.TopLeft);
-				        double dPerturbation = grid.GridSize; // ensure it snaps back to original grid positions.
-				        if(V1.i > 0) 
-                            V1.i = dPerturbation;
-                        else
-                           V1.i = -dPerturbation;	// move away slightly if possible
-				        if(V1.j > 0) 
-                            V1.j = dPerturbation;
-                        else
-                            V1.j = -dPerturbation; // move away slightly if possible
-				        V1.i *= 0.411923;// ensure it snaps back to original grid positions.
-				        V1.j *= 0.313131;// ensure it snaps back to original grid positions.
+                        }
+                        break;
+                    case CGrid.eDegenerateHandling.PreDefinedGridPreSnapped:
+                        {
+                            C2DPolyBase P2 = new C2DPolyBase(Other);
+                            C2DVector V1 = new C2DVector(this.BoundingRect.TopLeft, P2.BoundingRect.TopLeft);
+                            double dPerturbation = grid.GridSize; // ensure it snaps back to original grid positions.
+                            if (V1.i > 0)
+                                V1.i = dPerturbation;
+                            else
+                                V1.i = -dPerturbation; // move away slightly if possible
+                            if (V1.j > 0)
+                                V1.j = dPerturbation;
+                            else
+                                V1.j = -dPerturbation; // move away slightly if possible
+                            V1.i *= 0.411923;// ensure it snaps back to original grid positions.
+                            V1.j *= 0.313131;// ensure it snaps back to original grid positions.
 
-				        P2.Move( V1 );
-                        grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
-				        P1.GetBoolean( P2, HoledPolys, bThisInside, bOtherInside, grid);
+                            P2.Move(V1);
+                            grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
+                            GetBoolean(P2, HoledPolys, bThisInside, bOtherInside, grid);
 
-                        for (int i = 0; i < HoledPolys.Count; i++)
-                            HoledPolys[i].SnapToGrid(grid);
+                            for (int i = 0; i < HoledPolys.Count; i++)
+                                HoledPolys[i].SnapToGrid(grid);
+                            grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGridPreSnapped;
+                        }
+                        break;
+                }
 
-	                    grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGrid;
-			        }
-			        break;
-		        case CGrid.eDegenerateHandling.PreDefinedGridPreSnapped:
-			        {
-				        C2DPolyBase P2 = new C2DPolyBase(Other);
-				        C2DVector V1 = new C2DVector( this.BoundingRect.TopLeft,  P2.BoundingRect.TopLeft);
-				        double dPerturbation = grid.GridSize; // ensure it snaps back to original grid positions.
-				        if (V1.i > 0)
-                            V1.i = dPerturbation;
-                        else
-                            V1.i = -dPerturbation; // move away slightly if possible
-				        if (V1.j > 0)
-                            V1.j = dPerturbation;
-                        else
-                            V1.j = -dPerturbation; // move away slightly if possible
-				        V1.i *= 0.411923;// ensure it snaps back to original grid positions.
-				        V1.j *= 0.313131;// ensure it snaps back to original grid positions.
-
-				        P2.Move( V1 );
-                        grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
-				        GetBoolean( P2, HoledPolys, bThisInside, bOtherInside, grid);
-
-                        for (int i = 0; i < HoledPolys.Count; i++)
-                            HoledPolys[i].SnapToGrid(grid);
-                        grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGridPreSnapped;
-			        }
-			        break;
-		        }
-                       
             }
         }
 
@@ -931,17 +929,17 @@ namespace KMMobile.GeoLib
         /// <param name="Interval">Output. The interval.</param>
         public override void Project(C2DLine Line, CInterval Interval)
         {
-	        if(Lines.Count == 0)
-		        return;
+            if (Lines.Count == 0)
+                return;
 
-	        Lines[0].Project(Line, Interval);
+            Lines[0].Project(Line, Interval);
 
             for (int i = 1; i < Lines.Count; i++)
-	        {
-		        CInterval LineInt = new CInterval();
-		        Lines[i].Project(Line, LineInt);
-		        Interval.ExpandToInclude( LineInt );
-	        }
+            {
+                CInterval LineInt = new CInterval();
+                Lines[i].Project(Line, LineInt);
+                Interval.ExpandToInclude(LineInt);
+            }
         }
 
         /// <summary>
@@ -951,34 +949,34 @@ namespace KMMobile.GeoLib
         /// <param name="Interval">Output. The interval.</param>
         public override void Project(C2DVector Vector, CInterval Interval)
         {
-	        if(Lines.Count == 0)
-		        return;
+            if (Lines.Count == 0)
+                return;
 
-	        Lines[0].Project(Vector, Interval);
+            Lines[0].Project(Vector, Interval);
 
-	        for (int i = 1; i < Lines.Count; i++)
-	        {
-		        CInterval LineInt = new CInterval();
-		        Lines[i].Project(Vector, LineInt);
-		        Interval.ExpandToInclude( LineInt );
-	        }
+            for (int i = 1; i < Lines.Count; i++)
+            {
+                CInterval LineInt = new CInterval();
+                Lines[i].Project(Vector, LineInt);
+                Interval.ExpandToInclude(LineInt);
+            }
         }
 
         /// <summary>
         /// Moves this by a tiny random amount.
         /// </summary>
-	    public void RandomPerturb()
+        public void RandomPerturb()
         {
-	        C2DPoint pt = BoundingRect.GetPointFurthestFromOrigin();
-	        double dMinEq = Math.Max(pt.x, pt.y) * Constants.conEqualityTolerance;
-	        CRandomNumber rn = new CRandomNumber (dMinEq * 10, dMinEq * 100);
+            C2DPoint pt = BoundingRect.GetPointFurthestFromOrigin();
+            double dMinEq = Math.Max(pt.x, pt.y) * Constants.conEqualityTolerance;
+            CRandomNumber rn = new CRandomNumber(dMinEq * 10, dMinEq * 100);
 
-	        C2DVector cVector = new C2DVector( rn.Get(), rn.Get() );
-	        if (rn.GetBool())
-		        cVector.i = - cVector.i ;
-	        if (rn.GetBool())
-		        cVector.j = - cVector.j ;
-	        Move(cVector);
+            C2DVector cVector = new C2DVector(rn.Get(), rn.Get());
+            if (rn.GetBool())
+                cVector.i = -cVector.i;
+            if (rn.GetBool())
+                cVector.j = -cVector.j;
+            Move(cVector);
 
         }
 
@@ -996,9 +994,9 @@ namespace KMMobile.GeoLib
         /// required for the second polygon.</param> 
         /// <param name="Routes1">Output. Set of lines for the first polygon.</param> 
         /// <param name="Routes2">Output. Set of lines for the second polygon.</param> 
-	    public static void GetRoutes(C2DPolyBase Poly1, bool bP1RoutesInside, 
-				    C2DPolyBase Poly2, bool bP2RoutesInside, 
-				    C2DLineBaseSetSet Routes1, C2DLineBaseSetSet Routes2)
+        public static void GetRoutes(C2DPolyBase Poly1, bool bP1RoutesInside,
+                    C2DPolyBase Poly2, bool bP2RoutesInside,
+                    C2DLineBaseSetSet Routes1, C2DLineBaseSetSet Routes2)
         {
             // Set up a collection of intersected points, and corresponding indexes.
             C2DPointSet IntPoints = new C2DPointSet();
@@ -1034,20 +1032,20 @@ namespace KMMobile.GeoLib
         /// </summary>
         protected void MakeBoundingRect()
         {
-	        if ( LineRects.Count == 0)
-	        {
-		        BoundingRect.Clear();
-		        return;
-	        }
-	        else
-	        {
-		        BoundingRect.Set(LineRects[0]);
+            if (LineRects.Count == 0)
+            {
+                BoundingRect.Clear();
+                return;
+            }
+            else
+            {
+                BoundingRect.Set(LineRects[0]);
 
-		        for (int i = 1 ; i  < LineRects.Count; i++)
-		        {
-			        BoundingRect.ExpandToInclude(LineRects[i]);
-		        }
-	        }
+                for (int i = 1; i < LineRects.Count; i++)
+                {
+                    BoundingRect.ExpandToInclude(LineRects[i]);
+                }
+            }
         }
 
         /// <summary>
@@ -1055,14 +1053,14 @@ namespace KMMobile.GeoLib
         /// </summary>
         protected void MakeLineRects()
         {
-	        LineRects.Clear();
+            LineRects.Clear();
 
-	        for (int i = 0 ; i  < Lines.Count; i++)
-	        {
-		        C2DRect pRect = new C2DRect();
-		        Lines[i].GetBoundingRect( pRect);
-		        LineRects.Add( pRect );
-	        }
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                C2DRect pRect = new C2DRect();
+                Lines[i].GetBoundingRect(pRect);
+                LineRects.Add(pRect);
+            }
 
         }
 
@@ -1071,9 +1069,9 @@ namespace KMMobile.GeoLib
         /// </summary>
         protected void ReverseDirection()
         {
-	        Lines.ReverseDirection();
+            Lines.ReverseDirection();
 
-	        MakeLineRects();
+            MakeLineRects();
         }
 
         /// <summary>
@@ -1081,14 +1079,14 @@ namespace KMMobile.GeoLib
         /// </summary>
         public void Transform(CTransformation pProject)
         {
-	        for (int i = 0; i < this._Lines.Count; i++)	
-	        {
+            for (int i = 0; i < this._Lines.Count; i++)
+            {
                 C2DLineBase pLine = _Lines[i];
-		        pLine.Transform(pProject);
-		        pLine.GetBoundingRect(_LineRects[i]);
-	        }
+                pLine.Transform(pProject);
+                pLine.GetBoundingRect(_LineRects[i]);
+            }
 
-	        this.MakeBoundingRect();
+            this.MakeBoundingRect();
         }
 
         /// <summary>
@@ -1112,7 +1110,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// The lines.
         /// </summary>
-	    protected C2DLineBaseSet _Lines = new C2DLineBaseSet();
+        protected C2DLineBaseSet _Lines = new C2DLineBaseSet();
 
         /// <summary>
         /// The lines.

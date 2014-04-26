@@ -10,33 +10,33 @@ namespace KMMobile.GeoLib
     public class CGrid
     {
         /// <summary>
-	    /// Enumeration for degenerate handling methods.
+        /// Enumeration for degenerate handling methods.
         /// </summary>
-	    public enum eDegenerateHandling
-	    {
+        public enum eDegenerateHandling
+        {
             /// <summary> No degenerate handling. </summary>
-		    None,
+            None,
             /// <summary> Randomly perturb shapes to avoid coincident points. </summary>
-		    RandomPerturbation,
+            RandomPerturbation,
             /// <summary> Grid method. Calucate grid size automatically. </summary>
-		    DynamicGrid,
+            DynamicGrid,
             /// <summary> Grid method. Grid size already set. </summary>
-		    PreDefinedGrid,
+            PreDefinedGrid,
             /// <summary> Grid method. Shapes presnapped to the grid. </summary>
-		    PreDefinedGridPreSnapped,
-	    };
+            PreDefinedGridPreSnapped,
+        };
         /// <summary>
-	    /// Constructor
+        /// Constructor
         /// </summary>
-	    public CGrid() {;}
+        public CGrid() { ;}
 
         /// <summary>
-	    /// Destructor
+        /// Destructor
         /// </summary>
-	    ~CGrid() {;}
+        ~CGrid() { ;}
 
         /// <summary>
-	    /// Sets the size of the grid.
+        /// Sets the size of the grid.
         /// </summary>
         public void SetGridSize(double dGridSize)
         {
@@ -47,7 +47,7 @@ namespace KMMobile.GeoLib
         }
 
         /// <summary>
-	    /// Finds a recommended minimum grid size to avoid point equality problems.
+        /// Finds a recommended minimum grid size to avoid point equality problems.
         /// </summary>
         public static double GetMinGridSize(C2DRect cRect, bool bRoundToNearestDecimalFactor)
         {
@@ -84,12 +84,12 @@ namespace KMMobile.GeoLib
         /// </summary>
         public void SetToMinGridSize(C2DRect cRect, bool bRoundToNearestDecimalFactor)
         {
-	        SetGridSize( GetMinGridSize(cRect, bRoundToNearestDecimalFactor));
+            SetGridSize(GetMinGridSize(cRect, bRoundToNearestDecimalFactor));
 
         }
 
         /// <summary>
-	    /// Resets the degenerate count.
+        /// Resets the degenerate count.
         /// </summary>
         public void ResetDegenerateErrors()
         {
@@ -97,7 +97,7 @@ namespace KMMobile.GeoLib
         }
 
         /// <summary>
-	    /// Used to log a degenerate error.
+        /// Used to log a degenerate error.
         /// </summary>
         public void LogDegenerateError()
         {

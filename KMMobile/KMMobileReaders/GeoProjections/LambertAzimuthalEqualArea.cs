@@ -1,21 +1,6 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file LambertAzimuthalEqualArea.cpp
-///Implementation file for a CLambertAzimuthalEqualArea class.
-
-Implementation file for a CLambertAzimuthalEqualArea class.
----------------------------------------------------------------------------*/
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
 
     /// <summary>

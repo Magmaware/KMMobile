@@ -1,25 +1,4 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-
-/*---------------------------------------------------------------------------
-\file Transformation.h
-Header file for a CTransformation class.
-
-\class CTransformation
-Abstract class representing a transformation of some sort.
-The purpose of this class is to allow transformations to be defined outside the 
-GeoLib main geometry library which can still be performed on GeoLib
-shapes. For example a polygon will be capable of taking an object derived
-from this and calling transform on all its points.
----------------------------------------------------------------------------*/
-
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
     /// <summary>
     /// Transformation abstract class.

@@ -1,12 +1,10 @@
+using KMMobile.GeoLib;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoPolygons
 {
-
     /// <summary>
     /// Class representing a polygon with straight lines. Inherits from C2DPolyBase
     /// but only allows straight lines to be added.
@@ -16,8 +14,8 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Constructor.
         /// </summary>
-        public C2DPolygon() 
-        { 
+        public C2DPolygon()
+        {
         }
 
         /// <summary>
@@ -25,12 +23,12 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Points">The points to create from.</param>
         /// <param name="bReorderIfNeeded">True if reordering is required.</param>
-	    public C2DPolygon(List<C2DPoint> Points, bool bReorderIfNeeded)
+        public C2DPolygon(List<C2DPoint> Points, bool bReorderIfNeeded)
         {
-	        subArea1 = null;
-	        subArea2 = null;
+            subArea1 = null;
+            subArea2 = null;
 
-	        Create(Points, bReorderIfNeeded);
+            Create(Points, bReorderIfNeeded);
 
         }
 
@@ -38,7 +36,7 @@ namespace KMMobile.GeoLib
         /// Constructor.
         /// </summary>
         /// <param name="Other">The other polygon.</param>
-	    public C2DPolygon(C2DPolygon Other) 
+        public C2DPolygon(C2DPolygon Other)
         {
             Set(Other);
         }
@@ -47,7 +45,7 @@ namespace KMMobile.GeoLib
         /// Constructor.
         /// </summary>
         /// <param name="Other">The other polygon.</param>
-	    public C2DPolygon(C2DPolyBase Other)
+        public C2DPolygon(C2DPolyBase Other)
         {
             Clear();
 
@@ -126,27 +124,27 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Points">The points to create from.</param>
         /// <param name="bReorderIfNeeded">True if reordering is required.</param>
-        public bool Create(List<C2DPoint> Points, bool bReorderIfNeeded )
+        public bool Create(List<C2DPoint> Points, bool bReorderIfNeeded)
         {
-		    subArea1 = null;
+            subArea1 = null;
             subArea2 = null;
 
-	        if (Points.Count < 3)
-		        return false;
+            if (Points.Count < 3)
+                return false;
 
-	        MakeLines(Points);
+            MakeLines(Points);
 
-	        MakeLineRects();
+            MakeLineRects();
 
-	        if (!IsClockwise())
-		        ReverseDirection();
+            if (!IsClockwise())
+                ReverseDirection();
 
-	        MakeBoundingRect();
+            MakeBoundingRect();
 
-	        if (bReorderIfNeeded && HasCrossingLines())
-		        return Reorder();
+            if (bReorderIfNeeded && HasCrossingLines())
+                return Reorder();
 
-	        return true;
+            return true;
         }
 
         /// <summary>
@@ -157,26 +155,26 @@ namespace KMMobile.GeoLib
         /// <param name="nNumberSides">True number of sides.</param>
         public bool CreateRegular(C2DPoint Centre, double dDistanceToPoints, int nNumberSides)
         {
-	        Clear();
+            Clear();
 
-	        if (dDistanceToPoints == 0 || nNumberSides < 3) 
+            if (dDistanceToPoints == 0 || nNumberSides < 3)
                 return false;
 
-	        double dAngle =  Constants.conTWOPI / nNumberSides ;
-	        C2DVector Vector = new C2DVector( 0 , dDistanceToPoints);
-	        C2DLine LineToEachPt = new C2DLine(Centre, Vector);
+            double dAngle = Constants.conTWOPI / nNumberSides;
+            C2DVector Vector = new C2DVector(0, dDistanceToPoints);
+            C2DLine LineToEachPt = new C2DLine(Centre, Vector);
 
-	        C2DPointSet Points = new C2DPointSet();
+            C2DPointSet Points = new C2DPointSet();
 
-	        for (int i = 0 ; i < nNumberSides; i ++)
-	        {
-		        C2DPoint pNewPt = new C2DPoint();
-		        pNewPt.Set(LineToEachPt.GetPointTo());
-		        Points.Add(pNewPt);
-		        LineToEachPt.vector.TurnRight(dAngle);
-	        }
+            for (int i = 0; i < nNumberSides; i++)
+            {
+                C2DPoint pNewPt = new C2DPoint();
+                pNewPt.Set(LineToEachPt.GetPointTo());
+                Points.Add(pNewPt);
+                LineToEachPt.vector.TurnRight(dAngle);
+            }
 
-	        return Create(Points, false);
+            return Create(Points, false);
         }
 
         /// <summary>
@@ -203,36 +201,36 @@ namespace KMMobile.GeoLib
         /// <param name="cBoundary">The boundary of the random shape.</param>
         /// <param name="nMinPoints">The minimum number of points.</param>
         /// <param name="nMaxPoints">The maximum number of points.</param>
-	    public bool CreateRandom(C2DRect cBoundary, int nMinPoints, int nMaxPoints)
+        public bool CreateRandom(C2DRect cBoundary, int nMinPoints, int nMaxPoints)
         {
-	        Clear();
+            Clear();
 
-	        Debug.Assert(nMinPoints <= nMaxPoints);
+            Debug.Assert(nMinPoints <= nMaxPoints);
 
-	        if (nMinPoints < 3) 
-		        return false;
-	        if (nMinPoints > nMaxPoints)
-		        return false;
+            if (nMinPoints < 3)
+                return false;
+            if (nMinPoints > nMaxPoints)
+                return false;
 
             CRandomNumber rnNumber = new CRandomNumber(nMinPoints, nMaxPoints);
 
-	        int nNumber = rnNumber.GetInt();
+            int nNumber = rnNumber.GetInt();
 
-	        C2DPoint pt = new C2DPoint();
-	        CRandomNumber rnX = new CRandomNumber(cBoundary.TopLeft.x, cBoundary.BottomRight.x);
-	        CRandomNumber rnY = new CRandomNumber(cBoundary.BottomRight.y, cBoundary.TopLeft.y);
+            C2DPoint pt = new C2DPoint();
+            CRandomNumber rnX = new CRandomNumber(cBoundary.TopLeft.x, cBoundary.BottomRight.x);
+            CRandomNumber rnY = new CRandomNumber(cBoundary.BottomRight.y, cBoundary.TopLeft.y);
 
-	        C2DPointSet Points = new C2DPointSet();
+            C2DPointSet Points = new C2DPointSet();
 
-	        for (int i = 0 ; i < nNumber; i++)
-	        {
-		        pt.x = rnX.Get();
-		        pt.y = rnY.Get();
+            for (int i = 0; i < nNumber; i++)
+            {
+                pt.x = rnX.Get();
+                pt.y = rnY.Get();
 
-		        Points.AddCopy(pt);
-	        }
+                Points.AddCopy(pt);
+            }
 
-	        return Create(Points, true);
+            return Create(Points, true);
 
         }
 
@@ -244,63 +242,63 @@ namespace KMMobile.GeoLib
         /// <param name="dFactor">The factor between the 2 polygons.</param>
         public bool CreateMorph(C2DPolygon OtherFrom, C2DPolygon OtherTo, double dFactor)
         {
-	        int nOtherFromCount = OtherFrom._Lines.Count;
-	        int nOtherToCount = OtherTo._Lines.Count;
+            int nOtherFromCount = OtherFrom._Lines.Count;
+            int nOtherToCount = OtherTo._Lines.Count;
 
-	        if (nOtherToCount < 3 || nOtherFromCount < 3)
-		        return false;
+            if (nOtherToCount < 3 || nOtherFromCount < 3)
+                return false;
 
-	        if (nOtherFromCount > nOtherToCount)
-	        {
-		        return CreateMorph(OtherTo, OtherFrom, 1 - dFactor);
-	        }
-	        else
-	        {
-		        // Going from poly with less points to poly with more.
-		        C2DPointSet Points = new C2DPointSet();
+            if (nOtherFromCount > nOtherToCount)
+            {
+                return CreateMorph(OtherTo, OtherFrom, 1 - dFactor);
+            }
+            else
+            {
+                // Going from poly with less points to poly with more.
+                C2DPointSet Points = new C2DPointSet();
 
-		        int nOtherFromLeft = OtherFrom.GetLeftMostPoint();
-		        // Add the OtherFroms points starting from the left most.
-		        for (int i = 0; i < OtherFrom.Lines.Count; i++)
-		        {
-			        C2DPoint pNewPoint = new C2DPoint();
-			        pNewPoint.Set(  OtherFrom.Lines[(i + nOtherFromLeft)% OtherFrom.Lines.Count].GetPointFrom());
-			        Points.Add(pNewPoint);
-		        }
+                int nOtherFromLeft = OtherFrom.GetLeftMostPoint();
+                // Add the OtherFroms points starting from the left most.
+                for (int i = 0; i < OtherFrom.Lines.Count; i++)
+                {
+                    C2DPoint pNewPoint = new C2DPoint();
+                    pNewPoint.Set(OtherFrom.Lines[(i + nOtherFromLeft) % OtherFrom.Lines.Count].GetPointFrom());
+                    Points.Add(pNewPoint);
+                }
 
-		        int nPointsToAdd = nOtherToCount - nOtherFromCount; // we know this is positive.
+                int nPointsToAdd = nOtherToCount - nOtherFromCount; // we know this is positive.
 
-		        int nPointsAdded = 0;
-		        int nLine = 0;
-        		
-		        // Add points to the list so that it is the same size as OtherTo.
-		        while (nPointsAdded < nPointsToAdd)
-		        {
-			        C2DLine TempLine = new C2DLine( Points[nLine], Points[nLine + 1]);
+                int nPointsAdded = 0;
+                int nLine = 0;
 
-			        C2DPoint pNewPoint = new C2DPoint();
-			        pNewPoint = TempLine.GetMidPoint();
-			        Points.Insert(nLine + 1, pNewPoint);
-			        nLine +=2;
-			        nPointsAdded ++;
-			        if (nLine > Points.Count -2 )
-				        nLine = 0;
-		        }
+                // Add points to the list so that it is the same size as OtherTo.
+                while (nPointsAdded < nPointsToAdd)
+                {
+                    C2DLine TempLine = new C2DLine(Points[nLine], Points[nLine + 1]);
 
-		        int nOtherToLeft = OtherTo.GetLeftMostPoint();
+                    C2DPoint pNewPoint = new C2DPoint();
+                    pNewPoint = TempLine.GetMidPoint();
+                    Points.Insert(nLine + 1, pNewPoint);
+                    nLine += 2;
+                    nPointsAdded++;
+                    if (nLine > Points.Count - 2)
+                        nLine = 0;
+                }
 
-		        Debug.Assert(Points.Count == nOtherToCount);
+                int nOtherToLeft = OtherTo.GetLeftMostPoint();
 
-		        for ( int i = 0 ; i < nOtherToCount ; i++ )
-		        {
-			        C2DVector vMove = new C2DVector(Points[i] , OtherTo.Lines[(nOtherToLeft + i) % OtherTo.Lines.Count].GetPointFrom());
-			        vMove.Multiply( dFactor);
+                Debug.Assert(Points.Count == nOtherToCount);
 
-			        Points[i].Move(vMove);
-		        }
+                for (int i = 0; i < nOtherToCount; i++)
+                {
+                    C2DVector vMove = new C2DVector(Points[i], OtherTo.Lines[(nOtherToLeft + i) % OtherTo.Lines.Count].GetPointFrom());
+                    vMove.Multiply(dFactor);
 
-		        return Create(Points, false);
-	        }
+                    Points[i].Move(vMove);
+                }
+
+                return Create(Points, false);
+            }
         }
 
         /// <summary>
@@ -309,87 +307,87 @@ namespace KMMobile.GeoLib
         /// </summary>
         public bool CreateConvexSubAreas()
         {
-	        subArea1 = null;
-	        subArea2 = null;
+            subArea1 = null;
+            subArea2 = null;
 
-	        int nLineCount = Lines.Count;
+            int nLineCount = Lines.Count;
 
-	        if ( nLineCount < 4 )
-		        return true;
+            if (nLineCount < 4)
+                return true;
 
-	        bool bInflection = false;
-	        for (int nStart = 0 ; nStart < nLineCount; nStart++)
-	        {
-		        if (IsPointInflected(nStart))
-		        {
-			        bInflection = true;
+            bool bInflection = false;
+            for (int nStart = 0; nStart < nLineCount; nStart++)
+            {
+                if (IsPointInflected(nStart))
+                {
+                    bInflection = true;
 
-			        int nEnd = nStart + 2;
-			        bool bContinue = true;
-			        while (bContinue)
-			        {
-				        if (C2DTriangle.IsClockwise(GetPoint(nEnd - 2),GetPoint(nEnd - 1),GetPoint(nEnd))
-					        && C2DTriangle.IsClockwise( GetPoint(nEnd - 1), GetPoint(nEnd), GetPoint(nStart))
-					        && C2DTriangle.IsClockwise( GetPoint(nEnd), GetPoint(nStart), GetPoint(nStart + 1)) 
-					        && CanPointsBeJoined(nStart, nEnd))
-				        {
-					        nEnd++;
-				        }
-				        else
-				        {
-					        nEnd--;
-					        bContinue = false;
-				        }
-			        }
-			        if (nEnd >= nStart + 2)
-			        {
-                        bool bRes = CreateSubAreas(nStart, nEnd, ref subArea1,ref subArea2);
+                    int nEnd = nStart + 2;
+                    bool bContinue = true;
+                    while (bContinue)
+                    {
+                        if (C2DTriangle.IsClockwise(GetPoint(nEnd - 2), GetPoint(nEnd - 1), GetPoint(nEnd))
+                            && C2DTriangle.IsClockwise(GetPoint(nEnd - 1), GetPoint(nEnd), GetPoint(nStart))
+                            && C2DTriangle.IsClockwise(GetPoint(nEnd), GetPoint(nStart), GetPoint(nStart + 1))
+                            && CanPointsBeJoined(nStart, nEnd))
+                        {
+                            nEnd++;
+                        }
+                        else
+                        {
+                            nEnd--;
+                            bContinue = false;
+                        }
+                    }
+                    if (nEnd >= nStart + 2)
+                    {
+                        bool bRes = CreateSubAreas(nStart, nEnd, ref subArea1, ref subArea2);
                         bRes &= SubArea1.CreateConvexSubAreas();
                         bRes &= SubArea2.CreateConvexSubAreas();
-				        return bRes;
-			        }
-		        }
-	        }
+                        return bRes;
+                    }
+                }
+            }
 
-	        if (!bInflection)
-		        return true;
+            if (!bInflection)
+                return true;
 
-	        for (int nStart = 2 * nLineCount - 1 ; nStart >= nLineCount; nStart--)
-	        {
-		        if (IsPointInflected(nStart))
-		        {
-			        bInflection = true;
+            for (int nStart = 2 * nLineCount - 1; nStart >= nLineCount; nStart--)
+            {
+                if (IsPointInflected(nStart))
+                {
+                    bInflection = true;
 
-			        int nEnd = nStart - 2;
-			        bool bContinue = true;
-			        while (bContinue)
-			        {
-				        if (!C2DTriangle.IsClockwise(GetPoint(nEnd + 2),GetPoint(nEnd + 1),GetPoint(nEnd)) 
-					        && !C2DTriangle.IsClockwise( GetPoint(nEnd + 1), GetPoint(nEnd), GetPoint(nStart)) 
-					        && !C2DTriangle.IsClockwise( GetPoint(nEnd), GetPoint(nStart), GetPoint(nStart - 1)) 
-					        && CanPointsBeJoined(nStart, nEnd))
-				        {
-					        nEnd--;
-				        }
-				        else
-				        {
-					        nEnd++;
-					        bContinue = false;
-				        }
-			        }
-			        if (nEnd <= nStart - 2)
-			        {
-				        bool bRes = CreateSubAreas(nStart, nEnd, ref subArea1, ref subArea2);
-				        bRes &= SubArea1.CreateConvexSubAreas();
-				        bRes &= SubArea2.CreateConvexSubAreas();
-				        return bRes;
-			        }
-		        }
-	        }
+                    int nEnd = nStart - 2;
+                    bool bContinue = true;
+                    while (bContinue)
+                    {
+                        if (!C2DTriangle.IsClockwise(GetPoint(nEnd + 2), GetPoint(nEnd + 1), GetPoint(nEnd))
+                            && !C2DTriangle.IsClockwise(GetPoint(nEnd + 1), GetPoint(nEnd), GetPoint(nStart))
+                            && !C2DTriangle.IsClockwise(GetPoint(nEnd), GetPoint(nStart), GetPoint(nStart - 1))
+                            && CanPointsBeJoined(nStart, nEnd))
+                        {
+                            nEnd--;
+                        }
+                        else
+                        {
+                            nEnd++;
+                            bContinue = false;
+                        }
+                    }
+                    if (nEnd <= nStart - 2)
+                    {
+                        bool bRes = CreateSubAreas(nStart, nEnd, ref subArea1, ref subArea2);
+                        bRes &= SubArea1.CreateConvexSubAreas();
+                        bRes &= SubArea2.CreateConvexSubAreas();
+                        return bRes;
+                    }
+                }
+            }
 
 
-	        Debug.Assert(false);
-	        return false;
+            Debug.Assert(false);
+            return false;
 
 
         }
@@ -397,21 +395,21 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Removes the convex sub areas.
         /// </summary>
-	    public void ClearConvexSubAreas()
+        public void ClearConvexSubAreas()
         {
-             subArea1 = null;
-             subArea2 = null;
+            subArea1 = null;
+            subArea2 = null;
         }
 
         /// <summary>
         /// True if the polygon is convex.
         /// </summary>
-	    public bool IsConvex()
+        public bool IsConvex()
         {
-	        if (Lines.Count < 4) 
-                    return true;
-	        int nTemp = 0;
-	        return !FindFirstInflection(ref nTemp);
+            if (Lines.Count < 4)
+                return true;
+            int nTemp = 0;
+            return !FindFirstInflection(ref nTemp);
         }
 
         /// <summary>
@@ -513,30 +511,30 @@ namespace KMMobile.GeoLib
 
 
 
-         /// <summary>
-         /// True if there are repeated points.
-         /// </summary>
-	    bool HasRepeatedPoints()
+        /// <summary>
+        /// True if there are repeated points.
+        /// </summary>
+        bool HasRepeatedPoints()
         {
-            for ( int i = 0 ; i < Lines.Count; i++)
-	        {
+            for (int i = 0; i < Lines.Count; i++)
+            {
                 for (int r = i + 1; r < Lines.Count; r++)
-		        {
-			        if (Lines[i].GetPointFrom().PointEqualTo(  Lines[r].GetPointFrom()  )) 
-				        return true;
-		        }
-	        }
-	        return false;
+                {
+                    if (Lines[i].GetPointFrom().PointEqualTo(Lines[r].GetPointFrom()))
+                        return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
         /// True if clockwise.
         /// </summary>
-	    public bool IsClockwise()
+        public bool IsClockwise()
         {
-	        Debug.Assert(Lines.Count> 2);
+            Debug.Assert(Lines.Count > 2);
 
-	        return (GetAreaSigned() < 0);
+            return (GetAreaSigned() < 0);
 
         }
 
@@ -544,7 +542,7 @@ namespace KMMobile.GeoLib
         /// Returns the convex sub areas if created.
         /// </summary>
         /// <param name="SubAreas">Ouput. The sub areas.</param>
-	    public void GetConvexSubAreas(List< C2DPolygon> SubAreas)
+        public void GetConvexSubAreas(List<C2DPolygon> SubAreas)
         {
             if (SubArea1 != null && SubArea2 != null)
             {
@@ -558,97 +556,97 @@ namespace KMMobile.GeoLib
         }
 
         /// <summary>
-	    /// True if this overlaps another and returns the translation vector required to move
-	    /// this apart. Exact if this is convex, approximate if concave. Better approximation
-	    /// if convex sub areas have been created.
+        /// True if this overlaps another and returns the translation vector required to move
+        /// this apart. Exact if this is convex, approximate if concave. Better approximation
+        /// if convex sub areas have been created.
         /// </summary>
         /// <param name="Other">The other polygon.</param>
         /// <param name="MinimumTranslationVector">Ouput. The vector to move this by to move it away from the other.</param>
         public bool Overlaps(C2DPolygon Other, C2DVector MinimumTranslationVector)
         {
-	        if (Lines.Count < 2 || Other.Lines.Count < 2) 
+            if (Lines.Count < 2 || Other.Lines.Count < 2)
                 return false;
 
-	        if (!_BoundingRect.Overlaps(Other.BoundingRect))
-		        return false;
+            if (!_BoundingRect.Overlaps(Other.BoundingRect))
+                return false;
 
-	        if (SubArea1 != null && SubArea2 != null)
-	        {
+            if (SubArea1 != null && SubArea2 != null)
+            {
 
-		        C2DVector v1 = new C2DVector();
-		        C2DVector v2 = new C2DVector();
-		        bool b1 = SubArea1.Overlaps(Other, v1);
-		        bool b2 = SubArea2.Overlaps(Other, v2);
-		        if (b1 && b2) 
-                    MinimumTranslationVector.Set( v1 + v2);
-		        else if (b1) 
+                C2DVector v1 = new C2DVector();
+                C2DVector v2 = new C2DVector();
+                bool b1 = SubArea1.Overlaps(Other, v1);
+                bool b2 = SubArea2.Overlaps(Other, v2);
+                if (b1 && b2)
+                    MinimumTranslationVector.Set(v1 + v2);
+                else if (b1)
                     MinimumTranslationVector.Set(v1);
-		        else if (b2) 
+                else if (b2)
                     MinimumTranslationVector.Set(v2);
-		        return b1 || b2;
-	        }
-	        else if (Other.SubArea1 != null && Other.SubArea2 != null)
-	        {
-		        bool bRes = Other.Overlaps(this, MinimumTranslationVector);
-		        if (bRes) 
+                return b1 || b2;
+            }
+            else if (Other.SubArea1 != null && Other.SubArea2 != null)
+            {
+                bool bRes = Other.Overlaps(this, MinimumTranslationVector);
+                if (bRes)
                     MinimumTranslationVector.Reverse();
-		        return bRes;
-	        }
-	        else
-	        {
-		        CInterval ThisProj = new CInterval();
-		        CInterval OtherProj = new CInterval();
+                return bRes;
+            }
+            else
+            {
+                CInterval ThisProj = new CInterval();
+                CInterval OtherProj = new CInterval();
 
-		        C2DLine ProjLine = new C2DLine();
+                C2DLine ProjLine = new C2DLine();
 
-		        bool bVecFound = false;
+                bool bVecFound = false;
 
-		        for (int i = 0 ; i < Lines.Count + Other.Lines.Count; i++)
-		        {
+                for (int i = 0; i < Lines.Count + Other.Lines.Count; i++)
+                {
                     if (i < Lines.Count)
-				        ProjLine.Set(GetPoint(i),GetPoint(i+1));
-			        else
+                        ProjLine.Set(GetPoint(i), GetPoint(i + 1));
+                    else
                         ProjLine.Set(Other.GetPoint(i - Lines.Count),
                             Other.GetPoint(i - Lines.Count + 1));
 
-			        ProjLine.vector.TurnRight();
-			        ProjLine.vector.MakeUnit();
+                    ProjLine.vector.TurnRight();
+                    ProjLine.vector.MakeUnit();
 
-			        this.Project(ProjLine.vector, ThisProj );
-			        Other.Project(ProjLine.vector, OtherProj );
+                    this.Project(ProjLine.vector, ThisProj);
+                    Other.Project(ProjLine.vector, OtherProj);
 
-			        if (ThisProj.dMin < OtherProj.dMax && ThisProj.dMax > OtherProj.dMax)
-			        {
-				        if (!bVecFound || 
-					        (OtherProj.dMax - ThisProj.dMin) < MinimumTranslationVector.GetLength())
-				        {
-					        MinimumTranslationVector.Set( ProjLine.vector);
-					        MinimumTranslationVector.SetLength(OtherProj.dMax - ThisProj.dMin);
-					        MinimumTranslationVector.Multiply(1.001);
-
-					        bVecFound = true;
-				        }
-			        }
-			        else if (OtherProj.dMin <ThisProj.dMax && OtherProj.dMax > ThisProj.dMax )
-			        {
-				        if (!bVecFound || 
-					        (ThisProj.dMax - OtherProj.dMin) < MinimumTranslationVector.GetLength())
-				        {
-					        MinimumTranslationVector.Set( ProjLine.vector);
-					        MinimumTranslationVector.SetLength(ThisProj.dMax - OtherProj.dMin);
-					        MinimumTranslationVector.Reverse();
+                    if (ThisProj.dMin < OtherProj.dMax && ThisProj.dMax > OtherProj.dMax)
+                    {
+                        if (!bVecFound ||
+                            (OtherProj.dMax - ThisProj.dMin) < MinimumTranslationVector.GetLength())
+                        {
+                            MinimumTranslationVector.Set(ProjLine.vector);
+                            MinimumTranslationVector.SetLength(OtherProj.dMax - ThisProj.dMin);
                             MinimumTranslationVector.Multiply(1.001);
-					        bVecFound = true;
-				        }
-			        }
-			        else
-			        {
-				        return false;
-			        }
-		        }
-	        }
 
-	        return true;
+                            bVecFound = true;
+                        }
+                    }
+                    else if (OtherProj.dMin < ThisProj.dMax && OtherProj.dMax > ThisProj.dMax)
+                    {
+                        if (!bVecFound ||
+                            (ThisProj.dMax - OtherProj.dMin) < MinimumTranslationVector.GetLength())
+                        {
+                            MinimumTranslationVector.Set(ProjLine.vector);
+                            MinimumTranslationVector.SetLength(ThisProj.dMax - OtherProj.dMin);
+                            MinimumTranslationVector.Reverse();
+                            MinimumTranslationVector.Multiply(1.001);
+                            bVecFound = true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
 
         }
 
@@ -668,27 +666,27 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the centroid.
         /// </summary>
-        public C2DPoint GetCentroid() 
+        public C2DPoint GetCentroid()
         {
-	        C2DPoint Centroid = new C2DPoint(0, 0);
-	        double dArea = 0;
+            C2DPoint Centroid = new C2DPoint(0, 0);
+            double dArea = 0;
 
-	        for ( int i = 0; i < Lines.Count; i++)
-	        {
+            for (int i = 0; i < Lines.Count; i++)
+            {
                 C2DPoint pti = Lines[i].GetPointFrom();
                 C2DPoint ptii = Lines[i].GetPointTo();
 
-		        Centroid.x += (pti.x + ptii.x) * (pti.x * ptii.y - ptii.x * pti.y);
-		        Centroid.y += (pti.y + ptii.y) * (pti.x * ptii.y - ptii.x * pti.y);
+                Centroid.x += (pti.x + ptii.x) * (pti.x * ptii.y - ptii.x * pti.y);
+                Centroid.y += (pti.y + ptii.y) * (pti.x * ptii.y - ptii.x * pti.y);
 
-		        dArea += pti.x * ptii.y - ptii.x * pti.y;
-	        }
-	        dArea = dArea / 2.0;
+                dArea += pti.x * ptii.y - ptii.x * pti.y;
+            }
+            dArea = dArea / 2.0;
 
-	        Centroid.x = Centroid.x / (6.0 * dArea);
-	        Centroid.y = Centroid.y / (6.0 * dArea);
+            Centroid.x = Centroid.x / (6.0 * dArea);
+            Centroid.y = Centroid.y / (6.0 * dArea);
 
-	        return Centroid;
+            return Centroid;
 
         }
 
@@ -705,17 +703,17 @@ namespace KMMobile.GeoLib
         /// </summary>
         public double GetAreaSigned()
         {
-	        double dArea = 0;
+            double dArea = 0;
 
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
+            for (int i = 0; i < Lines.Count; i++)
+            {
                 C2DPoint pt1 = Lines[i].GetPointFrom();
                 C2DPoint pt2 = Lines[i].GetPointTo();
                 dArea += pt1.x * pt2.y - pt2.x * pt1.y;
-	        }
-	        dArea = dArea / 2.0;
+            }
+            dArea = dArea / 2.0;
 
-	        return dArea;
+            return dArea;
 
         }
 
@@ -723,12 +721,12 @@ namespace KMMobile.GeoLib
         /// Gets the point at the specified index. Index is cyclic.
         /// </summary>
         /// <param name="nPointIndex">The index of the point.</param>
-	    C2DPoint GetPoint(int nPointIndex)
+        C2DPoint GetPoint(int nPointIndex)
         {
-	        if (Lines.Count == 0)
-		        return new C2DPoint();
+            if (Lines.Count == 0)
+                return new C2DPoint();
 
-	        return Lines[nPointIndex  %  Lines.Count].GetPointFrom();
+            return Lines[nPointIndex % Lines.Count].GetPointFrom();
 
         }
 
@@ -736,12 +734,12 @@ namespace KMMobile.GeoLib
         /// Copies the points into the set object provided.
         /// </summary>
         /// <param name="PointCopy">The point set to recieve the result.</param>
-	    public void GetPointsCopy(List<C2DPoint> PointCopy)
+        public void GetPointsCopy(List<C2DPoint> PointCopy)
         {
-	        for (int i = 0; i < Lines.Count; i++)
-	        {
-		        PointCopy.Add(Lines[i].GetPointFrom());
-	        }
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                PointCopy.Add(Lines[i].GetPointFrom());
+            }
         }
 
 
@@ -750,18 +748,18 @@ namespace KMMobile.GeoLib
         /// </summary>
         public int GetLeftMostPoint()
         {
-	        if (Lines.Count < 2) 
+            if (Lines.Count < 2)
                 return 0;
-        	
-	        int nRes = 0;
 
-	        for ( int i = 1 ; i < Lines.Count; i++)
-	        {
-		        if (Lines[i].GetPointFrom().x < Lines[nRes].GetPointFrom().x)
-			        nRes = i;
-	        }
+            int nRes = 0;
 
-	        return nRes;
+            for (int i = 1; i < Lines.Count; i++)
+            {
+                if (Lines[i].GetPointFrom().x < Lines[nRes].GetPointFrom().x)
+                    nRes = i;
+            }
+
+            return nRes;
         }
 
         /// <summary>
@@ -769,63 +767,63 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="dMinAngleDegrees">The minimum angle between points. Default is 144 degrees.</param>
         /// <param name="dCropFactor">The factor to crop "sharp" lines by. Default is 0.8.</param>
-	    public void Smooth(double dMinAngleDegrees, double dCropFactor)
+        public void Smooth(double dMinAngleDegrees, double dCropFactor)
         {
             double dMinAngle = dMinAngleDegrees * Constants.conRadiansPerDegree;
 
-	        int i = 0;
+            int i = 0;
 
-	        if (Lines.Count < 3)
-		        return;
+            if (Lines.Count < 3)
+                return;
 
-	        Debug.Assert(IsClockwise());
+            Debug.Assert(IsClockwise());
 
-	        int nCount = Lines.Count;
-	        int nIt = 0;
+            int nCount = Lines.Count;
+            int nIt = 0;
 
-	        while (nIt < nCount )
-	        {
-		        C2DLineBase LineBase1 = Lines[i % Lines.Count] ;
+            while (nIt < nCount)
+            {
+                C2DLineBase LineBase1 = Lines[i % Lines.Count];
                 C2DLineBase LineBase2 = Lines[(i + 1) % Lines.Count];
 
                 C2DLine Line1 = new C2DLine(LineBase1.GetPointFrom(), LineBase1.GetPointTo());
                 C2DLine Line2 = new C2DLine(LineBase2.GetPointFrom(), LineBase2.GetPointTo());
 
-		        C2DVector Vec = new C2DVector(Line1.vector);
+                C2DVector Vec = new C2DVector(Line1.vector);
 
-		        Vec.Reverse();
+                Vec.Reverse();
 
-		        double dAng = Line2.vector.AngleToRight(Vec) ;
-		        if(dAng <  dMinAngle || dAng > (Constants.conTWOPI - dMinAngle))
-		        {
-			        SetPoint( Line1.GetPointOn(dCropFactor),  (i + 1));
-			        InsertPoint(i +2, Line2.GetPointOn(1 - dCropFactor));
-			        nCount++;
-			        i += 2;
-			        nIt = 0;
-		        }
-		        else
-		        {
-			        i++;
-			        nIt++;
-		        }
-		        if (i >= nCount)
-			        i = 0;
-	        }
+                double dAng = Line2.vector.AngleToRight(Vec);
+                if (dAng < dMinAngle || dAng > (Constants.conTWOPI - dMinAngle))
+                {
+                    SetPoint(Line1.GetPointOn(dCropFactor), (i + 1));
+                    InsertPoint(i + 2, Line2.GetPointOn(1 - dCropFactor));
+                    nCount++;
+                    i += 2;
+                    nIt = 0;
+                }
+                else
+                {
+                    i++;
+                    nIt++;
+                }
+                if (i >= nCount)
+                    i = 0;
+            }
 
-	        MakeBoundingRect();
+            MakeBoundingRect();
 
-	        if (SubArea1 != null && SubArea2 != null)
-		        CreateConvexSubAreas();
+            if (SubArea1 != null && SubArea2 != null)
+                CreateConvexSubAreas();
 
         }
 
         /// <summary>
         /// Smooths the polygon using default smoothing i.e. 144 degrees and 0.8 crop factor. 
         /// </summary>
-	    public void Smooth()
+        public void Smooth()
         {
-            Smooth(Constants.conPI * 0.8 * Constants.conDegreesPerRadian, 0.8 );
+            Smooth(Constants.conPI * 0.8 * Constants.conDegreesPerRadian, 0.8);
         }
 
         /// <summary>
@@ -846,15 +844,15 @@ namespace KMMobile.GeoLib
         /// <param name="nFirstInflection">Output. Inflected point.</param>
         private bool FindFirstInflection(ref int nFirstInflection)
         {
-	        for ( int i = 0; i < Lines.Count; i++)
-	        {
-		        if(IsPointInflected(i))
-		        {
-			        nFirstInflection = i;
-			        return true;
-		        }
-	        }
-	        return false;
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                if (IsPointInflected(i))
+                {
+                    nFirstInflection = i;
+                    return true;
+                }
+            }
+            return false;
 
         }
 
@@ -864,17 +862,17 @@ namespace KMMobile.GeoLib
         /// <param name="nIndex">The point index.</param>
         public bool IsPointInflected(int nIndex)
         {
-	        int usBefore;
-	        if (nIndex == 0)
-		        usBefore = Lines.Count - 1;
-	        else
-		        usBefore = nIndex - 1;
+            int usBefore;
+            if (nIndex == 0)
+                usBefore = Lines.Count - 1;
+            else
+                usBefore = nIndex - 1;
 
-	        C2DLine TestLine = new C2DLine(GetPoint(usBefore), GetPoint(nIndex));
+            C2DLine TestLine = new C2DLine(GetPoint(usBefore), GetPoint(nIndex));
 
-	        Debug.Assert(IsClockwise());
+            Debug.Assert(IsClockwise());
 
-	        return !TestLine.IsOnRight(GetPoint(nIndex + 1 ) );
+            return !TestLine.IsOnRight(GetPoint(nIndex + 1));
 
         }
 
@@ -883,30 +881,30 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="nStart">The first point index.</param>
         /// <param name="nEnd">The second point index.</param>
-	    public bool CanPointsBeJoined(int nStart, int nEnd)
+        public bool CanPointsBeJoined(int nStart, int nEnd)
         {
-	        int usBefore = 0;
-	        if (nStart == 0)
-		        usBefore = Lines.Count - 1;
-	        else
-		        usBefore = nStart - 1;
+            int usBefore = 0;
+            if (nStart == 0)
+                usBefore = Lines.Count - 1;
+            else
+                usBefore = nStart - 1;
 
-	        C2DVector VecBefore = new C2DVector(GetPoint(nStart), GetPoint(usBefore)); 
-	        C2DVector VecAfter = new C2DVector(GetPoint(nStart), GetPoint(nStart + 1)); 
+            C2DVector VecBefore = new C2DVector(GetPoint(nStart), GetPoint(usBefore));
+            C2DVector VecAfter = new C2DVector(GetPoint(nStart), GetPoint(nStart + 1));
 
-	        C2DLine TestLine = new C2DLine( GetPoint(nStart), GetPoint(nEnd));
+            C2DLine TestLine = new C2DLine(GetPoint(nStart), GetPoint(nEnd));
 
-	        Debug.Assert(IsClockwise());
+            Debug.Assert(IsClockwise());
 
-	        if( VecAfter.AngleToRight(TestLine.vector) < 
-	                VecAfter.AngleToRight(VecBefore))
-	        {
-		        TestLine.GrowFromCentre(0.99999);
-		        if (!this.Crosses(TestLine)) 
+            if (VecAfter.AngleToRight(TestLine.vector) <
+                    VecAfter.AngleToRight(VecBefore))
+            {
+                TestLine.GrowFromCentre(0.99999);
+                if (!this.Crosses(TestLine))
                     return true;
-	        }
+            }
 
-	        return false;
+            return false;
 
         }
 
@@ -918,32 +916,32 @@ namespace KMMobile.GeoLib
         /// <param name="nPt2">The second point index.</param>
         /// <param name="pNewArea1">The first subarea.</param>
         /// <param name="pNewArea2">The second subarea.</param>
-	    private bool CreateSubAreas( int nPt1,  int nPt2, ref C2DPolygon pNewArea1, ref C2DPolygon pNewArea2)
+        private bool CreateSubAreas(int nPt1, int nPt2, ref C2DPolygon pNewArea1, ref C2DPolygon pNewArea2)
         {
-	        pNewArea1 = new C2DPolygon();
-	        pNewArea2 = new C2DPolygon();
+            pNewArea1 = new C2DPolygon();
+            pNewArea2 = new C2DPolygon();
 
-	        while (nPt2 < nPt1) 
+            while (nPt2 < nPt1)
                 nPt2 += Lines.Count;
 
-	        C2DPointSet Points1 = new C2DPointSet();
-	        for (int i = nPt1; i <= nPt2; i++)
-	        {
-		        Points1.Add(GetPoint(i));
-	        }
-	        bool bRes1 = pNewArea1.Create(Points1, false);
+            C2DPointSet Points1 = new C2DPointSet();
+            for (int i = nPt1; i <= nPt2; i++)
+            {
+                Points1.Add(GetPoint(i));
+            }
+            bool bRes1 = pNewArea1.Create(Points1, false);
 
-	        while (nPt1 < nPt2) 
+            while (nPt1 < nPt2)
                 nPt1 += Lines.Count;
 
-	        C2DPointSet Points2 = new C2DPointSet();
-	        for ( int j = nPt2; j <= nPt1; j++)
-	        {
-		        Points2.Add(GetPoint(j));
-	        }
+            C2DPointSet Points2 = new C2DPointSet();
+            for (int j = nPt2; j <= nPt1; j++)
+            {
+                Points2.Add(GetPoint(j));
+            }
             bool bRes2 = pNewArea2.Create(Points2, false);
 
-	        return bRes1 && bRes2;
+            return bRes1 && bRes2;
 
         }
 
@@ -1007,44 +1005,44 @@ namespace KMMobile.GeoLib
         /// </summary>
         private bool EliminateCrossingLines()
         {
-	        bool bRepeat = true;
-	        int nIt = 0;
+            bool bRepeat = true;
+            int nIt = 0;
 
             List<C2DPoint> Temp = new List<C2DPoint>();
 
-	        while (bRepeat && nIt < 30)
-	        {
-		        nIt++;
-		        bRepeat = false;
-		        for ( int nCross1 = 0; nCross1 < Lines.Count ; nCross1++)
-		        {
-			        for (int nCross2 = nCross1 + 2; nCross2 < Lines.Count ; nCross2++)
-			        {
-				        if ( (nCross1 == 0) && (nCross2 == (Lines.Count - 1)) ) 
-                                continue;
+            while (bRepeat && nIt < 30)
+            {
+                nIt++;
+                bRepeat = false;
+                for (int nCross1 = 0; nCross1 < Lines.Count; nCross1++)
+                {
+                    for (int nCross2 = nCross1 + 2; nCross2 < Lines.Count; nCross2++)
+                    {
+                        if ((nCross1 == 0) && (nCross2 == (Lines.Count - 1)))
+                            continue;
 
-				        if (this.LineRects[nCross1].Overlaps(LineRects[nCross2]) &&
+                        if (this.LineRects[nCross1].Overlaps(LineRects[nCross2]) &&
                             Lines[nCross1].Crosses(Lines[nCross2], Temp))
-				        {
-					        int nSwapStart = nCross1 + 1; // end of first line
-					        int nSwapEnd = nCross2;
-					        Debug.Assert(nSwapEnd > nSwapStart);
-					        int nHalfway =	(nSwapEnd - nSwapStart) / 2;
+                        {
+                            int nSwapStart = nCross1 + 1; // end of first line
+                            int nSwapEnd = nCross2;
+                            Debug.Assert(nSwapEnd > nSwapStart);
+                            int nHalfway = (nSwapEnd - nSwapStart) / 2;
 
-					        for (int nPoint = 0; nPoint <= nHalfway; nPoint++)
-					        {
-						        SwapPositions( nSwapStart + nPoint, nSwapEnd - nPoint);
-					        }
-					  //      bReordered = true;	
-					        bRepeat = true;
-				        }
- 			        }
-		        }
-	        }
+                            for (int nPoint = 0; nPoint <= nHalfway; nPoint++)
+                            {
+                                SwapPositions(nSwapStart + nPoint, nSwapEnd - nPoint);
+                            }
+                            //      bReordered = true;	
+                            bRepeat = true;
+                        }
+                    }
+                }
+            }
 
-	        MakeBoundingRect();
+            MakeBoundingRect();
 
-	        return (!bRepeat);
+            return (!bRepeat);
 
         }
 
@@ -1068,37 +1066,37 @@ namespace KMMobile.GeoLib
         /// <param name="nPointIndex">The point index.</param>
         private void SetPoint(C2DPoint Point, int nPointIndex)
         {
-	        if (nPointIndex >=  Lines.Count )
-		        nPointIndex -= Lines.Count;
+            if (nPointIndex >= Lines.Count)
+                nPointIndex -= Lines.Count;
 
-	        int nPointIndexBefore;
-	        if(nPointIndex == 0) 
-                nPointIndexBefore = Lines.Count - 1 ;
+            int nPointIndexBefore;
+            if (nPointIndex == 0)
+                nPointIndexBefore = Lines.Count - 1;
             else
                 nPointIndexBefore = nPointIndex - 1;
 
-	        int nPointIndexAfter;
-	        if (nPointIndex == Lines.Count - 1) 
+            int nPointIndexAfter;
+            if (nPointIndex == Lines.Count - 1)
                 nPointIndexAfter = 0;
             else
                 nPointIndexAfter = nPointIndex + 1;
 
 
-	        C2DLineBase pLineBase = Lines[nPointIndex];
-	        if (pLineBase is C2DLine)
-	        {
-		        C2DLine pLine = pLineBase as C2DLine;
-		        pLine.Set(Point, Lines[nPointIndexAfter].GetPointFrom());
-		        pLine.GetBoundingRect(LineRects[nPointIndex]);
+            C2DLineBase pLineBase = Lines[nPointIndex];
+            if (pLineBase is C2DLine)
+            {
+                C2DLine pLine = pLineBase as C2DLine;
+                pLine.Set(Point, Lines[nPointIndexAfter].GetPointFrom());
+                pLine.GetBoundingRect(LineRects[nPointIndex]);
 
-		        C2DLineBase pLineBaseBefore = Lines[nPointIndexBefore];
-		        if (pLineBaseBefore is C2DLine)
-		        {
+                C2DLineBase pLineBaseBefore = Lines[nPointIndexBefore];
+                if (pLineBaseBefore is C2DLine)
+                {
                     C2DLine pLineBefore = pLineBaseBefore as C2DLine;
-			        pLineBefore.SetPointTo(Point);
-			        pLineBefore.GetBoundingRect(LineRects[nPointIndexBefore]);
-		        }
-	        }
+                    pLineBefore.SetPointTo(Point);
+                    pLineBefore.GetBoundingRect(LineRects[nPointIndexBefore]);
+                }
+            }
 
 
         }
@@ -1108,39 +1106,39 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="nPointIndex">The point index.</param>   
         /// <param name="Point">The point to be set to.</param>
-	    private void InsertPoint( int nPointIndex, C2DPoint Point)
+        private void InsertPoint(int nPointIndex, C2DPoint Point)
         {
-	        nPointIndex  = nPointIndex % Lines.Count;
+            nPointIndex = nPointIndex % Lines.Count;
 
-	        int nPointIndexBefore = 0;
-	        if (nPointIndex == 0) 
-                nPointIndexBefore = Lines.Count - 1 ;
+            int nPointIndexBefore = 0;
+            if (nPointIndex == 0)
+                nPointIndexBefore = Lines.Count - 1;
             else
                 nPointIndexBefore = nPointIndex - 1;
 
-	        int nPointIndexAfter = 0;
-	        if (nPointIndex == (Lines.Count - 1))
-                nPointIndexAfter = 0 ;
+            int nPointIndexAfter = 0;
+            if (nPointIndex == (Lines.Count - 1))
+                nPointIndexAfter = 0;
             else
                 nPointIndexAfter = nPointIndex + 1;
 
-	        C2DLine pInsert = new C2DLine(Point, Lines[nPointIndex].GetPointFrom());
-	        C2DRect pInsertRect = new C2DRect();
+            C2DLine pInsert = new C2DLine(Point, Lines[nPointIndex].GetPointFrom());
+            C2DRect pInsertRect = new C2DRect();
 
-	        pInsert.GetBoundingRect(pInsertRect);
+            pInsert.GetBoundingRect(pInsertRect);
 
-        	
-	        C2DLineBase pLineBase = Lines[nPointIndexBefore];
+
+            C2DLineBase pLineBase = Lines[nPointIndexBefore];
             if (pLineBase is C2DLine)
-	        {
-		        C2DLine pLineBefore = pLineBase as C2DLine;
-		        pLineBefore.SetPointTo(Point);
-		        pLineBefore.GetBoundingRect(LineRects[nPointIndexBefore]);
+            {
+                C2DLine pLineBefore = pLineBase as C2DLine;
+                pLineBefore.SetPointTo(Point);
+                pLineBefore.GetBoundingRect(LineRects[nPointIndexBefore]);
 
-		        Lines.Insert(nPointIndex, pInsert);
+                Lines.Insert(nPointIndex, pInsert);
 
-		        LineRects.Insert(nPointIndex, pInsertRect);
-	        }
+                LineRects.Insert(nPointIndex, pInsertRect);
+            }
         }
 
 
@@ -1183,7 +1181,7 @@ namespace KMMobile.GeoLib
                 Line1.Join(Line2);
             }
 
-            (Lines[Lines.Count - 1] as C2DLine).Join(  Lines[0] as C2DLine  );
+            (Lines[Lines.Count - 1] as C2DLine).Join(Lines[0] as C2DLine);
 
             MakeLineRects();
             MakeBoundingRect();
@@ -1250,15 +1248,15 @@ namespace KMMobile.GeoLib
         /// <param name="Points">The point set.</param>   
         public void MakeLines(List<C2DPoint> Points)
         {
-	        Lines.Clear();
+            Lines.Clear();
 
-	        for (int i = 0 ; i < Points.Count; i++)
-	        {
-		        int nNext = i + 1;
+            for (int i = 0; i < Points.Count; i++)
+            {
+                int nNext = i + 1;
                 if (nNext == Points.Count)
-			        nNext = 0;
-		        Lines.Add(new C2DLine(Points[i], Points[nNext]));
-	        }
+                    nNext = 0;
+                Lines.Add(new C2DLine(Points[i], Points[nNext]));
+            }
         }
 
 
@@ -1324,7 +1322,7 @@ namespace KMMobile.GeoLib
             /// <summary>
             /// Line reference
             /// </summary>
-	        public C2DLine Line = null;
+            public C2DLine Line = null;
             /// <summary>
             /// Line bounding rect
             /// </summary>
@@ -1345,115 +1343,115 @@ namespace KMMobile.GeoLib
         /// <param name="ptOnThis"></param>
         /// <param name="ptOnOther"></param>
         /// <returns></returns>
-        public bool OverlapsAbove( C2DPolygon Other, ref double dVerticalDistance,
-										        C2DPoint ptOnThis, C2DPoint ptOnOther)
+        public bool OverlapsAbove(C2DPolygon Other, ref double dVerticalDistance,
+                                                C2DPoint ptOnThis, C2DPoint ptOnOther)
         {
-	        C2DRect OtherBoundingRect = Other.BoundingRect;
+            C2DRect OtherBoundingRect = Other.BoundingRect;
 
-	        if ( !BoundingRect.OverlapsAbove( OtherBoundingRect)  )
-		        return false;
+            if (!BoundingRect.OverlapsAbove(OtherBoundingRect))
+                return false;
 
-	        int nLineCount = Lines.Count;
+            int nLineCount = Lines.Count;
 
-	        if ( nLineCount != LineRects.Count)
-		        return false;
+            if (nLineCount != LineRects.Count)
+                return false;
 
-	        int nOtherLineCount = Other.Lines.Count;
+            int nOtherLineCount = Other.Lines.Count;
 
-	        if ( nOtherLineCount != Other.LineRects.Count)
+            if (nOtherLineCount != Other.LineRects.Count)
             {
-		        return false;
+                return false;
             }
 
 
-            List<CLineBaseRect> LineSet= new List<CLineBaseRect>();
+            List<CLineBaseRect> LineSet = new List<CLineBaseRect>();
 
-	        for (int i = 0 ; i < nLineCount; i++)
-	        {
-		        if ( LineRects[i].OverlapsAbove( OtherBoundingRect ) )
-		        {
-			        CLineBaseRect pNewLine = new CLineBaseRect();
-			        pNewLine.Line = Lines[i] as C2DLine;
-			        pNewLine.Rect = LineRects[i];
-			        pNewLine.bSetFlag = true;
+            for (int i = 0; i < nLineCount; i++)
+            {
+                if (LineRects[i].OverlapsAbove(OtherBoundingRect))
+                {
+                    CLineBaseRect pNewLine = new CLineBaseRect();
+                    pNewLine.Line = Lines[i] as C2DLine;
+                    pNewLine.Rect = LineRects[i];
+                    pNewLine.bSetFlag = true;
                     LineSet.Add(pNewLine);
-		        }
-	        }
+                }
+            }
 
-	        for (int i = 0 ; i < nOtherLineCount; i++)
-	        {
-		        if ( Other.LineRects[i].OverlapsBelow( this.BoundingRect ) )
-		        {
-			        CLineBaseRect pNewLine = new CLineBaseRect();
-			        pNewLine.Line = Other.Lines[i] as C2DLine;
-			        pNewLine.Rect = Other.LineRects[i];
-			        pNewLine.bSetFlag = false;
+            for (int i = 0; i < nOtherLineCount; i++)
+            {
+                if (Other.LineRects[i].OverlapsBelow(this.BoundingRect))
+                {
+                    CLineBaseRect pNewLine = new CLineBaseRect();
+                    pNewLine.Line = Other.Lines[i] as C2DLine;
+                    pNewLine.Rect = Other.LineRects[i];
+                    pNewLine.bSetFlag = false;
                     LineSet.Add(pNewLine);
-		        }
-	        }
+                }
+            }
             CLineBaseRectLeftToRight Comparitor = new CLineBaseRectLeftToRight();
             LineSet.Sort(Comparitor);
 
-	        bool bResult = false;
+            bool bResult = false;
 
-	        int j = 0;
+            int j = 0;
             while (j < LineSet.Count)
-	        {
-		        int r = j + 1;
+            {
+                int r = j + 1;
 
                 double dXLimit = LineSet[j].Rect.GetRight();
 
                 while (r < LineSet.Count &&
                        LineSet[r].Rect.GetLeft() < dXLimit)
-		        {
-			        double dDistTemp = 0;
-			        C2DPoint ptOnThisTemp =  new C2DPoint();
-			        C2DPoint ptOnOtherTemp =  new C2DPoint();
-			        bool bOverlap = false;
+                {
+                    double dDistTemp = 0;
+                    C2DPoint ptOnThisTemp = new C2DPoint();
+                    C2DPoint ptOnOtherTemp = new C2DPoint();
+                    bool bOverlap = false;
                     if (LineSet[j].bSetFlag)
-			        {
+                    {
                         if (!LineSet[r].bSetFlag &&
-                            LineSet[j].Line.OverlapsAbove(LineSet[r].Line, ref dDistTemp, 
-													        ptOnThisTemp,  ptOnOtherTemp ))
-				        {
-					        bOverlap = true;
-				        }
-			        }
-			        else 
-			        {
+                            LineSet[j].Line.OverlapsAbove(LineSet[r].Line, ref dDistTemp,
+                                                            ptOnThisTemp, ptOnOtherTemp))
+                        {
+                            bOverlap = true;
+                        }
+                    }
+                    else
+                    {
                         if (LineSet[r].bSetFlag &&
-                            LineSet[r].Line.OverlapsAbove(LineSet[j].Line, ref dDistTemp, 
-													        ptOnThisTemp,  ptOnOtherTemp ))
-				        {
-					        bOverlap = true;
-				        }
-			        }
+                            LineSet[r].Line.OverlapsAbove(LineSet[j].Line, ref dDistTemp,
+                                                            ptOnThisTemp, ptOnOtherTemp))
+                        {
+                            bOverlap = true;
+                        }
+                    }
 
-			        if ( bOverlap && (dDistTemp < dVerticalDistance || !bResult) )
-			        {
-				        bResult = true;
-				        dVerticalDistance = dDistTemp;
-				        ptOnThis.Set(ptOnThisTemp);
-				        ptOnOther.Set(ptOnOtherTemp);
-				        if ( dDistTemp == 0)
-				        {
-					        j += Lines.Count; // escape;
-					        r += Lines.Count; // escape;
-				        }
-			        }
+                    if (bOverlap && (dDistTemp < dVerticalDistance || !bResult))
+                    {
+                        bResult = true;
+                        dVerticalDistance = dDistTemp;
+                        ptOnThis.Set(ptOnThisTemp);
+                        ptOnOther.Set(ptOnOtherTemp);
+                        if (dDistTemp == 0)
+                        {
+                            j += Lines.Count; // escape;
+                            r += Lines.Count; // escape;
+                        }
+                    }
 
-			        r++;
-		        }
+                    r++;
+                }
 
-		        j++;
-	        }
+                j++;
+            }
 
 
-	        return bResult;
+            return bResult;
         }
 
 
-        
+
         /// <summary>
         /// True if this polygon is above or below the other. Returns the vertical distance 
         /// and the points on both polygons.
@@ -1463,110 +1461,110 @@ namespace KMMobile.GeoLib
         /// <param name="ptOnThis"></param>
         /// <param name="ptOnOther"></param>
         /// <returns></returns>
-        public bool OverlapsVertically( C2DPolygon Other, ref double dVerticalDistance,
-										        C2DPoint ptOnThis, C2DPoint ptOnOther)
+        public bool OverlapsVertically(C2DPolygon Other, ref double dVerticalDistance,
+                                                C2DPoint ptOnThis, C2DPoint ptOnOther)
         {
-	        C2DRect OtherBoundingRect = Other.BoundingRect;
+            C2DRect OtherBoundingRect = Other.BoundingRect;
 
-	        if ( !BoundingRect.OverlapsVertically( OtherBoundingRect)  )
-		        return false;
+            if (!BoundingRect.OverlapsVertically(OtherBoundingRect))
+                return false;
 
-	        int nLineCount = Lines.Count;
+            int nLineCount = Lines.Count;
 
-	        if ( nLineCount != LineRects.Count)
-		        return false;
+            if (nLineCount != LineRects.Count)
+                return false;
 
-	        int nOtherLineCount = Other.Lines.Count;
+            int nOtherLineCount = Other.Lines.Count;
 
-	        if ( nOtherLineCount != Other.LineRects.Count)
-		        return false;
+            if (nOtherLineCount != Other.LineRects.Count)
+                return false;
 
 
             List<CLineBaseRect> LineSet = new List<CLineBaseRect>();
 
-	        for (int i = 0 ; i < nLineCount; i++)
-	        {
-		        if ( LineRects[i].OverlapsVertically( OtherBoundingRect ) )
-		        {
-			        CLineBaseRect pNewLine = new CLineBaseRect();
-			        pNewLine.Line = Lines[i] as C2DLine;
-			        pNewLine.Rect = LineRects[i];
-			        pNewLine.bSetFlag = true;
+            for (int i = 0; i < nLineCount; i++)
+            {
+                if (LineRects[i].OverlapsVertically(OtherBoundingRect))
+                {
+                    CLineBaseRect pNewLine = new CLineBaseRect();
+                    pNewLine.Line = Lines[i] as C2DLine;
+                    pNewLine.Rect = LineRects[i];
+                    pNewLine.bSetFlag = true;
                     LineSet.Add(pNewLine);
-		        }
-	        }
+                }
+            }
 
-	        for (int i = 0 ; i < nOtherLineCount; i++)
-	        {
-		        if ( Other.LineRects[i].OverlapsVertically( this.BoundingRect ) )
-		        {
-			        CLineBaseRect pNewLine = new CLineBaseRect();
-			        pNewLine.Line = Other.Lines[i] as C2DLine;
-			        pNewLine.Rect = Other.LineRects[i];
-			        pNewLine.bSetFlag = false;
+            for (int i = 0; i < nOtherLineCount; i++)
+            {
+                if (Other.LineRects[i].OverlapsVertically(this.BoundingRect))
+                {
+                    CLineBaseRect pNewLine = new CLineBaseRect();
+                    pNewLine.Line = Other.Lines[i] as C2DLine;
+                    pNewLine.Rect = Other.LineRects[i];
+                    pNewLine.bSetFlag = false;
                     LineSet.Add(pNewLine);
-		        }
-	        }
+                }
+            }
 
             CLineBaseRectLeftToRight Comparitor = new CLineBaseRectLeftToRight();
             LineSet.Sort(Comparitor);
 
-	        bool bResult = false;
+            bool bResult = false;
 
-	        int j = 0;
-	        while (j < LineSet.Count)
-	        {
-		        int r = j + 1;
+            int j = 0;
+            while (j < LineSet.Count)
+            {
+                int r = j + 1;
 
-		        double dXLimit = LineSet[j].Rect.GetRight();
+                double dXLimit = LineSet[j].Rect.GetRight();
 
-		        while (r < LineSet.Count && 
-			           LineSet[r].Rect.GetLeft() < dXLimit)
-		        {
-			        double dDistTemp = 0;
-			        C2DPoint ptOnThisTemp = new C2DPoint();
-			        C2DPoint ptOnOtherTemp = new C2DPoint();
-			        bool bOverlap = false;
-			        if (  LineSet[j].bSetFlag )
-			        {
-				        if ( !LineSet[r].bSetFlag && 
-					        LineSet[j].Line.OverlapsVertically( LineSet[r].Line , ref dDistTemp, 
-													        ptOnThisTemp,  ptOnOtherTemp ))
-				        {
-					        bOverlap = true;
-				        }
-			        }
-			        else 
-			        {
-				        if ( LineSet[r].bSetFlag && 
-					        LineSet[r].Line.OverlapsVertically( LineSet[j].Line , ref dDistTemp, 
-													        ptOnThisTemp,  ptOnOtherTemp ))
-				        {
-					        bOverlap = true;
-				        }
-			        }
+                while (r < LineSet.Count &&
+                       LineSet[r].Rect.GetLeft() < dXLimit)
+                {
+                    double dDistTemp = 0;
+                    C2DPoint ptOnThisTemp = new C2DPoint();
+                    C2DPoint ptOnOtherTemp = new C2DPoint();
+                    bool bOverlap = false;
+                    if (LineSet[j].bSetFlag)
+                    {
+                        if (!LineSet[r].bSetFlag &&
+                            LineSet[j].Line.OverlapsVertically(LineSet[r].Line, ref dDistTemp,
+                                                            ptOnThisTemp, ptOnOtherTemp))
+                        {
+                            bOverlap = true;
+                        }
+                    }
+                    else
+                    {
+                        if (LineSet[r].bSetFlag &&
+                            LineSet[r].Line.OverlapsVertically(LineSet[j].Line, ref dDistTemp,
+                                                            ptOnThisTemp, ptOnOtherTemp))
+                        {
+                            bOverlap = true;
+                        }
+                    }
 
-			        if ( bOverlap && (dDistTemp < dVerticalDistance || !bResult) )
-			        {
-				        bResult = true;
-				        dVerticalDistance = dDistTemp;
-				        ptOnThis.Set(ptOnThisTemp);
-				        ptOnOther.Set(ptOnOtherTemp);
-				        if ( dDistTemp == 0)
-				        {
-					        j += Lines.Count; // escape;
+                    if (bOverlap && (dDistTemp < dVerticalDistance || !bResult))
+                    {
+                        bResult = true;
+                        dVerticalDistance = dDistTemp;
+                        ptOnThis.Set(ptOnThisTemp);
+                        ptOnOther.Set(ptOnOtherTemp);
+                        if (dDistTemp == 0)
+                        {
+                            j += Lines.Count; // escape;
                             r += Lines.Count; // escape;
-				        }
-			        }
+                        }
+                    }
 
-			        r++;
-		        }
+                    r++;
+                }
 
-		        j++;
-	        }
+                j++;
+            }
 
 
-	        return bResult;
+            return bResult;
         }
 
 
@@ -1576,135 +1574,135 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Line"></param>
         /// <param name="dWidthToRight"></param>
-        public void GetMinBoundingBox( C2DLine Line, ref double dWidthToRight)
+        public void GetMinBoundingBox(C2DLine Line, ref double dWidthToRight)
         {
-	        int nCount = Lines.Count;
-	        if (nCount == 0)
-		        return;
-
-	        if (!IsConvex())
-	        {
-		        C2DPolygon CH = new C2DPolygon();
-		        CH.CreateConvexHull( this );
-		        CH.GetMinBoundingBox( Line, ref dWidthToRight);
+            int nCount = Lines.Count;
+            if (nCount == 0)
                 return;
-	        }
+
+            if (!IsConvex())
+            {
+                C2DPolygon CH = new C2DPolygon();
+                CH.CreateConvexHull(this);
+                CH.GetMinBoundingBox(Line, ref dWidthToRight);
+                return;
+            }
 
 
-	        int nP1 = 0;//index of vertex with minimum y-coordinate;
-	        int nP2 = 0;//index of vertex with maximum y-coordinate;
+            int nP1 = 0;//index of vertex with minimum y-coordinate;
+            int nP2 = 0;//index of vertex with maximum y-coordinate;
 
- 	        int nP3 = 0;//index of vertex with minimum x-coordinate;
-	        int nP4 = 0;//index of vertex with maximum x-coordinate;
+            int nP3 = 0;//index of vertex with minimum x-coordinate;
+            int nP4 = 0;//index of vertex with maximum x-coordinate;
 
-	        double dMinY = Lines[0].GetPointFrom().y;
-	        double dMaxY = dMinY;
+            double dMinY = Lines[0].GetPointFrom().y;
+            double dMaxY = dMinY;
 
-	        double dMinX = Lines[0].GetPointFrom().x;
-	        double dMaxX = dMinX;
+            double dMinX = Lines[0].GetPointFrom().x;
+            double dMaxX = dMinX;
 
-	        for ( int i = 1 ; i < Lines.Count; i++)
-	        {
-		        C2DPoint pt = Lines[i].GetPointFrom();
-		        if (pt.y < dMinY)
-		        {
-			        dMinY = pt.y;
-			        nP1 = i;
-		        }
-		        else if (pt.y > dMaxY)
-		        {
-			        dMaxY = pt.y;
-			        nP2 = i;
-		        }
+            for (int i = 1; i < Lines.Count; i++)
+            {
+                C2DPoint pt = Lines[i].GetPointFrom();
+                if (pt.y < dMinY)
+                {
+                    dMinY = pt.y;
+                    nP1 = i;
+                }
+                else if (pt.y > dMaxY)
+                {
+                    dMaxY = pt.y;
+                    nP2 = i;
+                }
 
-		        if (pt.x < dMinX)
-		        {
-			        dMinX = pt.x;
-			        nP3 = i;
-		        }
-		        else if (pt.x > dMaxX)
-		        {
-			        dMaxX = pt.x;
-			        nP4 = i;
-		        }
-	        }
+                if (pt.x < dMinX)
+                {
+                    dMinX = pt.x;
+                    nP3 = i;
+                }
+                else if (pt.x > dMaxX)
+                {
+                    dMaxX = pt.x;
+                    nP4 = i;
+                }
+            }
 
 
-	        double dRotatedAngle = 0;
-	        double dMinArea = 1.7E+308;
-         
-        // 222222
-        // 3	4
-        // 3    4
-        // 3    4
-        // 111111
+            double dRotatedAngle = 0;
+            double dMinArea = 1.7E+308;
 
-	        C2DLine Caliper1 = new C2DLine( Lines[nP1].GetPointFrom(), new C2DVector(-1,0) );    // Caliper 1 points along the negative x-axis
+            // 222222
+            // 3	4
+            // 3    4
+            // 3    4
+            // 111111
+
+            C2DLine Caliper1 = new C2DLine(Lines[nP1].GetPointFrom(), new C2DVector(-1, 0));    // Caliper 1 points along the negative x-axis
             C2DLine Caliper2 = new C2DLine(Lines[nP2].GetPointFrom(), new C2DVector(1, 0));   // Caliper 2 points along the positive x-axis
 
             C2DLine Caliper3 = new C2DLine(Lines[nP3].GetPointFrom(), new C2DVector(0, 1));    // Caliper 3 points along the positive y-axis
             C2DLine Caliper4 = new C2DLine(Lines[nP4].GetPointFrom(), new C2DVector(0, -1));   // Caliper 4 points along the negative y-axis
 
-	        while( dRotatedAngle < Constants.conPI)
-	        {
+            while (dRotatedAngle < Constants.conPI)
+            {
                 int nMod = Lines.Count;
-   		        // Determine the angle between each caliper and the next adjacent edge in the polygon
-		        double dAngle1 = Caliper1.vector.AngleToRight( (Lines[ nP1%nMod] as C2DLine).vector);
-                double dAngle2 = Caliper2.vector.AngleToRight((Lines[ nP2%nMod] as C2DLine ).vector);
-                double dAngle3 = Caliper3.vector.AngleToRight((Lines[ nP3%nMod] as C2DLine ).vector);
-                double dAngle4 = Caliper4.vector.AngleToRight((Lines[ nP4%nMod ]as C2DLine ).vector);
+                // Determine the angle between each caliper and the next adjacent edge in the polygon
+                double dAngle1 = Caliper1.vector.AngleToRight((Lines[nP1 % nMod] as C2DLine).vector);
+                double dAngle2 = Caliper2.vector.AngleToRight((Lines[nP2 % nMod] as C2DLine).vector);
+                double dAngle3 = Caliper3.vector.AngleToRight((Lines[nP3 % nMod] as C2DLine).vector);
+                double dAngle4 = Caliper4.vector.AngleToRight((Lines[nP4 % nMod] as C2DLine).vector);
 
-		        double dMinAngle;
-		        if (dAngle1 < dAngle2 &&
-			        dAngle1 < dAngle3 &&
-			        dAngle1 < dAngle4)
-		        {
-			        dMinAngle = dAngle1;
-			        nP1++;
+                double dMinAngle;
+                if (dAngle1 < dAngle2 &&
+                    dAngle1 < dAngle3 &&
+                    dAngle1 < dAngle4)
+                {
+                    dMinAngle = dAngle1;
+                    nP1++;
                     Caliper1.point = Lines[nP1 % Lines.Count].GetPointFrom();
-		        }
-		        else if (dAngle2 < dAngle3 &&
-			        dAngle2 < dAngle4)
-		        {
-			        dMinAngle = dAngle2;
-			        nP2++;
+                }
+                else if (dAngle2 < dAngle3 &&
+                    dAngle2 < dAngle4)
+                {
+                    dMinAngle = dAngle2;
+                    nP2++;
                     Caliper2.point = Lines[nP2 % Lines.Count].GetPointFrom();
-		        }
-		        else if ( dAngle3 < dAngle4)
-		        {
-			        dMinAngle = dAngle3;
-			        nP3++;
+                }
+                else if (dAngle3 < dAngle4)
+                {
+                    dMinAngle = dAngle3;
+                    nP3++;
                     Caliper3.point = Lines[nP3 % Lines.Count].GetPointFrom();
-		        }
-		        else
-		        {
-			        dMinAngle = dAngle4;
-			        nP4++;
+                }
+                else
+                {
+                    dMinAngle = dAngle4;
+                    nP4++;
                     Caliper4.point = Lines[nP4 % Lines.Count].GetPointFrom();
-		        }
-		        dRotatedAngle += dMinAngle;
-		        dMinAngle -= 0.00000001;
-		        Caliper1.vector.TurnRight( dMinAngle);
-		        Caliper2.vector.TurnRight( dMinAngle);
-		        Caliper3.vector.TurnRight( dMinAngle);
-		        Caliper4.vector.TurnRight( dMinAngle);
+                }
+                dRotatedAngle += dMinAngle;
+                dMinAngle -= 0.00000001;
+                Caliper1.vector.TurnRight(dMinAngle);
+                Caliper2.vector.TurnRight(dMinAngle);
+                Caliper3.vector.TurnRight(dMinAngle);
+                Caliper4.vector.TurnRight(dMinAngle);
 
 
-		        double dWidth1 = Caliper1.DistanceAsRay( Caliper2.point );		
-		        double dWidth2 = Caliper3.DistanceAsRay( Caliper4.point );	
-        	
-		        double dArea = dWidth1 * dWidth2;
+                double dWidth1 = Caliper1.DistanceAsRay(Caliper2.point);
+                double dWidth2 = Caliper3.DistanceAsRay(Caliper4.point);
 
-		        if (dArea < dMinArea)
-		        {
-			        dMinArea = dArea;
-			        Line.Set(Caliper1);
-			        Line.point.ProjectOnRay( Caliper4 );
-			        Line.vector.SetLength( dWidth2 );
-        			
-			        dWidthToRight = dWidth1;
-		        }
-	        }
+                double dArea = dWidth1 * dWidth2;
+
+                if (dArea < dMinArea)
+                {
+                    dMinArea = dArea;
+                    Line.Set(Caliper1);
+                    Line.point.ProjectOnRay(Caliper4);
+                    Line.vector.SetLength(dWidth2);
+
+                    dWidthToRight = dWidth1;
+                }
+            }
         }
 
 
@@ -1748,7 +1746,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Sub area 2.
         /// </summary>
-	    C2DPolygon subArea2 = null;
+        C2DPolygon subArea2 = null;
         /// <summary>
         /// Sub area 2 access.
         /// </summary>

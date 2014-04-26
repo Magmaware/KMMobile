@@ -1,35 +1,12 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file RangeHeading.cpp
-///Implementation file for a CRangeHeading class.
-
-Implementation file for a CRangeHeading class.
----------------------------------------------------------------------------*/
-
-
-
-
-
-
 using System;
 
-
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
-
     /// <summary>
     /// Class representing an albers equal area projection.
     /// </summary>
     public class CRangeHeading : CProjection
     {
-
         /// <summary>
         /// Constructor.
         /// </summary>

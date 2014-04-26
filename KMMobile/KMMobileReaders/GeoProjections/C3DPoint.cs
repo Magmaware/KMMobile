@@ -1,21 +1,6 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file 3DPoint.cpp
-/// Implementation file for a 3D point class.
-
-Implementation file for a simple 3D point class.
----------------------------------------------------------------------------*/
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
     /// <summary>
     /// Class for a 3D point.

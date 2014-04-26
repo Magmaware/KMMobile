@@ -1,11 +1,6 @@
-
-
-
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
 
     /// <summary>

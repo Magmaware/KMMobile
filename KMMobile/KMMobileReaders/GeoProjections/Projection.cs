@@ -1,34 +1,10 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file CProjection.cpp
-/// Implementation file for a CProjection class.
-
-Implementation file for a CProjection class.
----------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
     /// <summary>
     /// Abstract class for a projection.
     /// </summary>
     public abstract class CProjection : CTransformation
     {
-
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -36,7 +12,7 @@ namespace KMMobile.GeoLib
         {
         }
 
-        	/// Project the given lat long to x, y using the input parameters to store the result.
+        /// Project the given lat long to x, y using the input parameters to store the result.
 	    public abstract void Project(double dLatY, double dLongX);
 
 	    /// Project the given lat long to x, y using the input parameters to store the result and retaining 

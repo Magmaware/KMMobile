@@ -1,26 +1,7 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file Stereographic.cpp
-///Implementation file for a CStereographic class.
-
-Implementation file for a CStereographic class.
----------------------------------------------------------------------------*/
-
-
-
 using System;
 
-
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
-
     /// <summary>
     /// Class representing an albers equal area projection.
     /// </summary>

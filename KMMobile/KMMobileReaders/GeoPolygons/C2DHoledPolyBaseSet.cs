@@ -1,9 +1,7 @@
-using System;
+using KMMobile.GeoLib;
 using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
 
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoPolygons
 {
     /// <summary>
     /// Class representing a set of holed polygons.
@@ -47,42 +45,42 @@ namespace KMMobile.GeoLib
         /// </summary>
         public void UnifyBasic()
         {
-	        C2DHoledPolyBaseSet TempSet = new C2DHoledPolyBaseSet();
-	        C2DHoledPolyBaseSet UnionSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet TempSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet UnionSet = new C2DHoledPolyBaseSet();
 
-	        while (Count > 0)
-	        {
-		        C2DHoledPolyBase pLast = this[Count - 1];
+            while (Count > 0)
+            {
+                C2DHoledPolyBase pLast = this[Count - 1];
                 this.RemoveAt(Count - 1);
 
-		        bool bIntersect = false;
-		        int i = 0;
+                bool bIntersect = false;
+                int i = 0;
 
                 while (i < Count && !bIntersect)
-		        {
+                {
                     CGrid grid = new CGrid();
                     this[i].GetUnion(pLast, UnionSet, grid);
 
-			        if (UnionSet.Count == 1)
-			        {
-				        this[i] = UnionSet[0];
-				        bIntersect = true;
-			        }
-			        else
-			        {
+                    if (UnionSet.Count == 1)
+                    {
+                        this[i] = UnionSet[0];
+                        bIntersect = true;
+                    }
+                    else
+                    {
                         //Debug.Assert(UnionSet.Count == 0);
-				        UnionSet.Clear();
-				        i++;
-			        }
-		        }
+                        UnionSet.Clear();
+                        i++;
+                    }
+                }
 
-		        if (!bIntersect)
-		        {
-			        TempSet.Add(pLast);
-		        }
-	        }
+                if (!bIntersect)
+                {
+                    TempSet.Add(pLast);
+                }
+            }
 
-	        this.AddRange( TempSet);
+            this.AddRange(TempSet);
         }
         /// <summary>
         /// Unification by growing shapes of fairly equal size (fastest for large groups).
@@ -92,144 +90,144 @@ namespace KMMobile.GeoLib
         {
             // Record the degenerate handling so we can reset.
             CGrid.eDegenerateHandling DegenerateHandling = grid.DegenerateHandling;
-	        switch( grid.DegenerateHandling )
-	        {
-	        case CGrid.eDegenerateHandling.RandomPerturbation:
-		        for (int i = 0 ; i < Count ; i++)
-		        {
-			        this[i].RandomPerturb();
-		        }
+            switch (grid.DegenerateHandling)
+            {
+                case CGrid.eDegenerateHandling.RandomPerturbation:
+                    for (int i = 0; i < Count; i++)
+                    {
+                        this[i].RandomPerturb();
+                    }
                     grid.DegenerateHandling = CGrid.eDegenerateHandling.None;
-		        break;
-	        case CGrid.eDegenerateHandling.DynamicGrid:
+                    break;
+                case CGrid.eDegenerateHandling.DynamicGrid:
 
-		        break;
-	        case CGrid.eDegenerateHandling.PreDefinedGrid:
-		        for (int i = 0 ; i < Count ; i++)
-		        {
-			        this[i].SnapToGrid(grid);
-		        }
-		        grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGridPreSnapped;
-		        break;
-	        case CGrid.eDegenerateHandling.PreDefinedGridPreSnapped:
+                    break;
+                case CGrid.eDegenerateHandling.PreDefinedGrid:
+                    for (int i = 0; i < Count; i++)
+                    {
+                        this[i].SnapToGrid(grid);
+                    }
+                    grid.DegenerateHandling = CGrid.eDegenerateHandling.PreDefinedGridPreSnapped;
+                    break;
+                case CGrid.eDegenerateHandling.PreDefinedGridPreSnapped:
 
-		        break;
-	        }
+                    break;
+            }
 
 
-	        C2DHoledPolyBaseSet NoUnionSet = new C2DHoledPolyBaseSet();
-	        C2DHoledPolyBaseSet PossUnionSet = new C2DHoledPolyBaseSet();
-	        C2DHoledPolyBaseSet SizeHoldSet = new C2DHoledPolyBaseSet();
-	        C2DHoledPolyBaseSet UnionSet = new C2DHoledPolyBaseSet();
-	        C2DHoledPolyBaseSet TempSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet NoUnionSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet PossUnionSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet SizeHoldSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet UnionSet = new C2DHoledPolyBaseSet();
+            C2DHoledPolyBaseSet TempSet = new C2DHoledPolyBaseSet();
 
-	        int nThreshold = GetMinLineCount();
+            int nThreshold = GetMinLineCount();
 
-	        if (nThreshold == 0)
-		        nThreshold = 10;	// avoid infinate loop.
-        	
-	        // Assumed all are size held to start
-	        SizeHoldSet.AddRange(this);
+            if (nThreshold == 0)
+                nThreshold = 10;	// avoid infinate loop.
+
+            // Assumed all are size held to start
+            SizeHoldSet.AddRange(this);
             this.Clear();
 
-	        do
-	        {
-		        // double the threshold
-		        nThreshold *= 3;
+            do
+            {
+                // double the threshold
+                nThreshold *= 3;
 
-		        // Put all the possible intersects back in this.
-		        this.AddRange(PossUnionSet);
+                // Put all the possible intersects back in this.
+                this.AddRange(PossUnionSet);
                 PossUnionSet.Clear();
 
-		        // Put all the size held that are small enough back (or in to start with)
-		        while (SizeHoldSet.Count > 0)
-		        {
-			        C2DHoledPolyBase pLast = SizeHoldSet[SizeHoldSet.Count - 1];
+                // Put all the size held that are small enough back (or in to start with)
+                while (SizeHoldSet.Count > 0)
+                {
+                    C2DHoledPolyBase pLast = SizeHoldSet[SizeHoldSet.Count - 1];
                     SizeHoldSet.RemoveAt(SizeHoldSet.Count - 1);
 
-			        if (pLast.GetLineCount() > nThreshold)
-			        {
-				        TempSet.Add(pLast);
-			        }
-			        else
-			        {
-				        this.Add(pLast);
-			        }
-		        }
-		        SizeHoldSet.AddRange( TempSet);
+                    if (pLast.GetLineCount() > nThreshold)
+                    {
+                        TempSet.Add(pLast);
+                    }
+                    else
+                    {
+                        this.Add(pLast);
+                    }
+                }
+                SizeHoldSet.AddRange(TempSet);
                 TempSet.Clear();
 
 
-		        // Cycle through all popping the last and finding a union
-		        while (Count > 0)
-		        {
-			        C2DHoledPolyBase pLast = this[Count-1];
-        		    this.RemoveAt(Count-1);
+                // Cycle through all popping the last and finding a union
+                while (Count > 0)
+                {
+                    C2DHoledPolyBase pLast = this[Count - 1];
+                    this.RemoveAt(Count - 1);
 
-			        bool bIntersect = false;
+                    bool bIntersect = false;
 
-			        int i = 0;
-			        while ( i < Count && !bIntersect )
-			        {
-				        this[i].GetUnion( pLast, UnionSet, grid);
+                    int i = 0;
+                    while (i < Count && !bIntersect)
+                    {
+                        this[i].GetUnion(pLast, UnionSet, grid);
 
-				        if (UnionSet.Count == 1)
-				        {
-					        C2DHoledPolyBase pUnion = UnionSet[UnionSet.Count - 1];
+                        if (UnionSet.Count == 1)
+                        {
+                            C2DHoledPolyBase pUnion = UnionSet[UnionSet.Count - 1];
                             UnionSet.RemoveAt(UnionSet.Count - 1);
 
-					        if (pUnion.GetLineCount() > nThreshold)
-					        {
-						        RemoveAt(i);
-						        SizeHoldSet.Add(pUnion);
-					        }
-					        else
-					        {
-						        this[i] = pUnion;
-						        i++;
-					        }
+                            if (pUnion.GetLineCount() > nThreshold)
+                            {
+                                RemoveAt(i);
+                                SizeHoldSet.Add(pUnion);
+                            }
+                            else
+                            {
+                                this[i] = pUnion;
+                                i++;
+                            }
 
-					        bIntersect = true;
-				        }
-				        else
-				        {
+                            bIntersect = true;
+                        }
+                        else
+                        {
                             if (UnionSet.Count != 0)
                             {
                                 grid.LogDegenerateError();
                             }
-					        UnionSet.Clear();
-					        i++;
-				        }
-			        }
+                            UnionSet.Clear();
+                            i++;
+                        }
+                    }
 
-			        if (!bIntersect)
-			        {
-				        bool bPosInterSect = false;
-				        for (int j = 0 ; j <  SizeHoldSet.Count; j ++)
-				        {
-					        if (pLast.Rim.BoundingRect.Overlaps( 
-								        SizeHoldSet[j].Rim.BoundingRect))
-					        {
-						        bPosInterSect = true;	
-						        break;
-					        }
-				        }
+                    if (!bIntersect)
+                    {
+                        bool bPosInterSect = false;
+                        for (int j = 0; j < SizeHoldSet.Count; j++)
+                        {
+                            if (pLast.Rim.BoundingRect.Overlaps(
+                                        SizeHoldSet[j].Rim.BoundingRect))
+                            {
+                                bPosInterSect = true;
+                                break;
+                            }
+                        }
 
-				        if (bPosInterSect)
-				        {
-					        PossUnionSet.Add( pLast);
-				        }
-				        else
-				        {
-					        NoUnionSet.Add(pLast);
-				        }
-			        }
-		        }
-	        }
-	        while (SizeHoldSet.Count != 0);
+                        if (bPosInterSect)
+                        {
+                            PossUnionSet.Add(pLast);
+                        }
+                        else
+                        {
+                            NoUnionSet.Add(pLast);
+                        }
+                    }
+                }
+            }
+            while (SizeHoldSet.Count != 0);
 
 
-	        this.AddRange( NoUnionSet);
+            this.AddRange(NoUnionSet);
             NoUnionSet.Clear();
 
             grid.DegenerateHandling = DegenerateHandling;
@@ -262,7 +260,7 @@ namespace KMMobile.GeoLib
                     TempSet.Add(pLast);
             }
 
-            this.AddRange(TempSet) ;
+            this.AddRange(TempSet);
         }
         /// <summary>
         /// Adds a new polygon ONLY if there is a unifications.
@@ -276,7 +274,7 @@ namespace KMMobile.GeoLib
             CGrid grid = new CGrid();
             while (Count > 0 && pPoly != null)
             {
-                C2DHoledPolyBase pLast = this[Count-1];
+                C2DHoledPolyBase pLast = this[Count - 1];
                 this.RemoveAt(Count - 1);
 
                 pLast.GetUnion(pPoly, UnionSet, grid);
@@ -297,9 +295,9 @@ namespace KMMobile.GeoLib
                 }
             }
 
-            this.AddRange( TempSet);
+            this.AddRange(TempSet);
             TempSet.Clear();
-            
+
             return (pPoly == null);
 
         }
@@ -310,33 +308,33 @@ namespace KMMobile.GeoLib
         /// <param name="pOther">The polygon set to add as holes.</param>
         public void AddKnownHoles(List<C2DPolyBase> pOther)
         {
-	        if (Count != 0)
-	        {
-		        while (pOther.Count > 0)
-		        {
-			        C2DPolyBase pLast = pOther[pOther.Count - 1];
+            if (Count != 0)
+            {
+                while (pOther.Count > 0)
+                {
+                    C2DPolyBase pLast = pOther[pOther.Count - 1];
                     pOther.RemoveAt(pOther.Count - 1);
-			        if (pLast.Lines.Count > 0)
-			        {
+                    if (pLast.Lines.Count > 0)
+                    {
                         int i = Count - 1;
-				        bool bFound = false;
-				        while ( i > 0 && !bFound)
-				        {
-					        if ( this[i].Contains( pLast.Lines[0].GetPointFrom()))
-					        {
+                        bool bFound = false;
+                        while (i > 0 && !bFound)
+                        {
+                            if (this[i].Contains(pLast.Lines[0].GetPointFrom()))
+                            {
                                 this[i].AddHole(pLast);
-						        bFound = true;
-					        }
-					        i--;
-				        }
+                                bFound = true;
+                            }
+                            i--;
+                        }
 
-				        if (!bFound)
-				        {
+                        if (!bFound)
+                        {
                             this[0].AddHole(pLast);
-				        }
-			        }
-		        }
-	        }
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -344,14 +342,14 @@ namespace KMMobile.GeoLib
         /// </summary>
         public int GetLineCount()
         {
-	        int nResult = 0 ;
+            int nResult = 0;
 
-	        for (int n = 0; n < Count ; n ++)
-	        {
-		        nResult += this[n].GetLineCount();
-	        }
+            for (int n = 0; n < Count; n++)
+            {
+                nResult += this[n].GetLineCount();
+            }
 
-	        return nResult;
+            return nResult;
         }
 
         /// <summary>
@@ -359,17 +357,17 @@ namespace KMMobile.GeoLib
         /// </summary>
         public int GetMinLineCount()
         {
-	        int nMin = ~(int)0;
+            int nMin = ~(int)0;
 
-	        for(int i = 0 ; i < Count; i++)
-	        {
-		        int nCount = this[i].GetLineCount();
-		        if( nCount < nMin)
-		        {
-			        nMin = nCount;
-		        }
-	        }
-	        return nMin;
+            for (int i = 0; i < Count; i++)
+            {
+                int nCount = this[i].GetLineCount();
+                if (nCount < nMin)
+                {
+                    nMin = nCount;
+                }
+            }
+            return nMin;
         }
 
         /// <summary>
@@ -377,20 +375,20 @@ namespace KMMobile.GeoLib
         /// </summary>
         public void Transform(CTransformation pProject)
         {
-	        for (int i = 0 ; i <  this.Count; i++)
-	        {
-		        this[i].Transform(pProject);
-	        }
+            for (int i = 0; i < this.Count; i++)
+            {
+                this[i].Transform(pProject);
+            }
         }
         /// <summary>
         /// Transformation.
         /// </summary>
         public void InverseTransform(CTransformation pProject)
         {
-	        for ( int i = 0 ; i < this.Count; i++)
-	        {
-		        this[i].InverseTransform(pProject);
-	        }
+            for (int i = 0; i < this.Count; i++)
+            {
+                this[i].InverseTransform(pProject);
+            }
         }
     }
 }

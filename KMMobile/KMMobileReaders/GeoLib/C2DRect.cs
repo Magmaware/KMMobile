@@ -14,12 +14,12 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Constructor.
         /// </summary>
-	    public C2DRect() {}
+        public C2DRect() { }
 
         /// <summary>
         /// Destructor.
         /// </summary>
-	    ~C2DRect() {}
+        ~C2DRect() { }
 
         /// <summary>
         /// Constructor.
@@ -36,7 +36,7 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="ptTopLeft">The top left point.</param>  
         /// <param name="ptBottomRight">The bottom right point.</param>  
-	    public C2DRect(C2DPoint ptTopLeft, C2DPoint ptBottomRight)
+        public C2DRect(C2DPoint ptTopLeft, C2DPoint ptBottomRight)
         {
             TopLeft.Set(ptTopLeft);
             BottomRight.Set(ptBottomRight);
@@ -49,7 +49,7 @@ namespace KMMobile.GeoLib
         /// <param name="dTop">Top.</param>  
         /// <param name="dRight">Right.</param>  
         /// <param name="dBottom">Bottom.</param>  
-	    public C2DRect(double dLeft, double dTop, double dRight, double dBottom)
+        public C2DRect(double dLeft, double dTop, double dRight, double dBottom)
         {
             TopLeft.x = dLeft;
             TopLeft.y = dTop;
@@ -62,7 +62,7 @@ namespace KMMobile.GeoLib
         /// Constructor sets both the top left and bottom right to equal the rect.
         /// </summary>
         /// <param name="pt">Point.</param>  
-	    public C2DRect(C2DPoint pt )
+        public C2DRect(C2DPoint pt)
         {
             TopLeft.Set(pt);
             BottomRight.Set(pt);
@@ -72,7 +72,7 @@ namespace KMMobile.GeoLib
         /// Sets both the top left and bottom right to equal the rect.
         /// </summary>
         /// <param name="pt">Point.</param>  
-	    public void Set( C2DPoint pt)
+        public void Set(C2DPoint pt)
         {
             TopLeft.Set(pt);
             BottomRight.Set(pt);
@@ -109,9 +109,9 @@ namespace KMMobile.GeoLib
         /// Assignment.
         /// </summary>
         /// <param name="dTop">Top.</param>  
-	    public void SetTop(double dTop) 
+        public void SetTop(double dTop)
         {
-            TopLeft.y = dTop; 
+            TopLeft.y = dTop;
         }
 
 
@@ -119,18 +119,18 @@ namespace KMMobile.GeoLib
         /// Assignment.
         /// </summary>
         /// <param name="dLeft">Left.</param>  
-	    public void SetLeft(double dLeft) 
+        public void SetLeft(double dLeft)
         {
-            TopLeft.x = dLeft; 
+            TopLeft.x = dLeft;
         }
 
         /// <summary>
         /// Assignment.
         /// </summary>
         /// <param name="dBottom">Bottom.</param>  
-	    public void SetBottom(double dBottom) 
+        public void SetBottom(double dBottom)
         {
-            BottomRight.y = dBottom; 
+            BottomRight.y = dBottom;
         }
 
 
@@ -138,9 +138,9 @@ namespace KMMobile.GeoLib
         /// Assignment.
         /// </summary>
         /// <param name="dRight">Right.</param>  
-	    public void SetRight(double dRight) 
+        public void SetRight(double dRight)
         {
-            BottomRight.x = dRight; 
+            BottomRight.x = dRight;
         }
 
         /// <summary>
@@ -158,15 +158,15 @@ namespace KMMobile.GeoLib
         /// Expands to include the point.
         /// </summary>
         /// <param name="NewPt">Point.</param> 
-	    public void ExpandToInclude(C2DPoint NewPt)
+        public void ExpandToInclude(C2DPoint NewPt)
         {
-            if (NewPt.x > BottomRight.x) 
+            if (NewPt.x > BottomRight.x)
                 BottomRight.x = NewPt.x;
-            else if (NewPt.x < TopLeft.x) 
+            else if (NewPt.x < TopLeft.x)
                 TopLeft.x = NewPt.x;
-            if (NewPt.y > TopLeft.y) 
+            if (NewPt.y > TopLeft.y)
                 TopLeft.y = NewPt.y;
-            else if (NewPt.y < BottomRight.y) 
+            else if (NewPt.y < BottomRight.y)
                 BottomRight.y = NewPt.y;
         }
 
@@ -174,7 +174,7 @@ namespace KMMobile.GeoLib
         /// Expands to include the rectangle.
         /// </summary>
         /// <param name="Other">Rectangle.</param> 
-	    public void ExpandToInclude(C2DRect Other)
+        public void ExpandToInclude(C2DRect Other)
         {
             ExpandToInclude(Other.TopLeft);
             ExpandToInclude(Other.BottomRight);
@@ -205,7 +205,7 @@ namespace KMMobile.GeoLib
         /// True if the point is within the rectangle.
         /// </summary>
         /// <param name="Pt">Point.</param> 
-	    public bool Contains(C2DPoint Pt)
+        public bool Contains(C2DPoint Pt)
         {
             return (Pt.x >= TopLeft.x && Pt.x <= BottomRight.x &&
                      Pt.y <= TopLeft.y && Pt.y >= BottomRight.y);
@@ -216,7 +216,7 @@ namespace KMMobile.GeoLib
         /// True if the entire other rectangle is within.
         /// </summary>
         /// <param name="Other">Other rectangle.</param> 
-	    public bool Contains(C2DRect Other)
+        public bool Contains(C2DRect Other)
         {
             return (Other.GetLeft() > TopLeft.x &&
                       Other.GetRight() < BottomRight.x &&
@@ -228,7 +228,7 @@ namespace KMMobile.GeoLib
         /// True if there is an overlap.
         /// </summary>
         /// <param name="Other">Other rectangle.</param> 
-	    public bool Overlaps(C2DRect Other)
+        public bool Overlaps(C2DRect Other)
         {
             bool bOvX = !(Other.GetLeft() >= BottomRight.x ||
                           Other.GetRight() <= TopLeft.x);
@@ -242,7 +242,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// If the area is positive e.g. the top is greater than the bottom.
         /// </summary>
-	    public bool IsValid()
+        public bool IsValid()
         {
             return ((TopLeft.x < BottomRight.x) && (TopLeft.y > BottomRight.y));
         }
@@ -258,7 +258,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the width.
         /// </summary>
-	    public double Width()
+        public double Width()
         {
             return (BottomRight.x - TopLeft.x);
         }
@@ -274,24 +274,24 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the top.
         /// </summary>
-	    public double GetTop( ) 
+        public double GetTop()
         {
-            return  TopLeft.y;
+            return TopLeft.y;
         }
 
         /// <summary>
         /// Returns the left.
         /// </summary>
-	    public double GetLeft( )   
+        public double GetLeft()
         {
-            return  TopLeft.x ;
+            return TopLeft.x;
         }
 
 
         /// <summary>
         /// Returns the bottom.
         /// </summary>
-	    public double GetBottom( )  
+        public double GetBottom()
         {
             return BottomRight.y;
         }
@@ -299,16 +299,16 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the right.
         /// </summary>
-	    public double GetRight( )  
+        public double GetRight()
         {
-            return BottomRight.x ;
+            return BottomRight.x;
         }
 
         /// <summary>
-	    /// Assignment.
+        /// Assignment.
         /// </summary>
         /// <param name="Other">Other rectangle.</param> 
-	    public void Set(C2DRect Other)
+        public void Set(C2DRect Other)
         {
             TopLeft.x = Other.TopLeft.x;
             TopLeft.y = Other.TopLeft.y;
@@ -403,7 +403,7 @@ namespace KMMobile.GeoLib
             double x = TopLeft.x;
             double y = TopLeft.y;
 
-            TopLeft.Set( BottomRight);
+            TopLeft.Set(BottomRight);
             BottomRight.x = x;
             BottomRight.y = y;
         }
@@ -415,11 +415,11 @@ namespace KMMobile.GeoLib
         /// <param name="Line">Reflection Line.</param> 
         public override void Reflect(C2DLine Line)
         {
-	        C2DPoint ptCen = new C2DPoint(this.GetCentre());
-	        C2DPoint ptNewCen = new C2DPoint(ptCen);
-	        ptNewCen.Reflect(Line);
-	        C2DVector vec = new C2DVector(ptCen, ptNewCen);
-	        Move(vec);
+            C2DPoint ptCen = new C2DPoint(this.GetCentre());
+            C2DPoint ptNewCen = new C2DPoint(ptCen);
+            ptNewCen.Reflect(Line);
+            C2DVector vec = new C2DVector(ptCen, ptNewCen);
+            Move(vec);
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ namespace KMMobile.GeoLib
                     return (BottomRight.y - TestPoint.y);
             }
 
-          //  assert(Contains(TestPoint));
+            //  assert(Contains(TestPoint));
             return 0;	// Inside
         }
 
@@ -484,59 +484,59 @@ namespace KMMobile.GeoLib
         /// Returns the distance from this to the other rect. 0 if there is an overlap.
         /// </summary>
         /// <param name="Other">Other rectangle.</param> 
-       public double Distance(C2DRect Other)
-       {
-	        if (this.Overlaps(Other))
-		        return 0;
+        public double Distance(C2DRect Other)
+        {
+            if (this.Overlaps(Other))
+                return 0;
 
-	        if (Other.GetLeft() > this.BottomRight.x)
-	        {
-		        // Other is to the right
-		        if (Other.GetBottom() > this.TopLeft.y)
-		        {
-			        // Other is to the top right
-			        C2DPoint ptTopRight = new C2DPoint(BottomRight.x,  TopLeft.y);
-			        return ptTopRight.Distance(new C2DPoint(Other.GetLeft(), Other.GetBottom()));
-		        }
-		        else if (Other.GetTop() < this.BottomRight.y)
-		        {
-			        // Other to the bottom right
-			        return BottomRight.Distance( Other.TopLeft );
-		        }
-		        else
-		        {
-			        // to the right
-			        return Other.GetLeft() - this.BottomRight.x;
-		        }
-	        }
-	        else if ( Other.GetRight() < this.TopLeft.x)
-	        {
-		        // Other to the left
-		        if (Other.GetBottom() > this.TopLeft.y)
-		        {
-			        // Other is to the top left
-			        return  TopLeft.Distance(Other.BottomRight);
-		        }
-		        else if (Other.GetTop() < this.BottomRight.y)
-		        {
-			        // Other to the bottom left
-			        C2DPoint ptBottomLeft = new C2DPoint(TopLeft.x, BottomRight.y);
-			        return ptBottomLeft.Distance ( new C2DPoint( Other.GetRight(), Other.GetTop()));
-		        }
-		        else
-		        {
-			        //Just to the left
-			        return (this.TopLeft.x - Other.GetRight());
-		        }
-	        }
-	        else
-	        {
-		        // There is horizontal overlap;
-		        if (Other.GetBottom() >  TopLeft.y)
-			        return Other.GetBottom() -  TopLeft.y;
-		        else
-			        return BottomRight.y - Other.GetTop();
-	        }		
+            if (Other.GetLeft() > this.BottomRight.x)
+            {
+                // Other is to the right
+                if (Other.GetBottom() > this.TopLeft.y)
+                {
+                    // Other is to the top right
+                    C2DPoint ptTopRight = new C2DPoint(BottomRight.x, TopLeft.y);
+                    return ptTopRight.Distance(new C2DPoint(Other.GetLeft(), Other.GetBottom()));
+                }
+                else if (Other.GetTop() < this.BottomRight.y)
+                {
+                    // Other to the bottom right
+                    return BottomRight.Distance(Other.TopLeft);
+                }
+                else
+                {
+                    // to the right
+                    return Other.GetLeft() - this.BottomRight.x;
+                }
+            }
+            else if (Other.GetRight() < this.TopLeft.x)
+            {
+                // Other to the left
+                if (Other.GetBottom() > this.TopLeft.y)
+                {
+                    // Other is to the top left
+                    return TopLeft.Distance(Other.BottomRight);
+                }
+                else if (Other.GetTop() < this.BottomRight.y)
+                {
+                    // Other to the bottom left
+                    C2DPoint ptBottomLeft = new C2DPoint(TopLeft.x, BottomRight.y);
+                    return ptBottomLeft.Distance(new C2DPoint(Other.GetRight(), Other.GetTop()));
+                }
+                else
+                {
+                    //Just to the left
+                    return (this.TopLeft.x - Other.GetRight());
+                }
+            }
+            else
+            {
+                // There is horizontal overlap;
+                if (Other.GetBottom() > TopLeft.y)
+                    return Other.GetBottom() - TopLeft.y;
+                else
+                    return BottomRight.y - Other.GetTop();
+            }
 
         }
 
@@ -544,20 +544,20 @@ namespace KMMobile.GeoLib
         /// Returns the bounding rectangle. (Required for virtual base class).
         /// </summary>
         /// <param name="Rect">Ouput. Bounding rectangle.</param> 
-        public override void GetBoundingRect(C2DRect Rect) 
-        { 
+        public override void GetBoundingRect(C2DRect Rect)
+        {
             Rect.Set(this);
         }
 
         /// <summary>
         /// Scales the rectangle accordingly.
         /// </summary>
-	    public void Scale(C2DPoint ptScale) 
+        public void Scale(C2DPoint ptScale)
         {
-            TopLeft.x =  TopLeft.x * ptScale.x;
-            TopLeft.y = TopLeft.y * ptScale.y; 
+            TopLeft.x = TopLeft.x * ptScale.x;
+            TopLeft.y = TopLeft.y * ptScale.y;
 
-		    BottomRight.x = BottomRight.x * ptScale.x;
+            BottomRight.x = BottomRight.x * ptScale.x;
             BottomRight.y = BottomRight.y * ptScale.y;
         }
 
@@ -636,14 +636,14 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Line">Line to project on.</param> 
         /// <param name="Interval">Ouput. Projection.</param> 
-        public override void Project(C2DLine Line,  CInterval Interval)
+        public override void Project(C2DLine Line, CInterval Interval)
         {
-	        this.TopLeft.Project( Line,  Interval);
-	        Interval.ExpandToInclude( BottomRight.Project( Line));
-	        C2DPoint TR = new C2DPoint( BottomRight.x,   TopLeft.y);
-            C2DPoint BL = new C2DPoint( TopLeft.x, BottomRight.y);
-	        Interval.ExpandToInclude( TR.Project( Line));
-	        Interval.ExpandToInclude( BL.Project( Line));
+            this.TopLeft.Project(Line, Interval);
+            Interval.ExpandToInclude(BottomRight.Project(Line));
+            C2DPoint TR = new C2DPoint(BottomRight.x, TopLeft.y);
+            C2DPoint BL = new C2DPoint(TopLeft.x, BottomRight.y);
+            Interval.ExpandToInclude(TR.Project(Line));
+            Interval.ExpandToInclude(BL.Project(Line));
 
         }
 
@@ -652,14 +652,14 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Vector">Vector to project on.</param> 
         /// <param name="Interval">Ouput. Projection.</param> 
-        public override void Project(C2DVector Vector,  CInterval Interval)
+        public override void Project(C2DVector Vector, CInterval Interval)
         {
-	        this.TopLeft.Project( Vector,  Interval);
-	        Interval.ExpandToInclude( BottomRight.Project( Vector));
-	        C2DPoint TR = new C2DPoint( BottomRight.x,   TopLeft.y);
+            this.TopLeft.Project(Vector, Interval);
+            Interval.ExpandToInclude(BottomRight.Project(Vector));
+            C2DPoint TR = new C2DPoint(BottomRight.x, TopLeft.y);
             C2DPoint BL = new C2DPoint(TopLeft.x, BottomRight.y);
-	        Interval.ExpandToInclude( TR.Project( Vector));
-	        Interval.ExpandToInclude( BL.Project( Vector));
+            Interval.ExpandToInclude(TR.Project(Vector));
+            Interval.ExpandToInclude(BL.Project(Vector));
 
         }
 
@@ -681,10 +681,10 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Other"></param>
         /// <returns></returns>
-        public bool OverlapsVertically( C2DRect Other)
+        public bool OverlapsVertically(C2DRect Other)
         {
-	        return !(Other.GetLeft() >= BottomRight.x ||
-				          Other.GetRight() <=  TopLeft.x);
+            return !(Other.GetLeft() >= BottomRight.x ||
+                          Other.GetRight() <= TopLeft.x);
         }
 
 
@@ -693,17 +693,17 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Other"></param>
         /// <returns></returns>
-        public bool OverlapsAbove( C2DRect Other)
+        public bool OverlapsAbove(C2DRect Other)
         {
-	        if (Other.GetLeft() >= BottomRight.x ||
-				          Other.GetRight() <=  TopLeft.x)
-	        {
-		        return false;
-	        }
-	        else 
-	        {
-		        return TopLeft.y > Other.GetBottom();
-	        }
+            if (Other.GetLeft() >= BottomRight.x ||
+                          Other.GetRight() <= TopLeft.x)
+            {
+                return false;
+            }
+            else
+            {
+                return TopLeft.y > Other.GetBottom();
+            }
         }
 
 
@@ -712,17 +712,17 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Other"></param>
         /// <returns></returns>
-        public bool OverlapsBelow( C2DRect Other)
+        public bool OverlapsBelow(C2DRect Other)
         {
-	        if (Other.GetLeft() >= BottomRight.x ||
-				          Other.GetRight() <=  TopLeft.x)
-	        {
-		        return false;
-	        }
-	        else 
-	        {
-		        return BottomRight.y < Other.GetTop();
-	        }
+            if (Other.GetLeft() >= BottomRight.x ||
+                          Other.GetRight() <= TopLeft.x)
+            {
+                return false;
+            }
+            else
+            {
+                return BottomRight.y < Other.GetTop();
+            }
         }
 
 

@@ -4,7 +4,6 @@ using System.Text;
 
 namespace KMMobile.GeoLib
 {
-
     /// <summary>
     /// Class representing a 2D vector.
     /// </summary>
@@ -13,29 +12,29 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Constructor.
         /// </summary>
-        public C2DVector() {}
+        public C2DVector() { }
 
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~C2DVector() {}
+        ~C2DVector() { }
 
         /// <summary>
         /// Constructor with assignment.
         /// </summary>
         /// <param name="di">i.</param>
         /// <param name="dj">j.</param>
-        public C2DVector(double di, double dj) 
-        { 
-            i = di; 
-            j = dj; 
+        public C2DVector(double di, double dj)
+        {
+            i = di;
+            j = dj;
         }
 
         /// <summary>
         /// Constructor with assignment.
         /// </summary>
         /// <param name="Other">other vector.</param>
-        public C2DVector(C2DVector Other) 
+        public C2DVector(C2DVector Other)
         {
             i = Other.i;
             j = Other.j;
@@ -67,10 +66,10 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="di">i.</param>
         /// <param name="dj">j.</param>
-        public void Set(double di, double dj) 
-        { 
-            i = di; 
-            j = dj; 
+        public void Set(double di, double dj)
+        {
+            i = di;
+            j = dj;
         }
 
         /// <summary>
@@ -147,7 +146,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the length of the vector.
         /// </summary>
-        public double GetLength() 
+        public double GetLength()
         {
             return Math.Sqrt(i * i + j * j);
         }
@@ -169,7 +168,7 @@ namespace KMMobile.GeoLib
         public void MakeUnit()
         {
             double dDistance = GetLength();
-            if (dDistance == 0) 
+            if (dDistance == 0)
                 return;
             i = i / dDistance;
             j = j / dDistance;
@@ -178,7 +177,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Addition.
         /// </summary>
-        public static C2DVector operator+(C2DVector V1, C2DVector V2)
+        public static C2DVector operator +(C2DVector V1, C2DVector V2)
         {
             C2DVector V3 = new C2DVector(V1.i + V2.i, V1.j + V2.j);
             return V3;
@@ -187,7 +186,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Subtraction.
         /// </summary>
-        public static C2DVector operator-(C2DVector V1, C2DVector V2)
+        public static C2DVector operator -(C2DVector V1, C2DVector V2)
         {
             C2DVector V3 = new C2DVector(V1.i - V2.i, V1.j - V2.j);
             return V3;
@@ -196,14 +195,14 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Multiplication.
         /// </summary>
-	    public void Multiply(double dFactor)
+        public void Multiply(double dFactor)
         {
             i *= dFactor;
             j *= dFactor;
         }
 
         /// <summary>
-	    /// Dot product.
+        /// Dot product.
         /// </summary>
         public double Dot(C2DVector Other)
         {
@@ -211,15 +210,15 @@ namespace KMMobile.GeoLib
         }
 
         /// <summary>
-	    /// Cross product.
+        /// Cross product.
         /// </summary>
-	    public double Cross(C2DVector Other)
+        public double Cross(C2DVector Other)
         {
             return i * Other.i - j * Other.j;
         }
 
         /// <summary>
-	    /// Assignment to a point.
+        /// Assignment to a point.
         /// </summary>
         public void Set(C2DPoint Other)
         {
@@ -228,9 +227,9 @@ namespace KMMobile.GeoLib
         }
 
         /// <summary>
-	    /// Equality test.
+        /// Equality test.
         /// </summary>
-	    public bool VectorEqualTo(  C2DVector Other)
+        public bool VectorEqualTo(C2DVector Other)
         {
             bool biClose;
             bool bjClose;
@@ -248,9 +247,9 @@ namespace KMMobile.GeoLib
         }
 
         /// <summary>
-	    /// Returns the angle from north in radians.
+        /// Returns the angle from north in radians.
         /// </summary>
-	    public double AngleFromNorth()
+        public double AngleFromNorth()
         {
             if (j == 0)
             {
@@ -278,7 +277,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the angle to the right to another vector.
         /// </summary>
-	    public double AngleToRight(C2DVector Other)
+        public double AngleToRight(C2DVector Other)
         {
             double Result = Other.AngleFromNorth() - AngleFromNorth();
             if (Result < 0) Result += Constants.conTWOPI;
@@ -289,7 +288,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the angle to the left to another vector.
         /// </summary>
-	    public double AngleToLeft(C2DVector Other)
+        public double AngleToLeft(C2DVector Other)
         {
             return (Constants.conTWOPI - AngleToRight(Other));
         }
@@ -297,7 +296,7 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the shortest angle between 2 vectors i.e. the dot product of the norms.
         /// </summary>
-	    public double AngleBetween(C2DVector Other)
+        public double AngleBetween(C2DVector Other)
         {
             double dDot = this.Dot(Other);
             dDot /= (this.GetLength() * Other.GetLength());

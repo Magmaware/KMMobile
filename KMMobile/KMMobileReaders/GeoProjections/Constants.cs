@@ -1,16 +1,4 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-\file Constants.h
-/// File containing useful constants and conversion factors.
----------------------------------------------------------------------------*/
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
     /// <summary>
     /// Class to hold constants

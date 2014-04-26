@@ -1,31 +1,12 @@
-/*---------------------------------------------------------------------------
-Copyright (C) GeoLib.
-This code is used under license from GeoLib (www.geolib.co.uk). This or
-any modified versions of this cannot be resold to any other party.
----------------------------------------------------------------------------*/
-
-
-/*---------------------------------------------------------------------------
-
-\file CBonneProjection.cpp
-\brief Implementation file for a CBonneProjection class.
-
-Implementation file for a CBonneProjection class.
----------------------------------------------------------------------------*/
-
-
 using System;
 
-
-namespace KMMobile.GeoLib
+namespace KMMobile.GeoProjections
 {
-
     /// <summary>
     /// Class representing a circle.
     /// </summary>
     public class CBonneProjection : CProjection
     {
-
         /// <summary>
         /// Constructor.
         /// </summary>

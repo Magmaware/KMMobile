@@ -11,9 +11,9 @@ namespace KMMobile.GeoLib
     public class C2DCircle : C2DBase
     {
         /// <summary>
-	    /// Constructor.
+        /// Constructor.
         /// </summary>
-	    public C2DCircle() {}
+        public C2DCircle() { }
         /// <summary>
         /// Destructor.
         /// </summary>
@@ -24,7 +24,7 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Point">The centre.</param>
         /// <param name="NewRadius">The radius.</param>
-	    public C2DCircle(C2DPoint Point, double NewRadius)
+        public C2DCircle(C2DPoint Point, double NewRadius)
         {
             _Centre.Set(Point);
             Radius = NewRadius;
@@ -33,7 +33,7 @@ namespace KMMobile.GeoLib
         /// Constructor.
         /// </summary>
         /// <param name="Other">The circle to assign this to.</param> 
-	    public C2DCircle(C2DCircle Other)
+        public C2DCircle(C2DCircle Other)
         {
             _Centre.Set(Other.Centre);
             Radius = Other.Radius;
@@ -56,12 +56,12 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Point1">The first point to include.</param> 
         /// <param name="Point2">The second point to include.</param> 
-	    public void SetMinimum(C2DPoint Point1, C2DPoint Point2)
+        public void SetMinimum(C2DPoint Point1, C2DPoint Point2)
         {
-	        C2DVector Vec = new C2DVector(Point1, Point2);
-	        Vec.Multiply( 0.5);
-	        Radius = Vec.GetLength();
-	        _Centre.Set(Point1.GetPointTo(Vec));
+            C2DVector Vec = new C2DVector(Point1, Point2);
+            Vec.Multiply(0.5);
+            Radius = Vec.GetLength();
+            _Centre.Set(Point1.GetPointTo(Vec));
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace KMMobile.GeoLib
         /// <param name="Point1">The first point to include.</param> 
         /// <param name="Point2">The second point to include.</param> 
         /// <param name="Point3">The third point to include.</param> 
-	    public void SetMinimum(C2DPoint Point1, C2DPoint Point2, C2DPoint Point3)
+        public void SetMinimum(C2DPoint Point1, C2DPoint Point2, C2DPoint Point3)
         {
             double dDist12 = Point1.Distance(Point2);
             double dDist23 = Point2.Distance(Point3);
@@ -105,7 +105,7 @@ namespace KMMobile.GeoLib
         /// <param name="Point1">The triangle's first point.</param> 
         /// <param name="Point2">The triangle's second point.</param> 
         /// <param name="Point3">The triangle's third point.</param> 
-	    public void SetInscribed(C2DPoint Point1, C2DPoint Point2, C2DPoint Point3)
+        public void SetInscribed(C2DPoint Point1, C2DPoint Point2, C2DPoint Point3)
         {
             SetInscribed(new C2DTriangle(Point1, Point2, Point3));
         }
@@ -116,22 +116,22 @@ namespace KMMobile.GeoLib
         /// <param name="Triangle">The triangle to bound the circle.</param> 
         public void SetInscribed(C2DTriangle Triangle)
         {
-	        C2DPoint InCen = Triangle.GetInCentre();
+            C2DPoint InCen = Triangle.GetInCentre();
 
-	        C2DLine Line = new C2DLine( Triangle.P1, Triangle.P2  );
-        	
-	        C2DVector vec = new C2DVector(Line.point, InCen );
-	        double dProj = vec.Dot(Line.vector);
-	        double dLength = Line.vector.GetLength();
-	        dProj /= dLength;
+            C2DLine Line = new C2DLine(Triangle.P1, Triangle.P2);
 
-	        double dFactor = dProj / dLength;
-        		
-	        C2DVector vProj = new C2DVector(Line.vector);
-	        vProj.Multiply(dFactor);
-	        C2DPoint ptOnLine = new C2DPoint(Line.point.x + vProj.i,Line.point.y + vProj.j) ;
+            C2DVector vec = new C2DVector(Line.point, InCen);
+            double dProj = vec.Dot(Line.vector);
+            double dLength = Line.vector.GetLength();
+            dProj /= dLength;
 
-	        Set(InCen, InCen.Distance( ptOnLine));
+            double dFactor = dProj / dLength;
+
+            C2DVector vProj = new C2DVector(Line.vector);
+            vProj.Multiply(dFactor);
+            C2DPoint ptOnLine = new C2DPoint(Line.point.x + vProj.i, Line.point.y + vProj.j);
+
+            Set(InCen, InCen.Distance(ptOnLine));
         }
 
         /// <summary>
@@ -142,11 +142,11 @@ namespace KMMobile.GeoLib
         /// <param name="Point3">The third point.</param> 
         public bool SetCircumscribed(C2DPoint Point1, C2DPoint Point2, C2DPoint Point3)
         {
-	        if ( C2DTriangle.Collinear(Point1, Point2, Point3))
-		        return false;
+            if (C2DTriangle.Collinear(Point1, Point2, Point3))
+                return false;
 
-            _Centre.Set( C2DTriangle.GetCircumCentre(Point1, Point2, Point3));
-	        Radius = _Centre.Distance(Point1);
+            _Centre.Set(C2DTriangle.GetCircumCentre(Point1, Point2, Point3));
+            Radius = _Centre.Distance(Point1);
 
             return true;
         }
@@ -155,7 +155,7 @@ namespace KMMobile.GeoLib
         /// Set to be circle that places all 3 points of the triangle on the edge.
         /// </summary>
         /// <param name="Triangle">The triangle.</param> 
-	    public bool SetCircumscribed (C2DTriangle Triangle)
+        public bool SetCircumscribed(C2DTriangle Triangle)
         {
             if (Triangle.Collinear())
                 return false;
@@ -169,15 +169,15 @@ namespace KMMobile.GeoLib
         /// <summary>
         /// Returns the area.
         /// </summary>
-	    public double GetArea()
+        public double GetArea()
         {
-	        return Constants.conPI* Radius *Radius;
+            return Constants.conPI * Radius * Radius;
         }
 
         /// <summary>
         /// Returns the perimeter.
         /// </summary>
-	    double GetPerimeter()
+        double GetPerimeter()
         {
             return Constants.conTWOPI * Radius;
         }
@@ -196,7 +196,7 @@ namespace KMMobile.GeoLib
         /// Gets the bounding rectangle.
         /// </summary>
         /// <param name="Rect">The rectangle to recieve the result.</param> 
-        public override void GetBoundingRect( C2DRect Rect)
+        public override void GetBoundingRect(C2DRect Rect)
         {
             Rect.Set(_Centre.x - Radius, _Centre.y + Radius,
                       _Centre.x + Radius, _Centre.y - Radius);
@@ -207,51 +207,51 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Other">The other circle.</param> 
         /// <param name="IntersectionPts">The point set to recieve the result.</param> 
-        public bool Crosses(C2DCircle Other,  List<C2DPoint> IntersectionPts)
+        public bool Crosses(C2DCircle Other, List<C2DPoint> IntersectionPts)
         {
-	        double x1 = _Centre.x;
-	        double y1 = _Centre.y;
-	        double R1 = Radius;
+            double x1 = _Centre.x;
+            double y1 = _Centre.y;
+            double R1 = Radius;
 
-	        double x2 = Other.Centre.x;
-	        double y2 = Other.Centre.y;
-	        double R2 = Other.Radius;
+            double x2 = Other.Centre.x;
+            double y2 = Other.Centre.y;
+            double R2 = Other.Radius;
 
-	        double D = Other.Centre.Distance(_Centre);
+            double D = Other.Centre.Distance(_Centre);
 
-	        if (D == 0)
-		        return false;
+            if (D == 0)
+                return false;
 
-	        if (D == (R1 + R2) )
-	        {
-		        C2DVector V = new C2DVector(_Centre, Other.Centre);
-		        V.SetLength(R1);
-		        C2DPoint P = new C2DPoint(_Centre.GetPointTo( V ));
-		        IntersectionPts.Add(P);
+            if (D == (R1 + R2))
+            {
+                C2DVector V = new C2DVector(_Centre, Other.Centre);
+                V.SetLength(R1);
+                C2DPoint P = new C2DPoint(_Centre.GetPointTo(V));
+                IntersectionPts.Add(P);
 
-		        return true;
-	        }
+                return true;
+            }
 
-	        if ( D > (R1 + R2) || D < Math.Abs(R1 - R2))
-		        return false;
+            if (D > (R1 + R2) || D < Math.Abs(R1 - R2))
+                return false;
 
-	        double A = (D + R1 + R2) * (D + R1 - R2) * (D - R1 + R2) * (-D + R1 + R2);
-	        A = Math.Sqrt(A) / 4;
+            double A = (D + R1 + R2) * (D + R1 - R2) * (D - R1 + R2) * (-D + R1 + R2);
+            A = Math.Sqrt(A) / 4;
 
-	        double XE1 = (x1 + x2) / 2 - (x1 - x2) * (R1 * R1 - R2 * R2) / (2 * D * D);
-	        double XE2 = 2 * (y1 - y2) * A / (D * D);
+            double XE1 = (x1 + x2) / 2 - (x1 - x2) * (R1 * R1 - R2 * R2) / (2 * D * D);
+            double XE2 = 2 * (y1 - y2) * A / (D * D);
 
-	        double YE1 = (y1 + y2) / 2 - (y1 - y2) * (R1 * R1 - R2 * R2) / (2 * D * D);
-	        double YE2 = 2 * (x1 - x2) * A / (D * D);
+            double YE1 = (y1 + y2) / 2 - (y1 - y2) * (R1 * R1 - R2 * R2) / (2 * D * D);
+            double YE2 = 2 * (x1 - x2) * A / (D * D);
 
-	        C2DPoint pt1 = new C2DPoint( XE1 + XE2, YE1 - YE2);
-	        C2DPoint pt2 = new C2DPoint( XE1 - XE2, YE1 + YE2);
+            C2DPoint pt1 = new C2DPoint(XE1 + XE2, YE1 - YE2);
+            C2DPoint pt2 = new C2DPoint(XE1 - XE2, YE1 + YE2);
 
-	        IntersectionPts.Add(pt1);
-	        IntersectionPts.Add(pt2);
+            IntersectionPts.Add(pt1);
+            IntersectionPts.Add(pt2);
 
 
-	        return true;
+            return true;
 
         }
 
@@ -261,7 +261,7 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Line">The line.</param> 
         /// <param name="IntersectionPts">The point set to recieve the result.</param> 
-        public bool Crosses(C2DLine Line,  List<C2DPoint> IntersectionPts)
+        public bool Crosses(C2DLine Line, List<C2DPoint> IntersectionPts)
         {
             double x1 = Line.point.x;
             double x2 = Line.point.x + Line.vector.i;
@@ -285,11 +285,11 @@ namespace KMMobile.GeoLib
 
             if (u < 0)
             {
-                ptClosestToCen.Set( Line.point );
+                ptClosestToCen.Set(Line.point);
             }
             else if (u > 1)
             {
-                ptClosestToCen.Set( Line.GetPointTo());
+                ptClosestToCen.Set(Line.GetPointTo());
             }
             else
             {
@@ -347,23 +347,23 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Ray">The ray. A line with no end point</param> 
         /// <param name="IntersectionPts">The point set to recieve the result.</param> 
-        public bool CrossesRay(C2DLine Ray,  List<C2DPoint> IntersectionPts)
+        public bool CrossesRay(C2DLine Ray, List<C2DPoint> IntersectionPts)
         {
             double dDist = Ray.point.Distance(_Centre);
             C2DLine RayCopy = new C2DLine(Ray);
             // Ensure the copy line will go through the circle if the ray would.
             RayCopy.vector.SetLength((dDist + Radius) * 2);
 
-            return Crosses(RayCopy,  IntersectionPts);
+            return Crosses(RayCopy, IntersectionPts);
         }
 
         /// <summary>
         /// True if this contains the point.
         /// </summary>
         /// <param name="pt">The test point.</param> 
-	    public bool Contains(C2DPoint pt)
+        public bool Contains(C2DPoint pt)
         {
-	        return _Centre.Distance(pt) < Radius;
+            return _Centre.Distance(pt) < Radius;
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace KMMobile.GeoLib
         /// <param name="dRange">The range.</param> 
         public bool IsWithinDistance(C2DPoint pt, double dRange)
         {
-	        return _Centre.Distance(pt) < Radius + dRange;
+            return _Centre.Distance(pt) < Radius + dRange;
         }
 
         /// <summary>
@@ -390,7 +390,7 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="dAng">The angle through which to rotate.</param>
         /// <param name="Origin">The origin about which to rotate.</param>
-        public  override void RotateToRight(double dAng, C2DPoint Origin)
+        public override void RotateToRight(double dAng, C2DPoint Origin)
         {
             _Centre.RotateToRight(dAng, Origin);
         }
@@ -402,8 +402,8 @@ namespace KMMobile.GeoLib
         /// <param name="Origin">The origin.</param> 
         public override void Grow(double dFactor, C2DPoint Origin)
         {
-           _Centre.Grow(dFactor, Origin);
-           Radius *= dFactor;
+            _Centre.Grow(dFactor, Origin);
+            Radius *= dFactor;
         }
 
         /// <summary>
@@ -439,25 +439,25 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="TestPoint">Point to calculate the distance to.</param> 
         /// <param name="ptOnThis">Closest point on the circle to recieve the result.</param> 
-        public double Distance(C2DPoint TestPoint,  C2DPoint ptOnThis)
+        public double Distance(C2DPoint TestPoint, C2DPoint ptOnThis)
         {
-	        double dDist = _Centre.Distance(TestPoint);
+            double dDist = _Centre.Distance(TestPoint);
 
-	        if (dDist == 0)
-	        {
-		        // point is the centre so just arbitrary point to the circle
-                C2DVector V1 = new C2DVector( Radius, 0);
-		        ptOnThis.Set( _Centre.GetPointTo(V1));
-	        }
-	        else
-	        {
-		        // find the point on the circle.
-		        C2DLine LineCenToPt = new C2DLine (_Centre, TestPoint);
-		        LineCenToPt.vector.SetLength(Radius);
-		        ptOnThis.Set(LineCenToPt.GetPointTo());
-	        }
+            if (dDist == 0)
+            {
+                // point is the centre so just arbitrary point to the circle
+                C2DVector V1 = new C2DVector(Radius, 0);
+                ptOnThis.Set(_Centre.GetPointTo(V1));
+            }
+            else
+            {
+                // find the point on the circle.
+                C2DLine LineCenToPt = new C2DLine(_Centre, TestPoint);
+                LineCenToPt.vector.SetLength(Radius);
+                ptOnThis.Set(LineCenToPt.GetPointTo());
+            }
 
-	        return (dDist - Radius);  // -ve indicates inside.
+            return (dDist - Radius);  // -ve indicates inside.
         }
 
         /// <summary>
@@ -466,10 +466,10 @@ namespace KMMobile.GeoLib
         /// <param name="Line">Line to calculate the distance to.</param> 
         /// <param name="ptOnThis">Closest point on the circle to recieve the result.</param> 
         /// <param name="ptOnOther">Closest point on the line to recieve the result.</param> 
-        public double Distance(C2DLine Line,  C2DPoint ptOnThis,  C2DPoint ptOnOther)
+        public double Distance(C2DLine Line, C2DPoint ptOnThis, C2DPoint ptOnOther)
         {
             CInterval ProjInt = new CInterval();
-            Project(Line,  ProjInt);
+            Project(Line, ProjInt);
 
             if (ProjInt.dMax < 0)
             {
@@ -477,7 +477,7 @@ namespace KMMobile.GeoLib
                 // To this is the first point on the line and there are no interections.
                 ptOnOther.Set(Line.point);
 
-                return Distance(Line.point,  ptOnThis);
+                return Distance(Line.point, ptOnThis);
             }
 
             double dLength = Line.GetLength();
@@ -487,16 +487,16 @@ namespace KMMobile.GeoLib
                 // This means that the circle projects entirely "above" the line so the nearest point
                 // To this is the second point on the line and there are no interections.
                 C2DPoint ptClosest = new C2DPoint(Line.GetPointTo());
-                ptOnOther.Set( ptClosest );
-                return Distance(ptClosest,  ptOnThis);
+                ptOnOther.Set(ptClosest);
+                return Distance(ptClosest, ptOnThis);
             }
 
             // Now find out if there's an intersection.
             List<C2DPoint> IntPts = new List<C2DPoint>();
-            if (Crosses(Line,  IntPts))
+            if (Crosses(Line, IntPts))
             {
-                ptOnThis.Set( IntPts[0]);
-                ptOnOther.Set( IntPts[0]);
+                ptOnThis.Set(IntPts[0]);
+                ptOnOther.Set(IntPts[0]);
 
                 return 0;
             }
@@ -504,9 +504,9 @@ namespace KMMobile.GeoLib
             // Now find out if the line is entirely inside
             if (ProjInt.dMin > 0 && ProjInt.dMax < dLength && this.Contains(Line.point))
             {
-                double d1 = Distance(Line.point,  ptOnThis);
+                double d1 = Distance(Line.point, ptOnThis);
                 C2DPoint ptThisTemp = new C2DPoint();
-                double d2 = Distance(Line.GetPointTo(),  ptThisTemp);
+                double d2 = Distance(Line.GetPointTo(), ptThisTemp);
                 Debug.Assert(d1 < 0 && d2 < 0);
                 if (d2 > d1) // NOTE USE OF > AS d2 and d1 are -ve.
                 {
@@ -533,26 +533,26 @@ namespace KMMobile.GeoLib
                     double dFactor = dCenOnLine / dLength;
 
                     C2DVector vProj = new C2DVector(Line.vector);
-                    vProj.Multiply( dFactor);
-                    C2DPoint ptOnLine = new C2DPoint( Line.point.GetPointTo(vProj));
+                    vProj.Multiply(dFactor);
+                    C2DPoint ptOnLine = new C2DPoint(Line.point.GetPointTo(vProj));
 
-                    ptOnOther.Set( ptOnLine );
+                    ptOnOther.Set(ptOnLine);
 
-                    return Distance(ptOnLine,  ptOnThis);
+                    return Distance(ptOnLine, ptOnThis);
                 }
                 else
                 {
                     // The centre is projected above the line.
-                    C2DPoint ptClosest = new C2DPoint (Line.GetPointTo());
+                    C2DPoint ptClosest = new C2DPoint(Line.GetPointTo());
                     ptOnOther.Set(ptClosest);
-                    return Distance(ptClosest,  ptOnThis);
+                    return Distance(ptClosest, ptOnThis);
                 }
             }
             else
             {
                 // This means that the circle projects entirely "below" the line.
-                ptOnOther.Set( Line.point);
-                return Distance(Line.point,  ptOnThis);
+                ptOnOther.Set(Line.point);
+                return Distance(Line.point, ptOnThis);
             }
         }
 
@@ -562,75 +562,75 @@ namespace KMMobile.GeoLib
         /// <param name="Other">Circle to calculate the distance to.</param> 
         /// <param name="ptOnThis">Closest point on this circle to recieve the result.</param> 
         /// <param name="ptOnOther">Closest point on the other circle to recieve the result.</param> 
-        public double Distance(C2DCircle Other,  C2DPoint ptOnThis,  C2DPoint ptOnOther)
+        public double Distance(C2DCircle Other, C2DPoint ptOnThis, C2DPoint ptOnOther)
         {
             double dCenCenDist = _Centre.Distance(Other.Centre);
-	        double dOtherRadius = Other.Radius;
+            double dOtherRadius = Other.Radius;
 
-	    //    C2DPoint ptThis;
-	     //   C2DPoint ptOther;
-	        double dDist = dCenCenDist - Radius - dOtherRadius;
+            //    C2DPoint ptThis;
+            //   C2DPoint ptOther;
+            double dDist = dCenCenDist - Radius - dOtherRadius;
 
-	        if (dDist > 0 )
-	        {
-		        // they do not interect and they are outside each other.
-			        C2DLine Line = new C2DLine(_Centre, Other.Centre);
-			        Line.vector.SetLength( Radius);
-			        ptOnThis.Set( Line.GetPointTo() );
+            if (dDist > 0)
+            {
+                // they do not interect and they are outside each other.
+                C2DLine Line = new C2DLine(_Centre, Other.Centre);
+                Line.vector.SetLength(Radius);
+                ptOnThis.Set(Line.GetPointTo());
 
-			        Line.vector.Reverse();
-			        Line.SetPointFrom(Other.Centre);
-			        Line.vector.SetLength(Other.Radius);
-			        ptOnOther.Set(Line.GetPointTo());
-	        }
-	        else
-	        {
-		        if ( (dCenCenDist + Radius) < dOtherRadius)
-		        {
-			        // This is inside the other
-			        dDist =  dCenCenDist + Radius  - dOtherRadius ; // -ve if inside
-				        C2DVector vec = new C2DVector( Other.Centre, Centre);
-				        vec.Multiply(   Radius   /dCenCenDist  ); // set the vector to be the length of my radius.
-				        ptOnThis.Set( _Centre.GetPointTo( vec));
-				        vec.Multiply(   dDist   /Radius  ); // set the vector to be the distance.
-                        ptOnOther.Set(ptOnThis.GetPointTo( vec));
+                Line.vector.Reverse();
+                Line.SetPointFrom(Other.Centre);
+                Line.vector.SetLength(Other.Radius);
+                ptOnOther.Set(Line.GetPointTo());
+            }
+            else
+            {
+                if ((dCenCenDist + Radius) < dOtherRadius)
+                {
+                    // This is inside the other
+                    dDist = dCenCenDist + Radius - dOtherRadius; // -ve if inside
+                    C2DVector vec = new C2DVector(Other.Centre, Centre);
+                    vec.Multiply(Radius / dCenCenDist); // set the vector to be the length of my radius.
+                    ptOnThis.Set(_Centre.GetPointTo(vec));
+                    vec.Multiply(dDist / Radius); // set the vector to be the distance.
+                    ptOnOther.Set(ptOnThis.GetPointTo(vec));
 
-		        }
-		        else if ( (dCenCenDist + dOtherRadius) < Radius)
-		        {
-			        // The other is inside this.
-			        dDist = dCenCenDist + dOtherRadius -  Radius; // -ve if inside
-				        C2DVector vec = new C2DVector( _Centre, Other.Centre);
-				        vec.Multiply (   dOtherRadius   /dCenCenDist  ); // set the vector to be the length of my radius.
-				        ptOnOther.Set( Other.Centre.GetPointTo( vec));
-				        vec.Multiply(   dDist   /  dOtherRadius  ); // set the vector to be the distance.
-				        ptOnThis.Set(ptOnOther.GetPointTo( vec));
+                }
+                else if ((dCenCenDist + dOtherRadius) < Radius)
+                {
+                    // The other is inside this.
+                    dDist = dCenCenDist + dOtherRadius - Radius; // -ve if inside
+                    C2DVector vec = new C2DVector(_Centre, Other.Centre);
+                    vec.Multiply(dOtherRadius / dCenCenDist); // set the vector to be the length of my radius.
+                    ptOnOther.Set(Other.Centre.GetPointTo(vec));
+                    vec.Multiply(dDist / dOtherRadius); // set the vector to be the distance.
+                    ptOnThis.Set(ptOnOther.GetPointTo(vec));
 
-		        }
-		        else
-		        {
-			        // there is an intersection
-			        dDist = 0;
-			        List<C2DPoint> Ints = new List<C2DPoint>();
-			        if (Crosses(Other,  Ints))
-			        {
-				        ptOnThis.Set(Ints[0]);
-				        ptOnOther.Set(ptOnThis);
-			        }
-			        else
-			        {
-				        Debug.Assert(false);
-				        return 0;
-			        }
-		        }
-	        }
+                }
+                else
+                {
+                    // there is an intersection
+                    dDist = 0;
+                    List<C2DPoint> Ints = new List<C2DPoint>();
+                    if (Crosses(Other, Ints))
+                    {
+                        ptOnThis.Set(Ints[0]);
+                        ptOnOther.Set(ptOnThis);
+                    }
+                    else
+                    {
+                        Debug.Assert(false);
+                        return 0;
+                    }
+                }
+            }
 
-	  //      if (ptOnThis)
-		//        *ptOnThis = ptThis;
-	  //      if (ptOnOther)
-		//        *ptOnOther = ptOther;
+            //      if (ptOnThis)
+            //        *ptOnThis = ptThis;
+            //      if (ptOnOther)
+            //        *ptOnOther = ptOther;
 
-	        return dDist;
+            return dDist;
         }
 
 
@@ -640,21 +640,21 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Line">Line to project this onto.</param> 
         /// <param name="Interval">Interval to recieve the result.</param> 
-        public override void Project(C2DLine Line,  CInterval Interval)
+        public override void Project(C2DLine Line, CInterval Interval)
         {
-	        // Create a line that goes through the circle from edge to edge and with the same vector as the
-	        // Line to project on.
-	        C2DLine LineCopy = new C2DLine (_Centre, Line.vector);
-        	
-	        LineCopy.vector.SetLength( Radius * 2 );
+            // Create a line that goes through the circle from edge to edge and with the same vector as the
+            // Line to project on.
+            C2DLine LineCopy = new C2DLine(_Centre, Line.vector);
+
+            LineCopy.vector.SetLength(Radius * 2);
 
             C2DVector V2 = new C2DVector(LineCopy.vector);
             V2.Multiply(-0.5);
 
             LineCopy.Move(V2);
 
-	        // Now just project the line onto the interval.
-	        LineCopy.Project(Line,  Interval);
+            // Now just project the line onto the interval.
+            LineCopy.Project(Line, Interval);
         }
         /// <summary>
         /// Projection onto the vector as distance along the line from the start of the vector.
@@ -662,19 +662,19 @@ namespace KMMobile.GeoLib
         /// </summary>
         /// <param name="Vector">Vector to project this onto.</param> 
         /// <param name="Interval">Interval to recieve the result.</param> 
-        public override void Project(C2DVector Vector,  CInterval Interval) 
+        public override void Project(C2DVector Vector, CInterval Interval)
         {
-             // Create a line that goes through the circle from edge to edge and with the same vector.
-	        C2DLine Line = new C2DLine (_Centre, Vector);
-        	
-	        Line.vector.SetLength( Radius * 2 );
+            // Create a line that goes through the circle from edge to edge and with the same vector.
+            C2DLine Line = new C2DLine(_Centre, Vector);
+
+            Line.vector.SetLength(Radius * 2);
 
             C2DVector V2 = new C2DVector(Vector);
             V2.Multiply(-0.5);
             Line.Move(V2);
 
-	        // Now just project the line onto the interval.
-	        Line.Project(Vector,  Interval);
+            // Now just project the line onto the interval.
+            Line.Project(Vector, Interval);
         }
 
         /// <summary>
@@ -683,11 +683,11 @@ namespace KMMobile.GeoLib
         /// <param name="grid">The grid.</param> 
         public override void SnapToGrid(CGrid grid)
         {
-	        _Centre.SnapToGrid(grid);
+            _Centre.SnapToGrid(grid);
 
             double dMultiple = Math.Abs(Radius / grid.GridSize) + 0.5;
 
-	        dMultiple = Math.Floor(dMultiple);
+            dMultiple = Math.Floor(dMultiple);
 
             if (Radius < 0)
                 Radius = -dMultiple * grid.GridSize;
