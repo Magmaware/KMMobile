@@ -60,6 +60,14 @@
     <Compile Include="Hinge.cs" />
     <Compile Include="IMesh.cs" />
     <Compile Include="JointedSceneNode.cs" />
+    <Compile Include="LibTess\Dict.cs" />
+    <Compile Include="LibTess\Geom.cs" />
+    <Compile Include="LibTess\Mesh.cs" />
+    <Compile Include="LibTess\MeshUtils.cs" />
+    <Compile Include="LibTess\PriorityHeap.cs" />
+    <Compile Include="LibTess\PriorityQueue.cs" />
+    <Compile Include="LibTess\Sweep.cs" />
+    <Compile Include="LibTess\Tess.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="Mesh.cs" />
     <Compile Include="MeshSceneNode.cs" />
