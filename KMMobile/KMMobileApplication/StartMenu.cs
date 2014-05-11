@@ -11,20 +11,21 @@ namespace KMMobile
         {
             Width = width;
             Height = height;
+            ButtonSize = Width / 32;
+            if (ButtonSize < 20)
+                ButtonSize = 20;
+            if (ButtonSize > 64)
+                ButtonSize = 64;
         }
 
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        Button b1;
+        public int ButtonSize { get; private set; }
 
         protected override void CreateScene()
         {
             RenderManager.BackgroundColor = Color.White;
-            b1 = new Button("fred");
-            b1.BackgroundImage = @"Content/Light.wpk";
-            b1.PressedBackgroundImage = @"Content/LightPressed.wpk";
-            EntityManager.Add(b1);
         }
     }
 }

@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Name="Artwork" Version="1">
+  <Profiles>
+    <Profile Name="Default" Platform="Windows" LowQualityCompressionFormat="R8G8B8A8" HighQualityCompressionFormat="R8G8B8A8" />
+  </Profiles>
+  <Assets>
+    <Asset Path="Cloud20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Cloud25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Cloud32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Cloud40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Cloud48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Cloud60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Cloud64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="CloudPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Contact64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="ContactPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Flat64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FlatPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folded64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FoldedPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Folder64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="FolderPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Home64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="HomePressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Light64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="LightPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Options64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="OptionsPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Play64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="PlayPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="Refresh64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed20.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed25.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed32.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed40.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed48.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed60.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+    <Asset Path="RefreshPressed64.png">
+      <ExportProperties>
+        <Export ScalingType="Percentage" ScaledPercentage="100" GenerateMipmaps="False" PremultipliedAlpha="True" AntialiasType="Smooth" OutputFormat="Color32Bit" Profile="WaveEditor.Core.Model.PlatformProfile" Name="Default" Platform="Windows" Generate="True" ZipCompress="False" />
+      </ExportProperties>
+    </Asset>
+  </Assets>
+</Project>
