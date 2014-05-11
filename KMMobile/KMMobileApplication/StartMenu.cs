@@ -16,10 +16,15 @@ namespace KMMobile
         public int Width { get; private set; }
         public int Height { get; private set; }
 
+        Button b1;
+
         protected override void CreateScene()
         {
-            RenderManager.BackgroundColor = Color.MintCream;
-
+            RenderManager.BackgroundColor = Color.White;
+            b1 = new Button("fred");
+            b1.BackgroundImage = @"Content/Light.wpk";
+            b1.PressedBackgroundImage = @"Content/LightPressed.wpk";
+            EntityManager.Add(b1);
         }
     }
 }
