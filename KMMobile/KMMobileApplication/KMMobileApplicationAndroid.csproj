@@ -45,6 +45,39 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib" />
+    <Reference Include="DolbyAPI">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\DolbyAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Adapter">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Analytics">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Bepu">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Bepu.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Common">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Components">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Farseer">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Farseer.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Framework">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Materials">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Materials.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Physics">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\Zlib.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

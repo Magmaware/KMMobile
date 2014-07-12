@@ -202,11 +202,6 @@ namespace KMMobile
 
         public override void Draw(TimeSpan gameTime)
         {
-            RenderManager.FindLayer(DefaultLayers.Alpha).AddDrawable(0, this);
-        }
-        
-        protected override void DrawBasicUnit(int parameter)
-        {
             foreach (var line in Lines)
                 RenderManager.LineBatch2D.DrawLine(
                     new Vector2(

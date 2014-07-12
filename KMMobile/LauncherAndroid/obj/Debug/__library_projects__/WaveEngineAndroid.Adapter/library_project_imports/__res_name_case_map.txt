@@ -1,0 +1,7 @@
+Values/Styles.xml;values/styles.xml
+Drawable-hdpi/logo.png;drawable-hdpi/logo.png
+Drawable-ldpi/logo.png;drawable-ldpi/logo.png
+Drawable-mdpi/logo.png;drawable-mdpi/logo.png
+Drawable-xhdpi/logo.png;drawable-xhdpi/logo.png
+Drawable-xxhdpi/logo.png;drawable-xxhdpi/logo.png
+Layout/Splash.axml;layout/splash.xml

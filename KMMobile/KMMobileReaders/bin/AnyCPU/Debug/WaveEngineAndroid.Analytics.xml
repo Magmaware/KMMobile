@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WaveEngineAndroid.Analytics</name>
+    </assembly>
+    <members>
+        <member name="T:WaveEngine.Analytics.AnalyticsInfo">
+            <summary>
+            This class represent a basic information for a analytics system.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsInfo.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WaveEngine.Analytics.AnalyticsInfo"/> class.
+            </summary>
+            <param name="internalType">Type of the internal.</param>
+        </member>
+        <member name="P:WaveEngine.Analytics.AnalyticsInfo.InternalType">
+            <summary>
+            Gets the type of the internal.
+            </summary>
+            <value>
+            The type of the internal.
+            </value>
+        </member>
+        <member name="T:WaveEngine.Analytics.AnalyticsManager">
+            <summary>
+            This class management the analytics systems.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.AnalyticsManager.analyticsSystem">
+            <summary>
+            Selected analytics system.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.AnalyticsManager.adapter">
+            <summary>
+            Handle to adapter.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.AnalyticsManager.isOpen">
+            <summary>
+            Analytics is open.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.#ctor(WaveEngine.Common.IAdapter)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WaveEngine.Analytics.AnalyticsManager"/> class.
+            </summary>
+            <param name="adapter">The adapter.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.SetAnalyticsSystem(WaveEngine.Analytics.AnalyticsInfo)">
+            <summary>
+            Sets the analytics system.
+            </summary>
+            <param name="analyticsInfo">The analytics info.</param>        
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.Open">
+            <summary>
+            Opens this instance.
+            </summary>        
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.Close">
+            <summary>
+            Closes this instance.
+            </summary>        
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.Upload">
+            <summary>
+            Uploads this instance.
+            </summary>        
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.TagEvent(System.String,System.String,System.String)">
+            <summary>
+            Tags the event.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="attribute">The attribute.</param>
+            <param name="value">The value.</param>       
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.TagEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Tags the event.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="attributes">The attributes.</param>        
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsManager.Initialize">
+            <summary>
+            Allows to execute custom logic during the initialization of this instance.
+            </summary>
+        </member>
+        <member name="P:WaveEngine.Analytics.AnalyticsManager.IsOpen">
+            <summary>
+            Gets a value indicating whether this instance is open.
+            </summary>
+            <value>
+              <c>true</c> if this instance is open; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:WaveEngine.Analytics.AnalyticsSystem">
+            <summary>
+            This class represent a generic analytics system.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsSystem.#ctor(WaveEngine.Common.IAdapter,WaveEngine.Analytics.AnalyticsInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WaveEngine.Analytics.AnalyticsSystem"/> class.
+            </summary>
+            <param name="adapter">The adapter.</param>
+            <param name="info">The info.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsSystem.Open">
+            <summary>
+            Opens this instance.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsSystem.Close">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsSystem.Upload">
+            <summary>
+            Uploads this instance.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsSystem.TagEvent(System.String,System.String,System.String)">
+            <summary>
+            Tags the event.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="attribute">The attribute.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.AnalyticsSystem.TagEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Tags the event.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="attributes">The attributes.</param>
+        </member>
+        <member name="P:WaveEngine.Analytics.AnalyticsSystem.Adapter">
+            <summary>
+            Gets the adapter.
+            </summary>
+            <value>
+            Handle the adapter.
+            </value>
+        </member>
+        <member name="T:WaveEngine.Analytics.Localytics">
+            <summary>
+            This class represent a Localytics system.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.MaxStoredSessions">
+            <summary>
+            Max stored sessions allow.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.LibraryVersion">
+            <summary>
+            Library version.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.DirectoryName">
+            <summary>
+            Directory name using in Isolated Storage.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.SessionFilePrefix">
+            <summary>
+            Session file prefix.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.UploadFilePrefix">
+            <summary>
+            Upload file prefix.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.MetaFileName">
+            <summary>
+            Meta file name.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.ServiceUrlBase">
+            <summary>
+            Servuce base url.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.appKey">
+            <summary>
+            Represent a app key.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.sessionUuid">
+            <summary>
+            Represent a session id
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.sessionFilename">
+            <summary>
+            Session file name.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.isSessionOpen">
+            <summary>
+            Whether session is open.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.isSessionClosed">
+            <summary>
+            Whether session is closed.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.sessionStartTime">
+            <summary>
+            Session start time.
+            </summary>
+        </member>
+        <member name="F:WaveEngine.Analytics.Localytics.isUploading">
+            <summary>
+            Whether the current status is upload.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.#ctor(WaveEngine.Common.IAdapter,WaveEngine.Analytics.AnalyticsInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WaveEngine.Analytics.Localytics"/> class.
+            </summary>
+            <param name="adapter">The adapter.</param>
+            <param name="analyticsInfo">The analytics info.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.Open">
+            <summary>
+            Opens or resumes the Localytics session.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.Close">
+            <summary>
+            Closes the Localytics session.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.Upload">
+            <summary>
+            Creates a new thread which collects any files and uploads them. Returns immediately if an upload
+            is already happenning.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.TagEvent(System.String,System.String,System.String)">
+            <summary>
+            Records a specific event as having occured and optionally records some attributes associated with this event.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="attribute">The attribute.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.TagEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Records a specific event as having occured and optionally records some attributes associated with this event.
+            This should not be called inside a loop. It should not be used to record personally identifiable information
+            and it is best to define all your event names rather than generate them programatically.
+            </summary>
+            <param name="eventName">The name of the event which occured. E.G. 'button pressed'</param>
+            <param name="attributes">Key value pairs that record data relevant to the event.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetDatestring">
+            <summary>
+            Gets the current date/time as a string which can be inserted in the DB
+            </summary>
+            <returns>A formatted string with date, time, and timezone information</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetTimeInUnixTime">
+            <summary>
+            Gets the current time in unixtime
+            </summary>
+            <returns>The current time in unixtime</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetBlobHeader">
+            <summary>
+            Constructs a blob header for uploading
+            </summary>
+            <returns>A string containing a blob header</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetInstallId">
+            <summary>
+            Gets the Installation ID out of the metadata file
+            </summary>
+            <returns>String result.</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetSequenceNumber">
+            <summary>
+            Gets the sequence number for the next upload blob. 
+            </summary>
+            <returns>Sequence number as a string</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.SetNextSequenceNumber(System.String)">
+            <summary>
+            Sets the next sequence number in the metadata file. Creates the file if its not already there
+            </summary>
+            <param name="number">Next sequence number</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetPersistStoreCreateTime">
+            <summary>
+            Gets the timestamp of the storage file containing the sequence numbers. This allows processing to
+            ignore duplicates or identify missing uploads
+            </summary>
+            <returns>A string containing a Unixtime</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.EscapeString(System.String)">
+            <summary>
+            Formats an input string for YAML
+            </summary>
+            <param name="input">The input.</param>
+            <returns>
+            string sorrounded in quotes, with dangerous characters escaped
+            </returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.LogMessage(System.String)">
+            <summary>
+            Outputs a message to the debug console
+            </summary>
+            <param name="msg">The MSG.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetNumberOfStoredSessions">
+            <summary>
+            Tallies up the number of files whose name starts w/ sessionFilePrefix in the localytics dir
+            </summary>
+            <returns>Number of stored sessions.</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.AppendTextToFile(System.String,System.String)">
+            <summary>
+            Appends a string to the end of a text file
+            </summary>
+            <param name="text">Text to append</param>
+            <param name="filename">Name of file to append to</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetFileContents(System.String)">
+            <summary>
+            Reads a file and returns its contents as a string
+            </summary>
+            <param name="filename">file to read (w/o directory prefix)</param>
+            <returns>the contents of the file</returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetUploadContents">
+            <summary>
+            Goes through all the upload files and collects their contents for upload
+            </summary>
+            <returns>A string containing the concatenated </returns>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.DeleteUploadFiles">
+            <summary>
+            loops through all the files in the directory deleting the upload files
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.RenameOrAppendSessionFiles">
+            <summary>
+            Rename any open session files. This way events recorded during uploaded get written safely to disk
+            and threading difficulties are missed.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.BeginUpload">
+            <summary>
+            Runs on a seperate thread and is responsible for renaming and uploading files as appropriate
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.HttpRequestCallback(System.IAsyncResult)">
+            <summary>
+            HTTPs the request callback.
+            </summary>
+            <param name="asynchronousResult">The asynchronous result.</param>
+        </member>
+        <member name="M:WaveEngine.Analytics.Localytics.GetResponseCallback(System.IAsyncResult)">
+            <summary>
+            Gets the response callback.
+            </summary>
+            <param name="asynchronousResult">The asynchronous result.</param>
+        </member>
+        <member name="T:WaveEngine.Analytics.LocalyticsInfo">
+            <summary>
+            This class represent the basic info necesary to connect with localytics.
+            </summary>
+        </member>
+        <member name="M:WaveEngine.Analytics.LocalyticsInfo.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WaveEngine.Analytics.LocalyticsInfo"/> class.
+            </summary>
+            <param name="appId">The app id from http://www.localytics.com/.</param>
+        </member>
+        <member name="P:WaveEngine.Analytics.LocalyticsInfo.AppKey">
+            <summary>
+            Gets the app key.
+            </summary>
+            <value>
+            The app key.
+            </value>
+        </member>
+    </members>
+</doc>

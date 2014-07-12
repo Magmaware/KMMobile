@@ -45,77 +45,43 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib" />
-    <Reference Include="WaveEngineAndroid.Common">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Common.dll</HintPath>
+    <Reference Include="DolbyAPI">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\DolbyAPI.dll</HintPath>
     </Reference>
-    <Reference Include="WaveEngineAndroid.Framework">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Framework.dll</HintPath>
+    <Reference Include="WaveEngineAndroid.Adapter">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Adapter.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Analytics">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Bepu">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Bepu.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Common">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Common.dll</HintPath>
     </Reference>
     <Reference Include="WaveEngineAndroid.Components">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Components.dll</HintPath>
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Farseer">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Farseer.dll</HintPath>
+    </Reference>
+    <Reference Include="WaveEngineAndroid.Framework">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Framework.dll</HintPath>
     </Reference>
     <Reference Include="WaveEngineAndroid.Materials">
-      <HintPath>C:\Program Files %28x86%29\Wave Engine\\v1.0\Lib\Android\WaveEngineAndroid.Materials.dll</HintPath>
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Materials.dll</HintPath>
     </Reference>
+    <Reference Include="WaveEngineAndroid.Physics">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\WaveEngineAndroid.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>C:\Program Files %28x86%29\Wave Engine\v1.0\Lib\Android\Zlib.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GeoLib\C2DArc.cs" />
-    <Compile Include="GeoLib\C2DBase.cs" />
-    <Compile Include="GeoLib\C2DCircle.cs" />
-    <Compile Include="GeoLib\C2DLine.cs" />
-    <Compile Include="GeoLib\C2DLineBase.cs" />
-    <Compile Include="GeoLib\C2DLineBaseSet.cs" />
-    <Compile Include="GeoLib\C2DLineBaseSetSet.cs" />
-    <Compile Include="GeoLib\C2DPoint.cs" />
-    <Compile Include="GeoLib\C2DPointSet.cs" />
-    <Compile Include="GeoLib\C2DRect.cs" />
-    <Compile Include="GeoLib\C2DSegment.cs" />
-    <Compile Include="GeoLib\C2DTriangle.cs" />
-    <Compile Include="GeoLib\C2DVector.cs" />
-    <Compile Include="GeoLib\CGrid.cs" />
-    <Compile Include="GeoLib\CInterval.cs" />
-    <Compile Include="GeoLib\Constants.cs" />
-    <Compile Include="GeoLib\CRandomNumber.cs" />
-    <Compile Include="GeoLib\CTravellingSalesman.cs" />
-    <Compile Include="GeoLib\Transformation.cs" />
-    <Compile Include="GeoPolygons\C2DHoledPolyArc.cs" />
-    <Compile Include="GeoPolygons\C2DHoledPolyBase.cs" />
-    <Compile Include="GeoPolygons\C2DHoledPolyBaseSet.cs" />
-    <Compile Include="GeoPolygons\C2DHoledPolygon.cs" />
-    <Compile Include="GeoPolygons\C2DPolyArc.cs" />
-    <Compile Include="GeoPolygons\C2DPolyBase.cs" />
-    <Compile Include="GeoPolygons\C2DPolygon.cs" />
-    <Compile Include="GeoProjections\AlbersEqualAreaConic.cs" />
-    <Compile Include="GeoProjections\BonneProjection.cs" />
-    <Compile Include="GeoProjections\C3DPoint.cs" />
-    <Compile Include="GeoProjections\Cassini.cs" />
-    <Compile Include="GeoProjections\ConicEquidistant.cs" />
-    <Compile Include="GeoProjections\Constants.cs" />
-    <Compile Include="GeoProjections\CylindricalEqualArea.cs" />
-    <Compile Include="GeoProjections\CylindricalEquidistant.cs" />
-    <Compile Include="GeoProjections\EckertIV.cs" />
-    <Compile Include="GeoProjections\EckertVI.cs" />
-    <Compile Include="GeoProjections\Geodetic.cs" />
-    <Compile Include="GeoProjections\GeoRotation.cs" />
-    <Compile Include="GeoProjections\Gnomonic.cs" />
-    <Compile Include="GeoProjections\HorizontalRangeHeading.cs" />
-    <Compile Include="GeoProjections\LambertAzimuthalEqualArea.cs" />
-    <Compile Include="GeoProjections\LambertConformalConic.cs" />
-    <Compile Include="GeoProjections\Mercator.cs" />
-    <Compile Include="GeoProjections\MillerCylindrical.cs" />
-    <Compile Include="GeoProjections\Mollweide.cs" />
-    <Compile Include="GeoProjections\Orthographic.cs" />
-    <Compile Include="GeoProjections\Polyconic.cs" />
-    <Compile Include="GeoProjections\Projection.cs" />
-    <Compile Include="GeoProjections\RangeHeading.cs" />
-    <Compile Include="GeoProjections\Sinusoidal.cs" />
-    <Compile Include="GeoProjections\SlantRangeHeading.cs" />
-    <Compile Include="GeoProjections\Stereographic.cs" />
-    <Compile Include="GeoProjections\Transformation.cs" />
-    <Compile Include="GeoProjections\VanDerGrinten.cs" />
-    <Compile Include="GeoProjections\Vertical.cs" />
-    <Compile Include="GeoProjections\VerticalPerspective.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BadouiClarksonApproximator.cs" />
@@ -238,9 +204,4 @@
        Other similar extension points exist, see Microsoft.Common.targets.
 	-->
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="GeoLib\" />
-    <Folder Include="GeoPolygons\" />
-    <Folder Include="GeoProjections\" />
-  </ItemGroup>
 </Project>
